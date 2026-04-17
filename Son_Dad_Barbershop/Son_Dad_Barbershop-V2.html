@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Son &amp; Dad Barbershop — Premium Grooming Experience</title>
+    <meta name="description" content="Son &amp; Dad Barbershop — Signature Hot Towel Shave &amp; Premium Grooming in Penang &amp; Selangor.">
+    <meta property="og:title" content="Son &amp; Dad Barbershop — Premium Grooming">
+    <meta property="og:description" content="Signature Hot Towel Shave &amp; Expert Grooming. Two locations in Penang &amp; Selangor.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    /* ========================================================
+       SON & DAD BARBERSHOP — V2 DARK LUXURY THEME
+       Color: Black + Copper / Bronze
+       Fonts: Bebas Neue · Lora · Outfit
+       ======================================================== */
+
+    /* ---------- ROOT VARIABLES ---------- */
+    :root {
+        --bg: #0A0A0A;
+        --bg-2: #111111;
+        --bg-card: #181818;
+        --bg-elevated: #1F1F1F;
+        --copper: #C8956C;
+        --copper-light: #D4A87E;
+        --copper-dark: #A67A52;
+        --white: #FFFFFF;
+        --text: #F0EFED;
+        --text-2: #999999;
+        --text-muted: #555555;
+        --border: rgba(255,255,255,0.08);
+        --border-copper: rgba(200,149,108,0.25);
+        --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+        --font-serif: 'Lora', Georgia, serif;
+        --font-body: 'Outfit', 'Segoe UI', sans-serif;
+        --nav-h: 72px;
+        --ease: cubic-bezier(.25,.46,.45,.94);
+        --ease-out: cubic-bezier(.16,1,.3,1);
+        --radius: 4px;
+    }
+
+    /* ---------- RESET ---------- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ul, ol { list-style: none; }
+    ::selection { background: var(--copper); color: var(--bg); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-pad { padding: 100px 0; }
+
+    /* ---------- SECTION HEADER ---------- */
+    .sec-label {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--copper);
+        margin-bottom: 12px;
+        display: block;
+    }
+    .sec-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: 2px;
+    }
+    .sec-subtitle {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--text-2);
+        margin-top: 12px;
+    }
+    .copper-line {
+        width: 60px;
+        height: 2px;
+        background: var(--copper);
+        margin: 20px 0;
+    }
+    .copper-line-center { margin-left: auto; margin-right: auto; }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 14px 36px;
+        border-radius: var(--radius);
+        transition: all 0.3s var(--ease);
+    }
+    .btn-primary {
+        background: var(--copper);
+        color: var(--bg);
+    }
+    .btn-primary:hover { background: var(--copper-light); transform: translateY(-2px); }
+    .btn-outline {
+        border: 1.5px solid var(--copper);
+        color: var(--copper);
+    }
+    .btn-outline:hover { background: var(--copper); color: var(--bg); transform: translateY(-2px); }
+    .btn-sm { padding: 10px 24px; font-size: 0.78rem; }
+
+    /* ---------- REVEAL ANIMATIONS ---------- */
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal-left { transform: translateX(-40px); }
+    .reveal-right { transform: translateX(40px); }
+    .reveal-scale { transform: scale(0.95); }
+    .reveal.visible {
+        opacity: 1;
+        transform: translate(0) scale(1);
+    }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+    .reveal-d6 { transition-delay: 0.6s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal, .reveal-left, .reveal-right, .reveal-scale {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+
+    /* ============================================================
+       PRELOADER
+       ============================================================ */
+    #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 28px;
+        transition: transform 0.8s var(--ease-out);
+    }
+    #preloader.done { transform: translateY(-100%); }
+    .pl-text {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 4rem);
+        letter-spacing: 8px;
+        color: var(--white);
+    }
+    .pl-bar {
+        width: 140px;
+        height: 2px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .pl-fill {
+        height: 100%;
+        background: var(--copper);
+        animation: plFill 1.8s var(--ease) forwards;
+    }
+    @keyframes plFill { from { width: 0 } to { width: 100% } }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    #mainNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--nav-h);
+        z-index: 1000;
+        transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+    }
+    #mainNav.scrolled {
+        background: rgba(10,10,10,0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 28px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .nav-logo img {
+        height: 38px;
+        width: auto;
+        filter: brightness(0) invert(1);
+    }
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+    .nav-links a {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-2);
+        transition: color 0.3s;
+        position: relative;
+    }
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--copper);
+        transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--white); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-book {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 10px 24px;
+        border: 1.5px solid var(--copper);
+        color: var(--copper);
+        border-radius: var(--radius);
+        transition: all 0.3s var(--ease);
+    }
+    .nav-book:hover { background: var(--copper); color: var(--bg); }
+    .hamburger {
+        display: none;
+        width: 28px;
+        height: 20px;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+        transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* ---------- FULL-SCREEN OVERLAY MENU ---------- */
+    #menuOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(0,0,0,0.96);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+    }
+    #menuOverlay.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav { text-align: center; }
+    .overlay-nav a {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.8rem);
+        letter-spacing: 4px;
+        color: var(--text-2);
+        padding: 10px 0;
+        transition: color 0.3s, transform 0.3s;
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    #menuOverlay.open .overlay-nav a {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .overlay-nav a:nth-child(1) { transition-delay: 0.05s; }
+    .overlay-nav a:nth-child(2) { transition-delay: 0.1s; }
+    .overlay-nav a:nth-child(3) { transition-delay: 0.15s; }
+    .overlay-nav a:nth-child(4) { transition-delay: 0.2s; }
+    .overlay-nav a:nth-child(5) { transition-delay: 0.25s; }
+    .overlay-nav a:nth-child(6) { transition-delay: 0.3s; }
+    .overlay-nav a:nth-child(7) { transition-delay: 0.35s; }
+    .overlay-nav a:hover { color: var(--copper); }
+    .overlay-social {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+    }
+    .overlay-social a {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        transition: color 0.3s;
+    }
+    .overlay-social a:hover { color: var(--copper); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: #000;
+    }
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse at 30% 50%, rgba(200,149,108,0.08) 0%, transparent 60%),
+            radial-gradient(ellipse at 70% 40%, rgba(200,149,108,0.05) 0%, transparent 50%),
+            #000;
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+    }
+    .hero-label {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--copper);
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.2s var(--ease-out) forwards;
+    }
+    .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(4.5rem, 14vw, 12rem);
+        line-height: 0.9;
+        letter-spacing: 6px;
+        color: var(--white);
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.4s var(--ease-out) forwards;
+    }
+    .hero-divider {
+        width: 80px;
+        height: 2px;
+        background: var(--copper);
+        margin: 28px auto;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.6s var(--ease-out) forwards;
+    }
+    .hero-sub {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        letter-spacing: 10px;
+        color: var(--copper);
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.7s var(--ease-out) forwards;
+    }
+    .hero-tagline {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(0.95rem, 2vw, 1.15rem);
+        color: var(--text-2);
+        margin-top: 16px;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.9s var(--ease-out) forwards;
+    }
+    .hero-btns {
+        margin-top: 40px;
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 3.1s var(--ease-out) forwards;
+    }
+    .hero-scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 3.4s var(--ease-out) forwards;
+    }
+    .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--copper), transparent);
+        animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+        0%, 100% { opacity: 0.4; transform: scaleY(1); }
+        50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    @keyframes heroFadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       MARQUEE STRIP
+       ============================================================ */
+    .marquee-strip {
+        background: var(--bg-2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 18px 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .marquee-track {
+        display: inline-flex;
+        animation: marquee 30s linear infinite;
+    }
+    .marquee-track span {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+        color: var(--copper);
+        padding: 0 20px;
+    }
+    .marquee-dot {
+        color: var(--text-muted);
+        padding: 0 10px;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       ABOUT SECTION — SPLIT LAYOUT
+       ============================================================ */
+    #about { background: var(--bg); }
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    .about-text p {
+        color: var(--text-2);
+        margin-top: 16px;
+        font-size: 0.95rem;
+    }
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 36px;
+    }
+    .about-stat {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px 16px;
+        text-align: center;
+    }
+    .about-stat-num {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        color: var(--copper);
+        letter-spacing: 2px;
+    }
+    .about-stat-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        margin-top: 4px;
+    }
+    .about-img-wrap {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    .about-img-wrap img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: top center;
+        filter: grayscale(20%);
+        transition: filter 0.5s, transform 0.5s;
+    }
+    .about-img-wrap:hover img { filter: grayscale(0%); transform: scale(1.03); }
+    .about-img-border {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        right: -16px;
+        bottom: -16px;
+        border: 1.5px solid var(--copper);
+        border-radius: var(--radius);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    /* ============================================================
+       HOT TOWEL SHAVE — SIGNATURE SECTION ★
+       ============================================================ */
+    #hottowel {
+        position: relative;
+        background:
+            radial-gradient(ellipse at 50% 30%, rgba(200,149,108,0.07) 0%, transparent 60%),
+            var(--bg-2);
+        overflow: hidden;
+    }
+    .ht-glow {
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(200,149,108,0.06) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .ht-header { text-align: center; position: relative; z-index: 1; }
+    .ht-header .sec-title { font-size: clamp(2.8rem, 6vw, 4.5rem); }
+    .ht-header p {
+        max-width: 600px;
+        margin: 16px auto 0;
+        color: var(--text-2);
+        font-size: 1rem;
+    }
+
+    /* Timeline */
+    .ht-timeline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin-top: 64px;
+        position: relative;
+        z-index: 1;
+    }
+    .ht-timeline::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 12.5%;
+        right: 12.5%;
+        height: 1.5px;
+        background: linear-gradient(to right, transparent, var(--copper), var(--copper), transparent);
+    }
+    .ht-step {
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+    }
+    .ht-step-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 1.5px solid var(--copper);
+        background: var(--bg-2);
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--copper);
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.4s var(--ease);
+    }
+    .ht-step:hover .ht-step-num {
+        background: var(--copper);
+        color: var(--bg);
+        transform: scale(1.08);
+    }
+    .ht-step-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+        color: var(--white);
+        margin-top: 24px;
+    }
+    .ht-step-desc {
+        font-size: 0.85rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        margin-top: 12px;
+    }
+
+    .ht-bottom {
+        text-align: center;
+        margin-top: 56px;
+        position: relative;
+        z-index: 1;
+    }
+    .ht-price {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        color: var(--text-2);
+        margin-top: 16px;
+    }
+    .ht-price strong { color: var(--copper); font-style: normal; }
+    .ht-quote {
+        max-width: 560px;
+        margin: 40px auto 0;
+        padding: 24px 32px;
+        background: var(--bg-card);
+        border-left: 3px solid var(--copper);
+        border-radius: var(--radius);
+        text-align: left;
+    }
+    .ht-quote p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        color: var(--text);
+        line-height: 1.7;
+    }
+    .ht-quote cite {
+        display: block;
+        font-style: normal;
+        font-size: 0.8rem;
+        color: var(--copper);
+        margin-top: 12px;
+        font-weight: 600;
+    }
+
+    /* ============================================================
+       SERVICES
+       ============================================================ */
+    #services { background: var(--bg); }
+    .services-head { text-align: center; margin-bottom: 56px; }
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .svc-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px 28px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+    .svc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--copper);
+        transition: height 0.4s var(--ease);
+    }
+    .svc-card:hover { border-color: var(--border-copper); transform: translateY(-4px); }
+    .svc-card:hover::before { height: 100%; }
+    .svc-card.featured {
+        border-color: var(--border-copper);
+        background: linear-gradient(135deg, var(--bg-card), rgba(200,149,108,0.06));
+    }
+    .svc-badge {
+        display: inline-block;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background: var(--copper);
+        color: var(--bg);
+        padding: 4px 12px;
+        border-radius: 2px;
+        margin-bottom: 16px;
+    }
+    .svc-name {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: var(--white);
+    }
+    .svc-price {
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        color: var(--copper);
+        margin-top: 8px;
+    }
+    .svc-desc {
+        font-size: 0.85rem;
+        color: var(--text-2);
+        margin-top: 12px;
+        line-height: 1.6;
+    }
+
+    /* ============================================================
+       STATS BAR
+       ============================================================ */
+    .stats-bar {
+        background: linear-gradient(135deg, var(--copper-dark), var(--copper), var(--copper-dark));
+        padding: 56px 0;
+    }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        text-align: center;
+    }
+    .stat-item {}
+    .stat-num {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        color: var(--bg);
+        letter-spacing: 2px;
+    }
+    .stat-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(10,10,10,0.6);
+        margin-top: 4px;
+    }
+
+    /* ============================================================
+       TEAM
+       ============================================================ */
+    #team { background: var(--bg-2); }
+    .team-head { text-align: center; margin-bottom: 56px; }
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+    .team-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .team-card img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: top center;
+        filter: grayscale(60%);
+        transition: filter 0.5s, transform 0.5s;
+    }
+    .team-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+    .team-card-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 16px 16px;
+        background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+        transform: translateY(10px);
+        opacity: 0;
+        transition: all 0.4s var(--ease);
+    }
+    .team-card:hover .team-card-info { transform: translateY(0); opacity: 1; }
+    .team-card-name {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        color: var(--white);
+    }
+    .team-card-role {
+        font-size: 0.75rem;
+        color: var(--copper);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+       ============================================================ */
+    #testimonials { background: var(--bg); }
+    .testi-wrap { text-align: center; max-width: 700px; margin: 0 auto; }
+    .testi-icon {
+        font-family: var(--font-serif);
+        font-size: 4rem;
+        color: var(--copper);
+        line-height: 1;
+        opacity: 0.4;
+    }
+    .testi-text {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        color: var(--text);
+        line-height: 1.8;
+        margin-top: 16px;
+        min-height: 120px;
+        transition: opacity 0.4s;
+    }
+    .testi-author {
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--copper);
+        margin-top: 24px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .testi-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 32px;
+    }
+    .testi-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .testi-dot.active { background: var(--copper); transform: scale(1.3); }
+
+    /* ============================================================
+       LOCATIONS
+       ============================================================ */
+    #locations { background: var(--bg-2); }
+    .locations-head { text-align: center; margin-bottom: 56px; }
+    .locations-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    .loc-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    .loc-map {
+        width: 100%;
+        height: 220px;
+        border: 0;
+        filter: grayscale(80%) invert(92%) contrast(90%);
+    }
+    .loc-body { padding: 28px 24px; }
+    .loc-branch {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .loc-branch-badge {
+        font-family: var(--font-body);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: var(--copper);
+        color: var(--bg);
+        padding: 3px 8px;
+        border-radius: 2px;
+    }
+    .loc-details { margin-top: 16px; }
+    .loc-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 6px 0;
+        font-size: 0.85rem;
+        color: var(--text-2);
+    }
+    .loc-row svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: var(--copper);
+        margin-top: 3px;
+    }
+    .loc-btns {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       VIDEOS
+       ============================================================ */
+    #videos { background: var(--bg); }
+    .videos-head { text-align: center; margin-bottom: 56px; }
+    .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    .vid-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .vid-card img {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        transition: transform 0.5s;
+    }
+    .vid-card:hover img { transform: scale(1.04); }
+    .vid-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+    .vid-card:hover .vid-overlay { background: rgba(0,0,0,0.25); }
+    .vid-play {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        border: 2px solid var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s;
+    }
+    .vid-card:hover .vid-play { border-color: var(--copper); transform: scale(1.1); }
+    .vid-play svg { width: 24px; height: 24px; color: var(--white); margin-left: 3px; }
+    .vid-card:hover .vid-play svg { color: var(--copper); }
+    .vid-label {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        color: var(--white);
+        text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+
+    /* ============================================================
+       SOCIAL / INSTAGRAM
+       ============================================================ */
+    #social { background: var(--bg-2); }
+    .social-head { text-align: center; margin-bottom: 56px; }
+    .social-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    .social-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 40px 32px;
+        text-align: center;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+    .social-card:hover { border-color: var(--border-copper); transform: translateY(-4px); }
+    .social-card svg {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+    }
+    .social-handle {
+        font-family: var(--font-display);
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        color: var(--white);
+        margin-top: 16px;
+    }
+    .social-branch {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        margin-top: 4px;
+    }
+
+    /* ============================================================
+       FINAL CTA
+       ============================================================ */
+    .final-cta {
+        position: relative;
+        padding: 100px 0;
+        text-align: center;
+        background:
+            radial-gradient(ellipse at 50% 50%, rgba(200,149,108,0.1) 0%, transparent 60%),
+            var(--bg);
+    }
+    .final-cta .sec-title {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+    }
+    .final-cta p {
+        color: var(--text-2);
+        font-size: 1.05rem;
+        margin-top: 12px;
+    }
+    .final-cta-btns {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 36px;
+        flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+        background: #050505;
+        border-top: 1px solid var(--border);
+        padding: 60px 0 0;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+    }
+    .footer-brand p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 12px;
+        line-height: 1.7;
+    }
+    .footer-brand img {
+        height: 36px;
+        filter: brightness(0) invert(1);
+        opacity: 0.7;
+    }
+    .footer-col-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        color: var(--white);
+        margin-bottom: 16px;
+    }
+    .footer-col a, .footer-col span {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        padding: 4px 0;
+        transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--copper); }
+    .footer-bottom {
+        border-top: 1px solid var(--border);
+        margin-top: 40px;
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+    .footer-socials {
+        display: flex;
+        gap: 16px;
+    }
+    .footer-socials a { transition: color 0.3s; }
+    .footer-socials a:hover { color: var(--copper); }
+
+    /* ============================================================
+       WHATSAPP CHAT — DARK THEME
+       ============================================================ */
+    #waFloat {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #25D366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 900;
+        box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    #waFloat:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
+    #waFloat svg { width: 28px; height: 28px; color: #fff; }
+
+    #waChat {
+        position: fixed;
+        bottom: 96px;
+        right: 28px;
+        width: 360px;
+        max-height: 520px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        z-index: 901;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+    }
+    #waChat.open { display: flex; }
+    .wa-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: var(--bg-elevated);
+        border-bottom: 1px solid var(--border);
+    }
+    .wa-head-info { display: flex; align-items: center; gap: 12px; }
+    .wa-head-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--copper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        color: var(--bg);
+    }
+    .wa-head-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--white);
+    }
+    .wa-head-status {
+        font-size: 0.7rem;
+        color: #25D366;
+    }
+    .wa-close {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 4px;
+        transition: color 0.3s;
+    }
+    .wa-close:hover { color: var(--white); }
+    .wa-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-height: 360px;
+        background: #0F0F0F;
+    }
+    .wa-body::-webkit-scrollbar { width: 4px; }
+    .wa-body::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+    .wa-msg {
+        max-width: 85%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    .wa-msg.bot {
+        align-self: flex-start;
+        background: var(--bg-elevated);
+        color: var(--text);
+        border-bottom-left-radius: 2px;
+    }
+    .wa-msg.user {
+        align-self: flex-end;
+        background: var(--copper-dark);
+        color: var(--white);
+        border-bottom-right-radius: 2px;
+    }
+    .wa-typing {
+        align-self: flex-start;
+        display: flex;
+        gap: 5px;
+        padding: 12px 16px;
+        background: var(--bg-elevated);
+        border-radius: 10px;
+    }
+    .wa-typing span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--text-muted);
+        animation: typDot 1.2s ease infinite;
+    }
+    .wa-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .wa-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typDot {
+        0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+        30% { opacity: 1; transform: translateY(-4px); }
+    }
+    .wa-opts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 4px;
+    }
+    .wa-opt-btn {
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 8px 14px;
+        border: 1px solid var(--border-copper);
+        border-radius: 20px;
+        color: var(--copper);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .wa-opt-btn:hover { background: var(--copper); color: var(--bg); }
+
+    /* ============================================================
+       BACK TO TOP
+       ============================================================ */
+    #backTop {
+        position: fixed;
+        bottom: 28px;
+        left: 28px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1.5px solid var(--copper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--copper);
+        z-index: 800;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
+    #backTop.show { opacity: 1; pointer-events: auto; }
+    #backTop:hover { background: var(--copper); color: var(--bg); }
+    #backTop svg { width: 18px; height: 18px; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+        .team-grid { grid-template-columns: repeat(3, 1fr); }
+        .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+        .nav-links, .nav-book { display: none; }
+        .hamburger { display: flex; }
+        .about-grid { grid-template-columns: 1fr; gap: 40px; }
+        .about-img-wrap { order: -1; }
+        .about-img-wrap img { height: 350px; }
+        .about-img-border { display: none; }
+        .ht-timeline {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .ht-timeline::before {
+            top: 0;
+            bottom: 0;
+            left: 40px;
+            right: auto;
+            width: 1.5px;
+            height: auto;
+        }
+        .ht-step { text-align: left; padding-left: 90px; }
+        .ht-step .ht-step-num {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            font-size: 1.3rem;
+        }
+        .services-grid { grid-template-columns: 1fr 1fr; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .team-grid { grid-template-columns: repeat(2, 1fr); }
+        .locations-grid { grid-template-columns: 1fr; }
+        .videos-grid { grid-template-columns: 1fr; }
+        .social-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+        .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        .section-pad { padding: 72px 0; }
+        #waChat { width: calc(100vw - 24px); right: 12px; bottom: 88px; }
+        #waFloat { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+        #backTop { bottom: 20px; left: 20px; width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+        .about-stats { grid-template-columns: 1fr; }
+        .services-grid { grid-template-columns: 1fr; }
+        .hero-btns { flex-direction: column; align-items: center; }
+        .hero-btns .btn { width: 100%; max-width: 260px; }
+        .loc-btns { flex-direction: column; }
+        .loc-btns .btn { width: 100%; text-align: center; }
+        .final-cta-btns { flex-direction: column; align-items: center; }
+        .final-cta-btns .btn { width: 100%; max-width: 280px; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     PRELOADER
+     ============================================================ -->
+<div id="preloader">
+    <div class="pl-text">SON &amp; DAD</div>
+    <div class="pl-bar"><div class="pl-fill"></div></div>
+</div>
+
+<!-- ============================================================
+     FULL-SCREEN OVERLAY MENU
+     ============================================================ -->
+<div id="menuOverlay">
+    <div class="overlay-nav">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#hottowel" onclick="closeMenu()">Hot Towel Shave</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#team" onclick="closeMenu()">The Barbers</a>
+        <a href="#locations" onclick="closeMenu()">Locations</a>
+        <a href="#videos" onclick="closeMenu()">Videos</a>
+        <a href="#social" onclick="closeMenu()">Follow Us</a>
+    </div>
+    <div class="overlay-social">
+        <a href="https://www.instagram.com/sondad.barbershop/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.youtube.com/@sondadbarbershop" target="_blank" rel="noopener noreferrer">YouTube</a>
+    </div>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="mainNav">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+            <img src="SON%20%26%20DAD%20images/sdb_logo.png" alt="Son &amp; Dad Barbershop" width="130" height="38">
+        </a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#hottowel">Hot Towel</a>
+            <a href="#services">Services</a>
+            <a href="#team">Barbers</a>
+            <a href="#locations">Locations</a>
+            <a href="#videos">Videos</a>
+        </div>
+        <div class="nav-right">
+            <a href="#final-cta" class="nav-book">Book Now</a>
+            <button class="hamburger" id="menuToggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-label">PREMIUM GROOMING</div>
+        <h1 class="hero-title">SON &amp; DAD</h1>
+        <div class="hero-divider"></div>
+        <div class="hero-sub">BARBERSHOP</div>
+        <p class="hero-tagline">Signature Hot Towel Shave &amp; Expert Grooming — Penang &amp; Selangor</p>
+        <div class="hero-btns">
+            <a href="#final-cta" class="btn btn-primary">Book Now</a>
+            <a href="#hottowel" class="btn btn-outline">Our Signature Shave</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE STRIP
+     ============================================================ -->
+<div class="marquee-strip">
+    <div class="marquee-track">
+        <span>HAIRCUTS</span><span class="marquee-dot">✦</span>
+        <span>HOT TOWEL SHAVE</span><span class="marquee-dot">✦</span>
+        <span>BEARD TRIM</span><span class="marquee-dot">✦</span>
+        <span>GROOMING</span><span class="marquee-dot">✦</span>
+        <span>STYLING</span><span class="marquee-dot">✦</span>
+        <span>PENANG</span><span class="marquee-dot">✦</span>
+        <span>SELANGOR</span><span class="marquee-dot">✦</span>
+        <span>HAIRCUTS</span><span class="marquee-dot">✦</span>
+        <span>HOT TOWEL SHAVE</span><span class="marquee-dot">✦</span>
+        <span>BEARD TRIM</span><span class="marquee-dot">✦</span>
+        <span>GROOMING</span><span class="marquee-dot">✦</span>
+        <span>STYLING</span><span class="marquee-dot">✦</span>
+        <span>PENANG</span><span class="marquee-dot">✦</span>
+        <span>SELANGOR</span><span class="marquee-dot">✦</span>
+    </div>
+</div>
+
+<!-- ============================================================
+     ABOUT — SPLIT LAYOUT
+     ============================================================ -->
+<section id="about" class="section-pad">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <span class="sec-label reveal">Our Story</span>
+                <h2 class="sec-title reveal reveal-d1">CRAFTED WITH TRADITION,<br>BUILT FOR TODAY</h2>
+                <div class="copper-line reveal reveal-d2"></div>
+                <p class="reveal reveal-d3">Son &amp; Dad Barbershop is more than a place for haircuts — it's a grooming sanctuary where tradition meets modern style. Founded on the bond between father and son, we bring generations of grooming expertise to every client who sits in our chair.</p>
+                <p class="reveal reveal-d4">From classic fades to our signature <strong style="color:var(--copper)">Hot Towel Shave</strong>, every service is delivered with precision, passion, and a personal touch that keeps our clients coming back.</p>
+                <div class="about-stats reveal reveal-d5">
+                    <div class="about-stat">
+                        <div class="about-stat-num">5+</div>
+                        <div class="about-stat-label">Years</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-num">10K+</div>
+                        <div class="about-stat-label">Clients</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-num">2</div>
+                        <div class="about-stat-label">Locations</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img-wrap reveal reveal-right reveal-d2">
+                <img src="SON%20%26%20DAD%20images/barber_1.png" alt="Son &amp; Dad Barber at work" loading="lazy">
+                <div class="about-img-border"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     HOT TOWEL SHAVE — SIGNATURE SECTION ★
+     ============================================================ -->
+<section id="hottowel" class="section-pad">
+    <div class="ht-glow"></div>
+    <div class="container">
+        <div class="ht-header">
+            <span class="sec-label reveal">★ Signature Service</span>
+            <h2 class="sec-title reveal reveal-d1">THE HOT TOWEL SHAVE<br>EXPERIENCE</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+            <p class="reveal reveal-d3">Indulge in our most celebrated service — a ritual that blends old-world craftsmanship with modern luxury. Every hot towel shave is a journey from tension to total relaxation.</p>
+        </div>
+
+        <div class="ht-timeline">
+            <div class="ht-step reveal reveal-d1">
+                <div class="ht-step-num">01</div>
+                <h3 class="ht-step-title">PREPARATION</h3>
+                <p class="ht-step-desc">A steaming hot towel is applied to open pores and soften facial hair, preparing your skin for the smoothest shave possible.</p>
+            </div>
+            <div class="ht-step reveal reveal-d2">
+                <div class="ht-step-num">02</div>
+                <h3 class="ht-step-title">PREMIUM LATHER</h3>
+                <p class="ht-step-desc">Rich, warm shaving cream is applied with a traditional brush, creating a protective layer for an irritation-free experience.</p>
+            </div>
+            <div class="ht-step reveal reveal-d3">
+                <div class="ht-step-num">03</div>
+                <h3 class="ht-step-title">THE SHAVE</h3>
+                <p class="ht-step-desc">Our expert barbers use precise straight razor techniques — smooth, confident strokes for a flawlessly close shave.</p>
+            </div>
+            <div class="ht-step reveal reveal-d4">
+                <div class="ht-step-num">04</div>
+                <h3 class="ht-step-title">COOL &amp; SOOTHE</h3>
+                <p class="ht-step-desc">A refreshing cool towel closes pores, followed by premium aftershave balm to hydrate and protect your skin.</p>
+            </div>
+        </div>
+
+        <div class="ht-bottom reveal">
+            <a href="#final-cta" class="btn btn-primary">Book Your Hot Towel Shave</a>
+            <div class="ht-price">Starting from <strong>RM 35</strong></div>
+            <div class="ht-quote">
+                <p>&ldquo;The best shave I&rsquo;ve ever had. I came for a haircut but now I can&rsquo;t leave without the hot towel shave!&rdquo;</p>
+                <cite>— Ahmad R., Regular Client</cite>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section id="services" class="section-pad">
+    <div class="container">
+        <div class="services-head">
+            <span class="sec-label reveal">What We Offer</span>
+            <h2 class="sec-title reveal reveal-d1">OUR SERVICES</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="svc-card reveal reveal-d1">
+                <div class="svc-name">CLASSIC HAIRCUT</div>
+                <div class="svc-price">From RM 35</div>
+                <p class="svc-desc">Expert cuts tailored to your face shape and style preference. Consultation, wash, cut, and styling included.</p>
+            </div>
+            <!-- Card 2 — FEATURED -->
+            <div class="svc-card featured reveal reveal-d2">
+                <span class="svc-badge">★ Signature</span>
+                <div class="svc-name">HOT TOWEL SHAVE</div>
+                <div class="svc-price">From RM 35</div>
+                <p class="svc-desc">Our celebrated ritual — steaming towels, premium lather, straight razor precision, and a soothing finish.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="svc-card reveal reveal-d3">
+                <div class="svc-name">BEARD TRIM &amp; SHAPE</div>
+                <div class="svc-price">From RM 25</div>
+                <p class="svc-desc">Precision trimming and shaping to keep your beard looking sharp, defined, and well-groomed.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="svc-card reveal reveal-d4">
+                <div class="svc-name">HAIR COLORING</div>
+                <div class="svc-price">From RM 80</div>
+                <p class="svc-desc">Professional coloring services to refresh your look or cover the greys with natural-looking results.</p>
+            </div>
+            <!-- Card 5 -->
+            <div class="svc-card reveal reveal-d5">
+                <div class="svc-name">KIDS&rsquo; CUT</div>
+                <div class="svc-price">From RM 25</div>
+                <p class="svc-desc">Patience and skill for the young gentlemen. A comfortable, fun experience for kids of all ages.</p>
+            </div>
+            <!-- Card 6 -->
+            <div class="svc-card reveal reveal-d6">
+                <span class="svc-badge">Best Value</span>
+                <div class="svc-name">THE FULL PACKAGE</div>
+                <div class="svc-price">From RM 60</div>
+                <p class="svc-desc">Haircut + Hot Towel Shave — the complete grooming experience in one session. Save when you bundle.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     STATS BAR
+     ============================================================ -->
+<section class="stats-bar">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-num" data-target="5" data-suffix="+">0</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="10000" data-suffix="+">0</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="5" data-suffix="">0</div>
+                <div class="stat-label">Expert Barbers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="2" data-suffix="">0</div>
+                <div class="stat-label">Premium Locations</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TEAM
+     ============================================================ -->
+<section id="team" class="section-pad">
+    <div class="container">
+        <div class="team-head">
+            <span class="sec-label reveal">The Crew</span>
+            <h2 class="sec-title reveal reveal-d1">MEET THE BARBERS</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal reveal-d1">
+                <img src="SON%20%26%20DAD%20images/barber_1.png" alt="Barber 1" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Master Barber</div>
+                    <div class="team-card-name">BARBER ONE</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d2">
+                <img src="SON%20%26%20DAD%20images/barber_2.png" alt="Barber 2" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Senior Stylist</div>
+                    <div class="team-card-name">BARBER TWO</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d3">
+                <img src="SON%20%26%20DAD%20images/barber_3.png" alt="Barber 3" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Hot Towel Specialist</div>
+                    <div class="team-card-name">BARBER THREE</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d4">
+                <img src="SON%20%26%20DAD%20images/barber_4.png" alt="Barber 4" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Grooming Expert</div>
+                    <div class="team-card-name">BARBER FOUR</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d5">
+                <img src="SON%20%26%20DAD%20images/barber_5.jpg" alt="Barber 5" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Junior Stylist</div>
+                    <div class="team-card-name">BARBER FIVE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section id="testimonials" class="section-pad">
+    <div class="container">
+        <div class="testi-wrap">
+            <div class="testi-icon reveal">&ldquo;</div>
+            <p class="testi-text reveal reveal-d1" id="testiText">Best barbershop in Penang. The hot towel shave is absolutely incredible — I&rsquo;m hooked!</p>
+            <div class="testi-author reveal reveal-d2" id="testiAuthor">— AHMAD R.</div>
+            <div class="testi-dots reveal reveal-d3" id="testiDots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     LOCATIONS
+     ============================================================ -->
+<section id="locations" class="section-pad">
+    <div class="container">
+        <div class="locations-head">
+            <span class="sec-label reveal">Find Us</span>
+            <h2 class="sec-title reveal reveal-d1">OUR LOCATIONS</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="locations-grid">
+            <!-- Penang -->
+            <div class="loc-card reveal reveal-d1">
+                <iframe class="loc-map" src="https://maps.google.com/maps?q=Son+%26+Dad+Barbershop+49+Lebuh+Acheh+George+Town+Penang&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Son &amp; Dad Barbershop Penang"></iframe>
+                <div class="loc-body">
+                    <div class="loc-branch">
+                        PENANG
+                        <span class="loc-branch-badge">Flagship</span>
+                    </div>
+                    <div class="loc-details">
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>49 Lebuh Acheh, George Town, 10200 Penang</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>Tue – Sun: 10:00 AM – 8:00 PM &nbsp;|&nbsp; Mon: Closed</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            <a href="https://wa.me/60194419214" target="_blank" rel="noopener noreferrer" style="color:var(--copper)">+60 19-441 9214</a>
+                        </div>
+                    </div>
+                    <div class="loc-btns">
+                        <a href="https://sondadbarbershop.com/amelia-step-booking/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Book Penang</a>
+                        <a href="https://www.instagram.com/sondad.barbershop/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">@sondad.barbershop</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Selangor -->
+            <div class="loc-card reveal reveal-d2">
+                <iframe class="loc-map" src="https://maps.google.com/maps?q=Son+%26+Dad+Barbershop+128M+Jalan+SS21+Damansara+Utama+Petaling+Jaya+Selangor&t=&z=16&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Son &amp; Dad Barbershop Selangor"></iframe>
+                <div class="loc-body">
+                    <div class="loc-branch">
+                        SELANGOR
+                        <span class="loc-branch-badge">New</span>
+                    </div>
+                    <div class="loc-details">
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>128M Jalan SS 21/35, Damansara Utama, 47400 Petaling Jaya</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>Tue – Sun: 10:00 AM – 8:00 PM &nbsp;|&nbsp; Mon: Closed</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            <a href="https://wa.me/60194009214" target="_blank" rel="noopener noreferrer" style="color:var(--copper)">+60 19-400 9214</a>
+                        </div>
+                    </div>
+                    <div class="loc-btns">
+                        <a href="https://selangor.sondadbarbershop.com/amelia-step-booking/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Book Selangor</a>
+                        <a href="https://www.instagram.com/sondadbarber.damansara/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">@sondadbarber.damansara</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     VIDEOS
+     ============================================================ -->
+<section id="videos" class="section-pad">
+    <div class="container">
+        <div class="videos-head">
+            <span class="sec-label reveal">Watch Us</span>
+            <h2 class="sec-title reveal reveal-d1">IN ACTION</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="videos-grid">
+            <a href="https://www.youtube.com/watch?v=iHjgB01z-H0" target="_blank" rel="noopener noreferrer" class="vid-card reveal reveal-d1">
+                <img src="https://img.youtube.com/vi/iHjgB01z-H0/maxresdefault.jpg" alt="Traditional Barbershop in Penang">
+                <div class="vid-overlay">
+                    <div class="vid-play">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                </div>
+                <div class="vid-label">TRADITIONAL BARBERSHOP — PENANG</div>
+            </a>
+            <a href="https://www.youtube.com/watch?v=gaMJvd-uJTQ" target="_blank" rel="noopener noreferrer" class="vid-card reveal reveal-d2">
+                <img src="https://img.youtube.com/vi/gaMJvd-uJTQ/maxresdefault.jpg" alt="Classic Hot Towel Shave">
+                <div class="vid-overlay">
+                    <div class="vid-play">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    </div>
+                </div>
+                <div class="vid-label">CLASSIC HOT TOWEL SHAVE</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SOCIAL / INSTAGRAM
+     ============================================================ -->
+<section id="social" class="section-pad">
+    <div class="container">
+        <div class="social-head">
+            <span class="sec-label reveal">Follow The Journey</span>
+            <h2 class="sec-title reveal reveal-d1">ON INSTAGRAM</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="social-grid">
+            <a href="https://www.instagram.com/sondad.barbershop/" target="_blank" rel="noopener noreferrer" class="social-card reveal reveal-d1">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <defs><linearGradient id="ig1" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#feda75"/><stop offset="25%" stop-color="#fa7e1e"/>
+                        <stop offset="50%" stop-color="#d62976"/><stop offset="75%" stop-color="#962fbf"/>
+                        <stop offset="100%" stop-color="#4f5bd5"/>
+                    </linearGradient></defs>
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#ig1)" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="5" stroke="url(#ig1)" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.5" fill="url(#ig1)"/>
+                </svg>
+                <div class="social-handle">@SONDAD.BARBERSHOP</div>
+                <div class="social-branch">Penang — Flagship</div>
+            </a>
+            <a href="https://www.instagram.com/sondadbarber.damansara/" target="_blank" rel="noopener noreferrer" class="social-card reveal reveal-d2">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <defs><linearGradient id="ig2" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#feda75"/><stop offset="25%" stop-color="#fa7e1e"/>
+                        <stop offset="50%" stop-color="#d62976"/><stop offset="75%" stop-color="#962fbf"/>
+                        <stop offset="100%" stop-color="#4f5bd5"/>
+                    </linearGradient></defs>
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#ig2)" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="5" stroke="url(#ig2)" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.5" fill="url(#ig2)"/>
+                </svg>
+                <div class="social-handle">@SONDADBARBER.DAMANSARA</div>
+                <div class="social-branch">Selangor — Damansara</div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="final-cta" id="final-cta">
+    <div class="container">
+        <span class="sec-label reveal">Ready?</span>
+        <h2 class="sec-title reveal reveal-d1">BOOK YOUR<br>APPOINTMENT TODAY</h2>
+        <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        <p class="reveal reveal-d3">Choose your branch and experience the Son &amp; Dad difference.</p>
+        <div class="final-cta-btns reveal reveal-d4">
+            <a href="https://sondadbarbershop.com/amelia-step-booking/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Penang</a>
+            <a href="https://selangor.sondadbarbershop.com/amelia-step-booking/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Book Selangor</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="SON%20%26%20DAD%20images/sdb_logo.png" alt="Son &amp; Dad Barbershop" width="130" height="36">
+                <p>Premium barbershop experience in Penang &amp; Selangor. Signature Hot Towel Shave &amp; expert grooming since 2020.</p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">NAVIGATE</div>
+                <a href="#about">About</a>
+                <a href="#hottowel">Hot Towel Shave</a>
+                <a href="#services">Services</a>
+                <a href="#team">The Barbers</a>
+                <a href="#locations">Locations</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">HOURS</div>
+                <span>Tuesday – Sunday</span>
+                <span>10:00 AM – 8:00 PM</span>
+                <span style="margin-top:8px;color:var(--copper)">Monday: Closed</span>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">CONTACT</div>
+                <a href="https://wa.me/60194419214" target="_blank" rel="noopener noreferrer">Penang: +60 19-441 9214</a>
+                <a href="https://wa.me/60194009214" target="_blank" rel="noopener noreferrer">Selangor: +60 19-400 9214</a>
+                <a href="https://www.instagram.com/sondad.barbershop/" target="_blank" rel="noopener noreferrer" style="margin-top:8px">Instagram Penang</a>
+                <a href="https://www.instagram.com/sondadbarber.damansara/" target="_blank" rel="noopener noreferrer">Instagram Selangor</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2024 Son &amp; Dad Barbershop. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/sondad.barbershop/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="https://www.youtube.com/@sondadbarbershop" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33A2.78 2.78 0 003.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.25 29 29 0 00-.46-5.43z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="currentColor" stroke="none"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     WHATSAPP CHAT
+     ============================================================ -->
+<div id="waChat">
+    <div class="wa-head">
+        <div class="wa-head-info">
+            <div class="wa-head-avatar">S&D</div>
+            <div>
+                <div class="wa-head-name">Son &amp; Dad Barbershop</div>
+                <div class="wa-head-status">● Online</div>
+            </div>
+        </div>
+        <button class="wa-close" id="waClose" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="wa-body" id="waBody"></div>
+</div>
+
+<button id="waFloat" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
+<!-- Back to Top -->
+<button id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function(){
+'use strict';
+
+/* ========================================
+   PRELOADER
+   ======================================== */
+const preloader = document.getElementById('preloader');
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        preloader.classList.add('done');
+        setTimeout(() => { preloader.style.display = 'none'; }, 800);
+    }, 2000);
+});
+
+/* ========================================
+   NAVIGATION — SCROLL STATE + ACTIVE LINK
+   ======================================== */
+const nav = document.getElementById('mainNav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+    lastScroll = window.scrollY;
+}, { passive: true });
+
+// Active nav link highlight based on section in view
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const sections = Array.from(navLinks)
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            });
+        }
+    });
+}, {
+    threshold: 0,
+    rootMargin: '-40% 0px -55% 0px'
+});
+sections.forEach(sec => sectionObserver.observe(sec));
+
+/* ========================================
+   HAMBURGER + OVERLAY MENU
+   ======================================== */
+const menuBtn = document.getElementById('menuToggle');
+const overlay = document.getElementById('menuOverlay');
+let menuOpen = false;
+
+function toggleMenu() {
+    menuOpen = !menuOpen;
+    menuBtn.classList.toggle('active', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+function closeMenu() {
+    if (menuOpen) toggleMenu();
+}
+menuBtn.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeMenu(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ========================================
+   SCROLL REVEAL — Intersection Observer
+   ======================================== */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ========================================
+   STATS COUNTER
+   ======================================== */
+let statsAnimated = false;
+const statsSection = document.querySelector('.stats-bar');
+
+function animateCounter(el, target, suffix, duration) {
+    let start = null;
+    const step = (ts) => {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const val = Math.floor(progress * target);
+        el.textContent = target >= 1000 ? val.toLocaleString() + suffix : val + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target >= 1000 ? target.toLocaleString() + suffix : target + suffix;
+    };
+    requestAnimationFrame(step);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+            statsAnimated = true;
+            document.querySelectorAll('.stat-num').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                animateCounter(el, target, suffix, target > 100 ? 2000 : 1200);
+            });
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+if (statsSection) statsObserver.observe(statsSection);
+
+/* ========================================
+   TESTIMONIALS ROTATION
+   ======================================== */
+const testimonials = [
+    { text: 'Best barbershop in Penang. The hot towel shave is absolutely incredible — I\u2019m hooked!', author: '— AHMAD R.' },
+    { text: 'My father and I come here every fortnight. The atmosphere is unmatched and the barbers really know their craft.', author: '— DANIEL L.' },
+    { text: 'Drove from KL just for their hot towel shave. Worth every kilometer. The team makes you feel like family.', author: '— RAJ K.' },
+    { text: 'Finally found a barbershop that gets it right. Clean cuts, great vibes, and the hot towel shave is pure luxury.', author: '— MARCUS T.' }
+];
+const testiText = document.getElementById('testiText');
+const testiAuthor = document.getElementById('testiAuthor');
+const testiDots = document.getElementById('testiDots');
+let currentTesti = 0;
+
+// Build dots
+testimonials.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goToTesti(i));
+    testiDots.appendChild(dot);
+});
+
+function goToTesti(idx) {
+    currentTesti = idx;
+    testiText.style.opacity = '0';
+    setTimeout(() => {
+        testiText.textContent = testimonials[idx].text;
+        testiAuthor.textContent = testimonials[idx].author;
+        testiText.style.opacity = '1';
+        testiDots.querySelectorAll('.testi-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, 300);
+}
+
+setInterval(() => {
+    goToTesti((currentTesti + 1) % testimonials.length);
+}, 5000);
+
+/* ========================================
+   SMOOTH SCROLL FOR ANCHOR LINKS
+   ======================================== */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+            window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+    });
+});
+
+/* ========================================
+   BACK TO TOP
+   ======================================== */
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ========================================
+   WHATSAPP CHATBOT — DARK THEME
+   ======================================== */
+const waFloat = document.getElementById('waFloat');
+const waChat = document.getElementById('waChat');
+const waClose = document.getElementById('waClose');
+const waBody = document.getElementById('waBody');
+let chatStarted = false;
+
+waFloat.addEventListener('click', e => { e.stopPropagation(); waChat.classList.toggle('open'); if (!chatStarted) startChat(); });
+waClose.addEventListener('click', e => { e.stopPropagation(); waChat.classList.remove('open'); });
+document.addEventListener('click', e => { if (waChat.classList.contains('open') && !waChat.contains(e.target) && e.target !== waFloat) waChat.classList.remove('open'); });
+
+/* ---------- CONVERSATION FLOWS ---------- */
+const FLOWS = {
+    start: {
+        msg: 'Assalamualaikum! 👋 Welcome to Son & Dad Barbershop.\n\nHow can we help you today?',
+        opts: [
+            { label: '💈 Book Appointment', next: 'pickBranch' },
+            { label: '🪒 Hot Towel Shave Info', next: 'hotTowelInfo' },
+            { label: '📋 View Services', next: 'services' },
+            { label: '📍 Our Locations', next: 'locations' },
+            { label: '❓ FAQ', next: 'faq' },
+            { label: '👤 Talk to Team', next: 'talkDirect' }
+        ]
+    },
+    pickBranch: {
+        msg: 'Which branch would you like to book at?',
+        opts: [
+            { label: '🏝️ Penang (George Town)', next: 'pickService', data: 'penang' },
+            { label: '🏙️ Selangor (Damansara)', next: 'pickService', data: 'selangor' }
+        ]
+    },
+    pickService: {
+        msg: 'What service are you interested in?',
+        opts: [
+            { label: '✂️ Classic Haircut', next: 'confirmBook' },
+            { label: '🪒 Hot Towel Shave ★', next: 'confirmBook' },
+            { label: '🧔 Beard Trim & Shape', next: 'confirmBook' },
+            { label: '🎨 Hair Coloring', next: 'confirmBook' },
+            { label: '👦 Kids\' Cut', next: 'confirmBook' },
+            { label: '💎 Full Package (Haircut + Hot Towel)', next: 'confirmBook' }
+        ]
+    },
+    confirmBook: {
+        msg: 'Great choice! Click below to complete your booking:',
+        action: 'showBookingLink'
+    },
+    hotTowelInfo: {
+        msg: '🪒 Our Signature Hot Towel Shave is a 4-step luxury ritual:\n\n01. Hot towel prep — opens pores\n02. Premium lather — traditional brush\n03. Straight razor shave — precision\n04. Cool towel + aftershave balm\n\nStarting from RM 35. It\'s our most popular service!',
+        opts: [
+            { label: '💈 Book Hot Towel Shave', next: 'pickBranch' },
+            { label: '📋 See All Services', next: 'services' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    services: {
+        msg: '📋 Our Services & Starting Prices:\n\n✂️ Classic Haircut — RM 35+\n🪒 Hot Towel Shave — RM 35+ ★\n🧔 Beard Trim & Shape — RM 25+\n🎨 Hair Coloring — RM 80+\n👦 Kids\' Cut — RM 25+\n💎 Full Package — RM 60+',
+        opts: [
+            { label: '💈 Book Now', next: 'pickBranch' },
+            { label: '🪒 Hot Towel Shave Info', next: 'hotTowelInfo' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    locations: {
+        msg: '📍 Our Locations:\n\n🏝️ PENANG (Flagship)\n49 Lebuh Acheh, George Town\nTue–Sun: 10AM–8PM\n📞 +60 19-441 9214\n\n🏙️ SELANGOR\n128M Jalan SS 21/35, Damansara Utama\nTue–Sun: 10AM–8PM\n📞 +60 19-400 9214\n\nMonday: Closed (both branches)',
+        opts: [
+            { label: '💈 Book Appointment', next: 'pickBranch' },
+            { label: '👤 WhatsApp Penang', next: 'openDirect', data: 'penang' },
+            { label: '👤 WhatsApp Selangor', next: 'openDirect', data: 'selangor' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faq: {
+        msg: '❓ Frequently Asked Questions:',
+        opts: [
+            { label: '💰 Pricing', next: 'faqPrice' },
+            { label: '🚶 Walk-ins?', next: 'faqWalkin' },
+            { label: '👦 Kids friendly?', next: 'faqKids' },
+            { label: '🪒 What\'s Hot Towel Shave?', next: 'hotTowelInfo' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faqPrice: {
+        msg: '💰 Our prices start from:\n• Haircut: RM 35+\n• Hot Towel Shave: RM 35+\n• Beard Trim: RM 25+\n• Hair Color: RM 80+\n• Kids: RM 25+\n• Full Package: RM 60+\n\nFinal price may vary based on complexity.',
+        opts: [
+            { label: '💈 Book Now', next: 'pickBranch' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faqWalkin: {
+        msg: '🚶 Walk-ins are welcome, but we recommend booking in advance to skip the queue — especially on weekends!',
+        opts: [
+            { label: '💈 Book Now', next: 'pickBranch' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faqKids: {
+        msg: '👦 Absolutely! We love having young gentlemen in our chairs. Our barbers are experienced with kids of all ages. Kids\' cuts start from RM 25.',
+        opts: [
+            { label: '💈 Book Now', next: 'pickBranch' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    talkDirect: {
+        msg: '👤 Which branch would you like to contact directly on WhatsApp?',
+        opts: [
+            { label: '🏝️ Penang', next: 'openDirect', data: 'penang' },
+            { label: '🏙️ Selangor', next: 'openDirect', data: 'selangor' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    openDirect: { msg: 'Opening WhatsApp...', action: 'openWa' }
+};
+
+let selectedBranch = '';
+
+function startChat() {
+    chatStarted = true;
+    showFlow('start');
+}
+
+function showFlow(key) {
+    const flow = FLOWS[key];
+    if (!flow) return;
+    showTyping(() => {
+        botMsg(flow.msg);
+        if (flow.action === 'showBookingLink') {
+            showBookingButtons();
+        } else if (flow.action === 'openWa') {
+            showWaOpen(selectedBranch);
+        } else if (flow.opts) {
+            showOpts(flow.opts, key);
+        }
+    });
+}
+
+function botMsg(text) {
+    const d = document.createElement('div');
+    d.className = 'wa-msg bot';
+    d.textContent = text;
+    d.style.whiteSpace = 'pre-wrap';
+    waBody.appendChild(d);
+    scrollChat();
+}
+
+function userMsg(text) {
+    const d = document.createElement('div');
+    d.className = 'wa-msg user';
+    d.textContent = text;
+    waBody.appendChild(d);
+    scrollChat();
+}
+
+function showTyping(cb) {
+    const t = document.createElement('div');
+    t.className = 'wa-typing';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    waBody.appendChild(t);
+    scrollChat();
+    setTimeout(() => { t.remove(); cb(); }, 800 + Math.random() * 400);
+}
+
+function showOpts(opts, parentKey) {
+    const wrap = document.createElement('div');
+    wrap.className = 'wa-opts';
+    opts.forEach(opt => {
+        const b = document.createElement('button');
+        b.className = 'wa-opt-btn';
+        b.textContent = opt.label;
+        b.addEventListener('click', e => {
+            e.stopPropagation();
+            pick(opt, parentKey);
+        });
+        wrap.appendChild(b);
+    });
+    waBody.appendChild(wrap);
+    scrollChat();
+}
+
+function pick(opt, parentKey) {
+    // Remove option buttons
+    waBody.querySelectorAll('.wa-opts').forEach(el => el.remove());
+    userMsg(opt.label);
+    if (opt.data) {
+        if (parentKey === 'pickBranch') selectedBranch = opt.data;
+        if (opt.next === 'openDirect') selectedBranch = opt.data;
+    }
+    setTimeout(() => showFlow(opt.next), 300);
+}
+
+function showBookingButtons() {
+    const url = selectedBranch === 'selangor'
+        ? 'https://selangor.sondadbarbershop.com/amelia-step-booking/'
+        : 'https://sondadbarbershop.com/amelia-step-booking/';
+    const wrap = document.createElement('div');
+    wrap.className = 'wa-opts';
+    const b = document.createElement('button');
+    b.className = 'wa-opt-btn';
+    b.textContent = '🔗 Open Booking Page';
+    b.addEventListener('click', e => { e.stopPropagation(); window.open(url, '_blank'); });
+    wrap.appendChild(b);
+    const bm = document.createElement('button');
+    bm.className = 'wa-opt-btn';
+    bm.textContent = '🏠 Main Menu';
+    bm.addEventListener('click', e => { e.stopPropagation(); wrap.remove(); showFlow('start'); });
+    wrap.appendChild(bm);
+    waBody.appendChild(wrap);
+    scrollChat();
+}
+
+function showWaOpen(branch) {
+    const num = branch === 'selangor' ? '60194009214' : '60194419214';
+    const wrap = document.createElement('div');
+    wrap.className = 'wa-opts';
+    const b = document.createElement('button');
+    b.className = 'wa-opt-btn';
+    b.textContent = '💬 Open WhatsApp';
+    b.addEventListener('click', e => {
+        e.stopPropagation();
+        window.open('https://wa.me/' + num + '?text=' + encodeURIComponent('Hi Son & Dad! I\'d like to know more about your services.'), '_blank');
+    });
+    wrap.appendChild(b);
+    const bm = document.createElement('button');
+    bm.className = 'wa-opt-btn';
+    bm.textContent = '🏠 Main Menu';
+    bm.addEventListener('click', e => { e.stopPropagation(); wrap.remove(); showFlow('start'); });
+    wrap.appendChild(bm);
+    waBody.appendChild(wrap);
+    scrollChat();
+}
+
+function scrollChat() {
+    requestAnimationFrame(() => { waBody.scrollTop = waBody.scrollHeight; });
+}
+
+})();
+</script>
+</body>
+</html>
