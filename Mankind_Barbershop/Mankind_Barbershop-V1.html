@@ -1,0 +1,2173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mankind Barber | Premium Barbershop in TTDI, Kuala Lumpur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS RESET & VARIABLES ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --black: #0a0a0a;
+            --dark: #111111;
+            --dark-2: #1a1a1a;
+            --dark-3: #222222;
+            --gold: #c8a45e;
+            --gold-light: #d4b670;
+            --gold-dark: #a88a3e;
+            --cream: #f5f0e8;
+            --white: #ffffff;
+            --gray: #888888;
+            --gray-light: #aaaaaa;
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Cormorant Garamond', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--white);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        button { cursor: pointer; border: none; outline: none; font-family: inherit; }
+
+        /* ===== CUSTOM SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--gold-dark), var(--gold));
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+        * { scrollbar-width: thin; scrollbar-color: var(--gold-dark) var(--black); }
+
+        /* ===== LOADING SCREEN ===== */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-logo {
+            font-family: var(--font-display);
+            color: var(--gold);
+            text-align: center;
+            opacity: 0;
+            animation: loaderFadeIn 1s ease forwards 0.3s;
+        }
+
+        .loader-logo .the {
+            font-size: 14px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .loader-logo .name {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            display: block;
+        }
+
+        .loader-logo .sub {
+            font-size: 16px;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .loader-line {
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            margin-top: 30px;
+            animation: loaderLine 2s ease forwards 0.8s;
+        }
+
+        @keyframes loaderFadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes loaderLine {
+            to { width: 200px; }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 60px;
+            border-bottom: 1px solid rgba(200, 164, 94, 0.1);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .nav-logo .the {
+            font-size: 8px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .nav-logo .name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .nav-logo .sub {
+            font-size: 9px;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray-light);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--gold); }
+        .nav-links a.active::after { width: 100%; }
+
+        .nav-cta {
+            padding: 12px 28px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Mobile menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 1.5px;
+            background: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('Mankind Barber shop images/Hero image.avif') center center / cover no-repeat;
+            transform: scale(1.1);
+            transition: transform 8s ease;
+        }
+
+        .hero.in-view .hero-bg {
+            transform: scale(1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(10, 10, 10, 0.4) 0%,
+                rgba(10, 10, 10, 0.6) 50%,
+                rgba(10, 10, 10, 0.9) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(200, 164, 94, 0.3);
+            padding: 10px 24px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 2.8s;
+        }
+
+        .hero-badge span {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .hero-badge .star {
+            color: var(--gold);
+            font-size: 13px;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(48px, 8vw, 100px);
+            font-weight: 700;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeUp 1.2s ease forwards 3s;
+        }
+
+        .hero-title .accent {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-accent);
+            font-size: clamp(18px, 2.5vw, 26px);
+            color: var(--gray-light);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s ease forwards 3.3s;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease forwards 3.6s;
+        }
+
+        .btn-primary {
+            padding: 16px 40px;
+            background: var(--gold);
+            color: var(--black);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-primary:hover::before { left: 100%; }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(200, 164, 94, 0.3); }
+
+        .btn-secondary {
+            padding: 16px 40px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeUp 1s ease forwards 4s;
+        }
+
+        .hero-scroll span {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollPulse 2s ease infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; transform: scaleY(1); }
+            50% { opacity: 0.5; transform: scaleY(0.6); }
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== MARQUEE ===== */
+        .marquee-section {
+            padding: 25px 0;
+            background: var(--dark);
+            border-top: 1px solid rgba(200, 164, 94, 0.1);
+            border-bottom: 1px solid rgba(200, 164, 94, 0.1);
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            animation: marquee 25s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            padding: 0 40px;
+            white-space: nowrap;
+        }
+
+        .marquee-item span {
+            font-family: var(--font-accent);
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gray);
+        }
+
+        .marquee-item .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section { padding: 120px 60px; }
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-label::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 60px);
+            font-weight: 600;
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--gray-light);
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* Reveal animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: var(--black);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-images {
+            position: relative;
+            height: 600px;
+        }
+
+        .about-img-main {
+            width: 75%;
+            height: 450px;
+            object-fit: cover;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-img-secondary {
+            width: 55%;
+            height: 300px;
+            object-fit: cover;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            z-index: 3;
+            border: 4px solid var(--black);
+        }
+
+        .about-images::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 75%;
+            height: 450px;
+            border: 1px solid var(--gold);
+            z-index: 1;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--gray);
+            letter-spacing: 1px;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .about-quote {
+            font-family: var(--font-accent);
+            font-size: 20px;
+            font-style: italic;
+            color: var(--cream);
+            line-height: 1.7;
+            margin-top: 30px;
+            padding-left: 20px;
+            border-left: 2px solid var(--gold);
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background: var(--dark);
+            position: relative;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .services-header .section-label {
+            justify-content: center;
+        }
+
+        .services-header .section-label::before { display: none; }
+
+        .services-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 50px;
+        }
+
+        .services-tab {
+            padding: 12px 28px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .services-tab.active,
+        .services-tab:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(200, 164, 94, 0.05);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--dark-2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 0;
+            background: var(--gold);
+            transition: height 0.4s ease;
+        }
+
+        .service-card:hover {
+            border-color: rgba(200, 164, 94, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover::before { height: 100%; }
+
+        .service-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .service-name {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .service-price {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--gold);
+            white-space: nowrap;
+        }
+
+        .service-price .currency {
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--gray);
+        }
+
+        .service-duration {
+            font-size: 12px;
+            color: var(--gray);
+            margin-bottom: 8px;
+        }
+
+        .service-desc {
+            font-size: 13px;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* ===== TEAM SECTION ===== */
+        .team {
+            background: var(--black);
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .team-header .section-label {
+            justify-content: center;
+        }
+
+        .team-header .section-label::before { display: none; }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .team-img-wrap {
+            width: 260px;
+            height: 260px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(200, 164, 94, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .team-card:hover .team-img-wrap {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(200, 164, 94, 0.15);
+        }
+
+        .team-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-img-wrap img {
+            transform: scale(1.1);
+        }
+
+        .team-name {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .team-role {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+        }
+
+        .team-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 14px;
+            color: var(--gray-light);
+        }
+
+        .team-rating .stars {
+            color: var(--gold);
+            font-size: 13px;
+        }
+
+        .team-stat {
+            font-size: 13px;
+            color: var(--gray);
+            margin-top: 8px;
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery {
+            background: var(--dark);
+            padding-bottom: 80px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .gallery-header .section-label {
+            justify-content: center;
+        }
+
+        .gallery-header .section-label::before { display: none; }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.4);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover::after { opacity: 1; }
+
+        .gallery-item .ig-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover .ig-icon { opacity: 1; }
+
+        .ig-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: var(--white);
+        }
+
+        .gallery-cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .gallery-cta a {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 2px;
+            transition: all 0.3s;
+        }
+
+        .gallery-cta a:hover { color: var(--gold-light); }
+
+        /* ===== EXPERIENCE / WHY SECTION ===== */
+        .experience {
+            background: var(--black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(200, 164, 94, 0.03), transparent 70%);
+            pointer-events: none;
+        }
+
+        .experience-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .experience-header .section-label {
+            justify-content: center;
+        }
+
+        .experience-header .section-label::before { display: none; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 40px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            border-color: rgba(200, 164, 94, 0.2);
+            background: rgba(200, 164, 94, 0.02);
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(200, 164, 94, 0.3);
+            border-radius: 50%;
+        }
+
+        .feature-icon svg {
+            width: 26px;
+            height: 26px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .feature-title {
+            font-family: var(--font-display);
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .feature-text {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* ===== LOCATION SECTION ===== */
+        .location {
+            background: var(--dark);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .location-map {
+            min-height: 500px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            filter: grayscale(80%) contrast(1.1) brightness(0.8);
+            transition: filter 0.5s ease;
+        }
+
+        .location-map:hover iframe {
+            filter: grayscale(20%) contrast(1) brightness(0.95);
+        }
+
+        .location-info {
+            padding: 80px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .location-detail {
+            margin-top: 30px;
+        }
+
+        .location-detail-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .location-detail-item svg {
+            width: 20px;
+            height: 20px;
+            stroke: var(--gold);
+            fill: none;
+            stroke-width: 1.5;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .location-detail-item .detail-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .location-detail-item .detail-value {
+            font-size: 15px;
+            color: var(--gray-light);
+            line-height: 1.6;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 16px;
+            font-size: 14px;
+            color: var(--gray-light);
+        }
+
+        .hours-grid .day { color: var(--white); }
+
+        .location-cta {
+            margin-top: 40px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ===== REVIEWS SECTION ===== */
+        .reviews {
+            background: var(--black);
+            text-align: center;
+        }
+
+        .reviews-header {
+            margin-bottom: 60px;
+        }
+
+        .reviews-header .section-label {
+            justify-content: center;
+        }
+
+        .reviews-header .section-label::before { display: none; }
+
+        .review-big-rating {
+            font-family: var(--font-display);
+            font-size: 80px;
+            font-weight: 700;
+            color: var(--gold);
+            line-height: 1;
+        }
+
+        .review-stars {
+            font-size: 24px;
+            color: var(--gold);
+            margin: 10px 0;
+            letter-spacing: 4px;
+        }
+
+        .review-count {
+            font-size: 15px;
+            color: var(--gray);
+        }
+
+        .reviews-carousel {
+            display: flex;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto 0;
+            overflow: hidden;
+        }
+
+        .review-card {
+            flex: 0 0 calc(50% - 15px);
+            background: var(--dark-2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            text-align: left;
+        }
+
+        .review-text {
+            font-family: var(--font-accent);
+            font-size: 18px;
+            font-style: italic;
+            color: var(--cream);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .review-author {
+            font-size: 13px;
+            color: var(--gray);
+            letter-spacing: 1px;
+        }
+
+        .review-author strong {
+            color: var(--white);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section {
+            padding: 120px 60px;
+            background: var(--dark);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(200, 164, 94, 0.05), transparent 70%);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .cta-title .accent {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .cta-subtitle {
+            font-family: var(--font-accent);
+            font-size: 20px;
+            color: var(--gray-light);
+            font-style: italic;
+            margin-bottom: 40px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--black);
+            border-top: 1px solid rgba(200, 164, 94, 0.1);
+            padding: 60px;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-brand .nav-logo {
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 14px;
+            color: var(--gray);
+            line-height: 1.7;
+            max-width: 300px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            border-color: var(--gold);
+            background: rgba(200, 164, 94, 0.1);
+        }
+
+        .footer-social a svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gray-light);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-display);
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 14px;
+            color: var(--gray);
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover { color: var(--gold); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .section { padding: 80px 40px; }
+            .navbar { padding: 20px 30px; }
+            .navbar.scrolled { padding: 15px 30px; }
+
+            .about { grid-template-columns: 1fr; gap: 40px; }
+            .about-images { height: 450px; }
+
+            .features-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .team-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+            .location { grid-template-columns: 1fr; }
+            .location-map { min-height: 350px; }
+            .location-info { padding: 60px 40px; }
+
+            .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+
+            .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+        }
+
+        @media (max-width: 768px) {
+            .section { padding: 60px 20px; }
+            .navbar { padding: 16px 20px; }
+            .navbar.scrolled { padding: 12px 20px; }
+
+            .nav-links { display: none; }
+            .nav-cta { display: none; }
+            .hamburger { display: flex; }
+
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                justify-content: center;
+                align-items: center;
+                gap: 30px;
+                z-index: 999;
+            }
+
+            .nav-links.mobile-open a {
+                font-size: 18px;
+                color: var(--white);
+            }
+
+            .hero-title { font-size: clamp(36px, 10vw, 56px); }
+
+            .about-images { height: 350px; }
+            .about-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+            .stat-number { font-size: 28px; }
+
+            .services-grid { grid-template-columns: 1fr; }
+            .services-tabs { flex-wrap: wrap; }
+
+            .team-grid { grid-template-columns: 1fr; max-width: 350px; margin: 0 auto; }
+            .team-img-wrap { width: 200px; height: 200px; }
+
+            .features-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
+
+            .reviews-carousel { flex-direction: column; gap: 20px; }
+            .review-card { flex: 1; }
+
+            .location-info { padding: 40px 20px; }
+
+            .footer { padding: 40px 20px; }
+            .footer-top { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-actions { flex-direction: column; align-items: center; }
+            .btn-primary, .btn-secondary { width: 100%; text-align: center; max-width: 280px; }
+        }
+
+        /* ===== NUMBER COUNT-UP ===== */
+        .counter { display: inline-block; }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-logo">
+            <span class="the">The</span>
+            <span class="name">MANKIND</span>
+            <span class="sub">B A R B E R</span>
+        </div>
+        <div class="loader-line"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <span class="the">The</span>
+            <span class="name">MANKIND</span>
+            <span class="sub">B A R B E R</span>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#location">Location</a></li>
+        </ul>
+
+        <a href="https://www.fresha.com/en-GB/a/the-mankind-barber-kuala-lumpur-16a-jalan-datuk-sulaiman-bfkqake5" target="_blank" rel="noopener" class="nav-cta">Book Now</a>
+
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                <span>4.9 Rating &bull; 626+ Reviews</span>
+            </div>
+            <h1 class="hero-title">
+                Where Style Meets<br><span class="accent">Precision</span>
+            </h1>
+            <p class="hero-subtitle">
+                Premium grooming experience in the heart of TTDI, Kuala Lumpur
+            </p>
+            <div class="hero-actions">
+                <a href="https://www.fresha.com/en-GB/a/the-mankind-barber-kuala-lumpur-16a-jalan-datuk-sulaiman-bfkqake5" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
+                <a href="#services" class="btn-secondary">View Services</a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item">
+                <span>Haircut</span><div class="dot"></div>
+                <span>Shave</span><div class="dot"></div>
+                <span>Beard Trim</span><div class="dot"></div>
+                <span>Hair Treatment</span><div class="dot"></div>
+                <span>Black Mask</span><div class="dot"></div>
+                <span>Scalp Treatment</span><div class="dot"></div>
+                <span>Face Scrub</span><div class="dot"></div>
+                <span>Eyebrow Shaping</span><div class="dot"></div>
+            </div>
+            <div class="marquee-item">
+                <span>Haircut</span><div class="dot"></div>
+                <span>Shave</span><div class="dot"></div>
+                <span>Beard Trim</span><div class="dot"></div>
+                <span>Hair Treatment</span><div class="dot"></div>
+                <span>Black Mask</span><div class="dot"></div>
+                <span>Scalp Treatment</span><div class="dot"></div>
+                <span>Face Scrub</span><div class="dot"></div>
+                <span>Eyebrow Shaping</span><div class="dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="about-images reveal-left">
+            <img class="about-img-main" src="Mankind Barber shop images/instagram image 6.jpg" alt="Barber at work">
+            <img class="about-img-secondary" src="Mankind Barber shop images/instagram image 7.jpg" alt="Junior haircut">
+        </div>
+        <div class="about-text reveal-right">
+            <div class="section-label">About Us</div>
+            <h2 class="section-title">Crafting Confidence,<br>One Cut at a Time</h2>
+            <p class="section-desc">
+                At The Mankind Barber, we shave off all the edges, we cut away the loose ends, trim the parts that have grown too long, and subtly remove any unsightly bits. And we end up with something that is tidy, attractive and razor sharp.
+            </p>
+            <blockquote class="about-quote">
+                More than a barbershop &mdash; it's where craftsmanship meets character, and every visit leaves you looking and feeling your absolute best.
+            </blockquote>
+            <div class="about-stats">
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-target="12000">0</span>+</div>
+                    <div class="stat-label">Appointments</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-target="3600">0</span>+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number"><span class="counter" data-target="626">0</span>+</div>
+                    <div class="stat-label">5-Star Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section services" id="services">
+        <div class="services-header reveal">
+            <div class="section-label">Our Services</div>
+            <h2 class="section-title">Premium Grooming<br>Services</h2>
+            <p class="section-desc">From classic cuts to complete grooming packages, experience meticulous attention to detail.</p>
+        </div>
+
+        <div class="services-tabs reveal">
+            <button class="services-tab active" data-tab="featured">Featured</button>
+            <button class="services-tab" data-tab="hair">Hair</button>
+            <button class="services-tab" data-tab="packages">Packages</button>
+        </div>
+
+        <!-- Featured Tab -->
+        <div class="tab-content active" id="tab-featured">
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>60</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Shave</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>95</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Junior Haircut U18</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>45</div>
+                    </div>
+                    <div class="service-desc">No zero & no skinfade</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Shave</div>
+                            <div class="service-duration">30 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">from MYR </span>40</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Hair Wash</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>85</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Beard Trim</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>85</div>
+                    </div>
+                    <div class="service-desc">Beard trimming using machine/shears, no straight razor.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hair Tab -->
+        <div class="tab-content" id="tab-hair">
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>60</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Junior Haircut U18</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>45</div>
+                    </div>
+                    <div class="service-desc">No zero & no skinfade</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Shave</div>
+                            <div class="service-duration">30 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">from MYR </span>40</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Eye Brow Shaping</div>
+                            <div class="service-duration">10 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>15</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Hair Wash</div>
+                            <div class="service-duration">20 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>30</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Black Mask</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>70</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Face Scrub</div>
+                            <div class="service-duration">20 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>50</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Face Wash</div>
+                            <div class="service-duration">15 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>35</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Hair Treatment</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>105</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Scalp Treatment</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>105</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Packages Tab -->
+        <div class="tab-content" id="tab-packages">
+            <div class="services-grid reveal">
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Hair Wash</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>85</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Junior U18 + Wash</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>70</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Shave</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>95</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Beard Trim</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>85</div>
+                    </div>
+                    <div class="service-desc">Beard trimming using machine/shears, no straight razor.</div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Shave + Hair Wash</div>
+                            <div class="service-duration">1 hour 15 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>120</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Shave + Blackmask</div>
+                            <div class="service-duration">1 hour 20 mins</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>160</div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-top">
+                        <div>
+                            <div class="service-name">Haircut + Blackmask</div>
+                            <div class="service-duration">1 hour</div>
+                        </div>
+                        <div class="service-price"><span class="currency">MYR </span>125</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team" id="team">
+        <div class="team-header reveal">
+            <div class="section-label">The Team</div>
+            <h2 class="section-title">Meet Our Barbers</h2>
+            <p class="section-desc" style="margin: 0 auto;">Skilled craftsmen dedicated to making you look and feel your best.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal" style="transition-delay: 0.1s;">
+                <div class="team-img-wrap">
+                    <img src="Mankind Barber shop images/FARHAN.jpeg" alt="Farhan - Head Barber">
+                </div>
+                <div class="team-name">Farhan</div>
+                <div class="team-role">Head Barber</div>
+                <div class="team-rating">
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span>5.0 (186)</span>
+                </div>
+                <div class="team-stat">6,288 appointments &bull; 1,441 clients</div>
+            </div>
+            <div class="team-card reveal" style="transition-delay: 0.25s;">
+                <div class="team-img-wrap">
+                    <img src="Mankind Barber shop images/KHAN.jpg" alt="Khan - Head Barber">
+                </div>
+                <div class="team-name">Khan</div>
+                <div class="team-role">Head Barber</div>
+                <div class="team-rating">
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span>4.9 (164)</span>
+                </div>
+                <div class="team-stat">5,631 appointments &bull; 2,021 clients</div>
+            </div>
+            <div class="team-card reveal" style="transition-delay: 0.4s;">
+                <div class="team-img-wrap">
+                    <img src="Mankind Barber shop images/Luwie.jpeg" alt="Luwie - Barber">
+                </div>
+                <div class="team-name">Luwie</div>
+                <div class="team-role">Barber</div>
+                <div class="team-rating">
+                    <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                    <span>5.0 (13)</span>
+                </div>
+                <div class="team-stat">223 appointments &bull; 174 clients</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery" id="gallery">
+        <div class="gallery-header reveal">
+            <div class="section-label">Gallery</div>
+            <h2 class="section-title">Our Work</h2>
+            <p class="section-desc" style="margin: 0 auto;">Follow us on Instagram for more of our latest work.</p>
+        </div>
+
+        <div class="gallery-grid reveal">
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 1.webp" alt="Haircut style 1" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 2.webp" alt="Haircut style 2" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 3.jpg" alt="Haircut style 3" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 4.jpg" alt="Haircut style 4" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 5.jpg" alt="Haircut style 5" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 6.jpg" alt="Haircut style 6" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+            <div class="gallery-item">
+                <img src="Mankind Barber shop images/instagram image 7.jpg" alt="Haircut style 7" loading="lazy">
+                <span class="ig-icon"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></span>
+            </div>
+        </div>
+
+        <div class="gallery-cta reveal">
+            <a href="https://www.instagram.com/themankindbarber_my/" target="_blank" rel="noopener">Follow @themankindbarber_my &rarr;</a>
+        </div>
+    </section>
+
+    <!-- Experience / Why Choose Us -->
+    <section class="section experience">
+        <div class="experience-header reveal">
+            <div class="section-label">Why Choose Us</div>
+            <h2 class="section-title">The Mankind Experience</h2>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card reveal" style="transition-delay: 0.1s;">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="feature-title">Master Craftsmen</div>
+                <div class="feature-text">Over 12,000 appointments completed by our experienced team of professional barbers.</div>
+            </div>
+            <div class="feature-card reveal" style="transition-delay: 0.2s;">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="feature-title">5-Star Rated</div>
+                <div class="feature-text">Consistently rated 4.9 stars with 626+ glowing reviews from satisfied clients.</div>
+            </div>
+            <div class="feature-card reveal" style="transition-delay: 0.3s;">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/><polyline points="12,6 12,12 16,14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="feature-title">Easy Booking</div>
+                <div class="feature-text">Book online instantly through Fresha. Choose your barber, service, and time slot.</div>
+            </div>
+            <div class="feature-card reveal" style="transition-delay: 0.4s;">
+                <div class="feature-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="feature-title">Premium Experience</div>
+                <div class="feature-text">From haircuts to face treatments, enjoy a full grooming experience in a relaxed atmosphere.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="section reviews" id="reviews">
+        <div class="reviews-header reveal">
+            <div class="section-label">Testimonials</div>
+            <h2 class="section-title">What Clients Say</h2>
+            <div class="review-big-rating">4.9</div>
+            <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="review-count">Based on 626+ reviews on Fresha</div>
+        </div>
+
+        <div class="reviews-carousel reveal">
+            <div class="review-card">
+                <div class="review-text">"Best barbershop in KL. Farhan always knows exactly what I want. The atmosphere is relaxed and the attention to detail is second to none."</div>
+                <div class="review-author"><strong>Satisfied Client</strong> &bull; Verified on Fresha</div>
+            </div>
+            <div class="review-card">
+                <div class="review-text">"Khan is a true professional. Been coming here for years and never disappointed. The hot towel shave is an experience every man should try."</div>
+                <div class="review-author"><strong>Regular Customer</strong> &bull; Verified on Fresha</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="section location" id="location" style="padding: 0;">
+        <div class="location-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d754!2d101.628553!3d3.1410186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc49ed230cbf37%3A0xc3c5c800cc28f07a!2sThe%20Mankind%20Barber!5e0!3m2!1sen!2smy!4v1713427200000!5m2!1sen!2smy" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="The Mankind Barber location on Google Maps"></iframe>
+        </div>
+        <div class="location-info">
+            <div class="reveal">
+                <div class="section-label">Find Us</div>
+                <h2 class="section-title">Visit Our Shop</h2>
+            </div>
+
+            <div class="location-detail reveal">
+                <div class="location-detail-item">
+                    <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="10" r="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div>
+                        <div class="detail-label">Address</div>
+                        <div class="detail-value">16a Jalan Datuk Sulaiman,<br>Taman Tun Dr Ismail,<br>Kuala Lumpur, Malaysia</div>
+                    </div>
+                </div>
+                <div class="location-detail-item">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round"/><polyline points="12,6 12,12 16,14" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <div>
+                        <div class="detail-label">Opening Hours</div>
+                        <div class="detail-value">
+                            <div class="hours-grid">
+                                <span class="day">Monday</span><span>10:00 AM &ndash; 10:00 PM</span>
+                                <span class="day">Tuesday</span><span>10:00 AM &ndash; 10:00 PM</span>
+                                <span class="day">Wednesday</span><span>10:00 AM &ndash; 10:00 PM</span>
+                                <span class="day">Thursday</span><span>10:00 AM &ndash; 10:00 PM</span>
+                                <span class="day">Friday</span><span>10:00 AM &ndash; 10:00 PM</span>
+                                <span class="day">Saturday</span><span>10:00 AM &ndash; 10:00 PM</span>
+                                <span class="day">Sunday</span><span style="color: var(--gold);">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-cta reveal">
+                <a href="https://www.google.com/maps/place/The+Mankind+Barber/@3.1410186,101.628553,754m" target="_blank" rel="noopener" class="btn-secondary">Get Directions</a>
+                <a href="https://www.fresha.com/en-GB/a/the-mankind-barber-kuala-lumpur-16a-jalan-datuk-sulaiman-bfkqake5" target="_blank" rel="noopener" class="btn-primary">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content reveal">
+            <h2 class="cta-title">Ready to Look <span class="accent">Sharp?</span></h2>
+            <p class="cta-subtitle">Book your appointment today and experience the Mankind difference.</p>
+            <div class="cta-buttons">
+                <a href="https://www.fresha.com/en-GB/a/the-mankind-barber-kuala-lumpur-16a-jalan-datuk-sulaiman-bfkqake5" target="_blank" rel="noopener" class="btn-primary">Book Appointment</a>
+                <a href="https://www.instagram.com/themankindbarber_my/" target="_blank" rel="noopener" class="btn-secondary">Follow on Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="nav-logo">
+                    <span class="the">The</span>
+                    <span class="name">MANKIND</span>
+                    <span class="sub">B A R B E R</span>
+                </div>
+                <p>Where craftsmanship meets character. Premium grooming experience in TTDI, Kuala Lumpur.</p>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/themankindbarber_my/" target="_blank" rel="noopener" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.fresha.com/en-GB/a/the-mankind-barber-kuala-lumpur-16a-jalan-datuk-sulaiman-bfkqake5" target="_blank" rel="noopener" aria-label="Fresha Booking">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </a>
+                    <a href="https://www.google.com/maps/place/The+Mankind+Barber/@3.1410186,101.628553,754m" target="_blank" rel="noopener" aria-label="Google Maps">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#location">Location</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Haircut</a></li>
+                    <li><a href="#services">Shave</a></li>
+                    <li><a href="#services">Beard Trim</a></li>
+                    <li><a href="#services">Hair Treatment</a></li>
+                    <li><a href="#services">Face Scrub</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="https://www.instagram.com/themankindbarber_my/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://www.fresha.com/en-GB/a/the-mankind-barber-kuala-lumpur-16a-jalan-datuk-sulaiman-bfkqake5" target="_blank" rel="noopener">Book on Fresha</a></li>
+                    <li><a href="https://www.google.com/maps/place/The+Mankind+Barber/@3.1410186,101.628553,754m" target="_blank" rel="noopener">Get Directions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 The Mankind Barber. All rights reserved.</span>
+            <span>TTDI, Kuala Lumpur</span>
+        </div>
+    </footer>
+
+    <script>
+        // ===== LOADER =====
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+                document.querySelector('.hero').classList.add('in-view');
+            }, 2800);
+        });
+
+        // ===== NAVBAR SCROLL + ACTIVE NAV HIGHLIGHTING =====
+        const navbar = document.getElementById('navbar');
+        const navSectionIds = ['about', 'services', 'team', 'gallery', 'reviews', 'location'];
+        const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+
+        function updateNavState() {
+            const scrollY = window.scrollY;
+
+            // Scrolled background
+            if (scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Active section highlighting
+            let current = '';
+            navSectionIds.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const sectionTop = section.offsetTop - 140;
+                    if (scrollY >= sectionTop) current = id;
+                }
+            });
+
+            navAnchors.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+            });
+        }
+
+        window.addEventListener('scroll', updateNavState);
+        updateNavState();
+
+        // ===== GALLERY — CLICK TO INSTAGRAM =====
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', () => {
+                window.open('https://www.instagram.com/themankindbarber_my/', '_blank', 'noopener,noreferrer');
+            });
+        });
+
+        // ===== MOBILE MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('mobile-open');
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('mobile-open');
+            });
+        });
+
+        // ===== SCROLL REVEAL =====
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== COUNTER ANIMATION =====
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const start = performance.now();
+
+                    function update(now) {
+                        const elapsed = now - start;
+                        const progress = Math.min(elapsed / duration, 1);
+                        // Ease out cubic
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        counter.textContent = Math.floor(eased * target).toLocaleString();
+                        if (progress < 1) {
+                            requestAnimationFrame(update);
+                        } else {
+                            counter.textContent = target.toLocaleString();
+                        }
+                    }
+                    requestAnimationFrame(update);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
+
+        // ===== SERVICE TABS =====
+        const tabs = document.querySelectorAll('.services-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                const target = tab.getAttribute('data-tab');
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === 'tab-' + target) {
+                        content.classList.add('active');
+                        // Re-trigger reveal for grid items
+                        const grid = content.querySelector('.services-grid');
+                        if (grid) {
+                            grid.classList.remove('active');
+                            void grid.offsetWidth;
+                            grid.classList.add('active');
+                        }
+                    }
+                });
+            });
+        });
+
+        // ===== PARALLAX ON HERO =====
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const heroBg = document.querySelector('.hero-bg');
+            if (heroBg && scrolled < window.innerHeight) {
+                heroBg.style.transform = `scale(${1 + scrolled * 0.0002}) translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // ===== SMOOTH SCROLL FOR NAV LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
