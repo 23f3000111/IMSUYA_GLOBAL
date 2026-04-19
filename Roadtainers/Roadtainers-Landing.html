@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roadtainers — East Africa's Premier Cargo Carrier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET ───────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:15px}
+body{font-family:'DM Sans',sans-serif;background:#07090d;color:#edeef0;overflow-x:hidden}
+img{display:block;max-width:100%;object-fit:cover}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font:inherit}
+
+/* ─── TOKENS ──────────────────────────────── */
+:root{
+  --bg:#07090d; --bg2:#0c1016; --bg3:#111822;
+  --card:#141c26; --card2:#192130;
+  --or:#ff4d00; --or2:#ff6a28; --gold:#ffd000; --mint:#00e5a0;
+  --w:#edeef0; --w2:rgba(237,238,240,.62); --w3:rgba(237,238,240,.28); --w4:rgba(237,238,240,.08);
+  --bdr:rgba(237,238,240,.1);
+  --con:max(56px,calc((100vw - 1360px)/2));
+  --ease:.38s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* ─── KEYFRAMES ───────────────────────────── */
+@keyframes fadeUp   {from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes fadeLeft {from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes blink    {0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes drawLine {from{stroke-dashoffset:800}to{stroke-dashoffset:0}}
+@keyframes ringPulse{0%{r:8;opacity:.7}100%{r:22;opacity:0}}
+@keyframes floatUp  {0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes shimmer  {0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes ticker   {0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* scroll-reveal */
+.rv  {opacity:0;transform:translateY(36px);transition:opacity .65s ease,transform .65s ease}
+.rv-l{opacity:0;transform:translateX(-36px);transition:opacity .65s ease,transform .65s ease}
+.rv-r{opacity:0;transform:translateX(36px);transition:opacity .65s ease,transform .65s ease}
+.rv.vis,.rv-l.vis,.rv-r.vis{opacity:1;transform:none}
+
+/* ─── NAV ─────────────────────────────────── */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:66px;padding:0 var(--con);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,height .4s,box-shadow .4s;
+}
+#nav.up{
+  background:rgba(7,9,13,.92);backdrop-filter:blur(20px) saturate(1.4);
+  box-shadow:0 1px 0 var(--bdr);height:56px;
+}
+.n-logo{display:flex;align-items:center;gap:10px}
+.n-logo img{height:34px;filter:brightness(0) invert(1)}
+.n-brand{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:1.32rem;letter-spacing:.06em;text-transform:uppercase;color:var(--w);
+}
+.n-links{display:flex;align-items:center;gap:28px}
+.n-links a{font-size:.78rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--w3);transition:color .2s}
+.n-links a:hover{color:var(--w)}
+.n-cta{
+  background:var(--or);color:#fff;padding:9px 20px;border-radius:3px;
+  font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  transition:background .2s,transform .15s,box-shadow .2s;
+}
+.n-cta:hover{background:var(--or2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(255,77,0,.35)}
+.burger{display:none;flex-direction:column;gap:5px;padding:6px}
+.burger b{width:22px;height:1.5px;background:var(--w);display:block;transition:var(--ease)}
+.burger.on b:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.burger.on b:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.on b:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+#mnav{
+  position:fixed;inset:0;z-index:800;background:var(--bg2);
+  display:flex;flex-direction:column;justify-content:center;padding:0 var(--con);
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+#mnav.on{opacity:1;pointer-events:all}
+.mn-links a{
+  display:block;font-family:'Barlow Condensed',sans-serif;font-weight:800;
+  font-size:clamp(2.2rem,5.5vw,3.8rem);letter-spacing:-.02em;
+  color:var(--w3);padding:10px 0;border-bottom:1px solid var(--bdr);transition:color .2s;
+}
+.mn-links a:hover{color:var(--or)}
+
+/* ─── HERO ────────────────────────────────── */
+#hero{
+  min-height:100svh;display:grid;grid-template-columns:52% 1fr;
+  position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:radial-gradient(rgba(237,238,240,.065) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse 75% 90% at 20% 50%,black,transparent);
+}
+.h-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:88px var(--con) 80px;position:relative;z-index:2;
+}
+.h-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,77,0,.1);border:1px solid rgba(255,77,0,.2);
+  padding:5px 14px;border-radius:100px;width:fit-content;margin-bottom:28px;
+  animation:fadeUp .5s .1s both;
+}
+.h-pill-dot{width:6px;height:6px;background:var(--or);border-radius:50%;animation:blink 1.6s infinite}
+.h-pill span{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--or)}
+.h-title{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(4rem,8.5vw,10rem);
+  line-height:.87;letter-spacing:-.025em;color:var(--w);
+  margin-bottom:24px;animation:fadeUp .65s .22s both;
+}
+.h-title .fire{
+  background:linear-gradient(130deg,var(--or) 20%,var(--gold) 80%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.h-desc{
+  font-size:.9rem;font-weight:300;line-height:1.9;color:var(--w2);
+  max-width:400px;margin-bottom:36px;animation:fadeUp .65s .38s both;
+}
+.h-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fadeUp .65s .5s both}
+.btn-hot{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--or);color:#fff;padding:13px 26px;border-radius:3px;
+  font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  transition:background .2s,transform .15s,box-shadow .25s;overflow:hidden;position:relative;
+}
+.btn-hot::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);
+  transform:translateX(-100%);transition:transform .55s ease;
+}
+.btn-hot:hover::after{transform:translateX(100%)}
+.btn-hot:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 14px 36px rgba(255,77,0,.4)}
+.btn-line{
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid var(--bdr);color:var(--w2);padding:13px 26px;border-radius:3px;
+  font-size:.82rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  transition:border-color .2s,color .2s,transform .15s;
+}
+.btn-line:hover{border-color:rgba(237,238,240,.4);color:var(--w);transform:translateY(-2px)}
+.arr{display:inline-block;transition:transform .2s}
+.btn-hot:hover .arr,.btn-line:hover .arr{transform:translateX(4px)}
+.h-ms{
+  display:flex;gap:0;margin-top:44px;padding-top:28px;border-top:1px solid var(--bdr);
+  animation:fadeUp .65s .65s both;
+}
+.hms{padding:0 24px;border-right:1px solid var(--bdr);display:flex;flex-direction:column;gap:3px}
+.hms:first-child{padding-left:0}
+.hms:last-child{border-right:none}
+.hms-v{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.9rem;color:var(--or);line-height:1}
+.hms-l{font-size:.7rem;color:var(--w3);letter-spacing:.06em;text-transform:uppercase}
+.h-right{position:relative;background:var(--bg2);overflow:hidden}
+.h-img{width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(1.1);animation:fadeRight 1s .3s both}
+.h-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(100deg,var(--bg) 0%,rgba(7,9,13,.15) 32%,transparent 55%),
+             linear-gradient(0deg,var(--bg) 0%,transparent 28%);
+}
+.h-tag{
+  position:absolute;top:44px;right:36px;
+  background:rgba(12,16,22,.88);backdrop-filter:blur(16px);
+  border:1px solid var(--bdr);border-radius:8px;padding:16px 20px;min-width:150px;
+  animation:floatUp 4s ease-in-out 1.2s infinite;
+}
+.h-tag-v{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--mint);line-height:1}
+.h-tag-l{font-size:.7rem;color:var(--w2);margin-top:3px}
+.h-scroll{
+  position:absolute;bottom:32px;left:var(--con);
+  display:flex;align-items:center;gap:9px;
+  font-size:.68rem;color:var(--w3);letter-spacing:.1em;text-transform:uppercase;
+  animation:fadeUp .5s 1.1s both;
+}
+.h-scroll-line{width:32px;height:1px;background:var(--w3)}
+
+/* ─── TICKER ──────────────────────────────── */
+#ticker{background:var(--or);overflow:hidden;padding:9px 0;white-space:nowrap}
+.tick-inner{display:inline-flex;animation:ticker 30s linear infinite}
+.tick-inner span{
+  display:inline-block;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;
+  padding:0 24px;
+}
+.tick-inner span::after{content:'◆';margin-left:24px;opacity:.45}
+
+/* ─── STATS ───────────────────────────────── */
+#stats{
+  background:var(--bg2);padding:60px var(--con);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--bdr);
+}
+.st-item{padding:0 32px;border-right:1px solid var(--bdr)}
+.st-item:first-child{padding-left:0}
+.st-item:last-child{border-right:none}
+.st-n{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(2.8rem,4.5vw,5rem);line-height:1;letter-spacing:-.03em;color:var(--or);
+}
+.st-sfx{color:var(--gold);font-size:.6em;vertical-align:super}
+.st-label{font-size:.82rem;color:var(--w2);margin-top:6px}
+.st-sub{font-size:.7rem;color:var(--w3);margin-top:2px}
+
+/* ─── ABOUT ───────────────────────────────── */
+#about{
+  background:var(--bg);padding:112px var(--con);
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.abt-media{position:relative}
+.abt-img{width:100%;height:520px;object-fit:cover;border-radius:4px;filter:brightness(.8) saturate(1.1)}
+.abt-badge{
+  position:absolute;top:40px;left:-28px;
+  background:var(--or);padding:16px 20px;border-radius:4px;
+}
+.abt-badge-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2.6rem;color:#fff;line-height:1}
+.abt-badge-l{font-size:.66rem;color:rgba(255,255,255,.8);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.abt-corner{
+  position:absolute;bottom:-28px;right:-28px;
+  width:108px;height:108px;border-radius:4px;overflow:hidden;border:3px solid var(--bg);
+}
+.kicker{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.kicker-line{width:28px;height:2px;background:var(--or)}
+.kicker span{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
+.sec-h{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(2.6rem,4.2vw,5.2rem);line-height:.88;letter-spacing:-.025em;color:var(--w);margin-bottom:16px;
+}
+.sec-p{font-size:.88rem;line-height:1.9;color:var(--w2);font-weight:300;margin-bottom:22px}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:30px}
+.feat-item{display:flex;align-items:flex-start;gap:10px}
+.feat-dot{
+  width:17px;height:17px;flex-shrink:0;margin-top:2px;
+  background:rgba(255,77,0,.1);border:1px solid rgba(255,77,0,.25);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+}
+.feat-dot::after{content:'';width:5px;height:5px;background:var(--or);border-radius:50%}
+.feat-t{font-size:.86rem;color:var(--w2);line-height:1.55}
+
+/* ─── SERVICES ────────────────────────────── */
+#services{background:var(--bg2);padding:112px var(--con)}
+.svc-top{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:flex-end;margin-bottom:52px}
+.svc-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--bdr);border-radius:6px;overflow:hidden;
+}
+.svc-cell{
+  background:var(--card);position:relative;overflow:hidden;cursor:default;
+  border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr);
+  transition:background var(--ease);
+}
+.svc-cell:nth-child(3n){border-right:none}
+.svc-cell:nth-child(n+4){border-bottom:none}
+.svc-cell:hover{background:var(--card2)}
+.svc-img-wrap{width:100%;height:160px;overflow:hidden}
+.svc-img-wrap img{width:100%;height:100%;object-fit:cover;filter:brightness(.62);transition:transform .5s ease,filter .5s ease}
+.svc-cell:hover .svc-img-wrap img{transform:scale(1.07);filter:brightness(.82)}
+.svc-body{padding:22px 26px}
+.svc-num{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:3rem;color:rgba(255,77,0,.09);line-height:1;
+  position:absolute;top:10px;right:14px;transition:color var(--ease);
+}
+.svc-cell:hover .svc-num{color:rgba(255,77,0,.2)}
+.svc-bar{
+  position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--or),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform var(--ease);
+}
+.svc-cell:hover .svc-bar{transform:scaleX(1)}
+.svc-t{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.12rem;color:var(--w);margin-bottom:5px}
+.svc-d{font-size:.8rem;color:var(--w2);line-height:1.7}
+
+/* ─── NETWORK ─────────────────────────────── */
+#network{background:var(--bg3);padding:112px var(--con)}
+.net-wrap{display:grid;grid-template-columns:460px 1fr;gap:72px;align-items:center}
+.net-map{
+  background:var(--card);border:1px solid var(--bdr);
+  border-radius:8px;padding:24px;overflow:hidden;
+}
+.net-map svg{width:100%;height:auto;display:block}
+.ctry{fill:rgba(255,77,0,.04);stroke:rgba(255,77,0,.1);stroke-width:.6}
+.ctry.hi{fill:rgba(255,77,0,.09)}
+.rt{fill:none;stroke:var(--or);stroke-width:1.5;stroke-linecap:round;opacity:.65;stroke-dasharray:800;stroke-dashoffset:800}
+.rt.go{animation:drawLine 2.5s ease forwards}
+.pr{fill:none;stroke:var(--or);stroke-width:1;opacity:0}
+.pr.go{opacity:.35;animation:ringPulse 2.2s ease-out infinite}
+.clbl{font-family:'DM Sans',sans-serif;font-size:6.5px;fill:var(--w2);font-weight:500}
+.net-leg{display:flex;flex-direction:column;gap:9px;margin-top:18px;padding-top:14px;border-top:1px solid var(--bdr)}
+.nl-row{display:flex;align-items:center;gap:8px}
+.nl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.nl-txt{font-size:.78rem;color:var(--w2)}
+.net-txt .sec-h{font-size:clamp(2.2rem,3.6vw,5rem)}
+.net-nums{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.nn{background:var(--card);border:1px solid var(--bdr);padding:18px 22px;border-radius:4px}
+.nn-v{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.9rem;color:var(--mint);line-height:1}
+.nn-l{font-size:.73rem;color:var(--w2);margin-top:3px}
+
+/* ─── FLEET ───────────────────────────────── */
+#fleet{position:relative;min-height:65vh;display:flex;align-items:center;overflow:hidden}
+.fleet-bg{
+  position:absolute;inset:0;
+  background-image:url('Roadtainers images/Roadtainers_hero.jpg');
+  background-size:cover;background-position:center 30%;
+  filter:brightness(.28) saturate(1.3);transform:scale(1.04);transition:transform 9s ease;
+}
+#fleet:hover .fleet-bg{transform:scale(1)}
+.fleet-grad{
+  position:absolute;inset:0;
+  background:linear-gradient(100deg,var(--bg) 0%,rgba(7,9,13,.7) 45%,transparent 80%);
+}
+.fleet-cnt{position:relative;z-index:2;padding:72px var(--con);max-width:620px}
+.fleet-grid{display:flex;gap:32px;margin-top:32px;padding-top:24px;border-top:1px solid var(--bdr)}
+.fg-item{display:flex;flex-direction:column;gap:3px}
+.fg-v{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:2.2rem;color:var(--gold);line-height:1}
+.fg-l{font-size:.73rem;color:var(--w2);text-transform:uppercase;letter-spacing:.05em}
+
+/* ─── AWARDS ──────────────────────────────── */
+#awards{background:var(--bg2);padding:112px var(--con)}
+.aw-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px}
+.aw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.aw-card{
+  background:var(--card);border:1px solid var(--bdr);border-radius:6px;
+  padding:26px 26px;position:relative;overflow:hidden;
+  transition:transform var(--ease),border-color var(--ease),box-shadow var(--ease);
+}
+.aw-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--or),var(--gold));
+  transform:scaleX(0);transform-origin:left;transition:transform var(--ease);
+}
+.aw-card:hover{transform:translateY(-5px);border-color:rgba(255,77,0,.22);box-shadow:0 20px 48px rgba(0,0,0,.35)}
+.aw-card:hover::before{transform:scaleX(1)}
+.aw-yr{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:3.2rem;color:rgba(255,208,0,.1);line-height:1;margin-bottom:9px;transition:color var(--ease);
+}
+.aw-card:hover .aw-yr{color:rgba(255,208,0,.24)}
+.aw-t{font-size:.88rem;font-weight:600;color:var(--w);margin-bottom:5px}
+.aw-d{font-size:.8rem;color:var(--w2);line-height:1.65}
+
+/* ─── CONTACT ─────────────────────────────── */
+#contact{display:grid;grid-template-columns:1fr 1fr;min-height:620px}
+.ct-left{padding:80px var(--con) 80px;display:flex;flex-direction:column;justify-content:center}
+.f-g{margin-bottom:16px}
+.f-lbl{font-size:.7rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--w2);display:block;margin-bottom:5px}
+.f-inp{
+  width:100%;background:var(--card);border:1px solid var(--bdr);
+  color:var(--w);padding:11px 13px;border-radius:3px;
+  font-family:inherit;font-size:.86rem;
+  transition:border-color .2s,box-shadow .2s;
+}
+.f-inp:focus{outline:none;border-color:var(--or);box-shadow:0 0 0 3px rgba(255,77,0,.1)}
+.f-inp::placeholder{color:var(--w3)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+textarea.f-inp{resize:vertical;min-height:100px}
+.f-sub{
+  background:var(--or);color:#fff;padding:12px 26px;border-radius:3px;width:100%;
+  font-size:.82rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  transition:background .2s,transform .15s;
+}
+.f-sub:hover{background:var(--or2);transform:translateY(-1px)}
+.ct-right{position:relative;overflow:hidden}
+.ct-img{width:100%;height:100%;object-fit:cover;filter:brightness(.32) saturate(.8)}
+.ct-ov{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(7,9,13,.4),rgba(7,9,13,.85));
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:48px 48px;gap:20px;
+}
+.ct-info{display:flex;gap:13px;align-items:flex-start}
+.ct-ico{
+  width:36px;height:36px;flex-shrink:0;border-radius:50%;
+  background:rgba(255,77,0,.12);border:1px solid rgba(255,77,0,.26);
+  display:flex;align-items:center;justify-content:center;font-size:.88rem;
+}
+.ct-lbl{font-size:.68rem;color:var(--w3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
+.ct-val{font-size:.86rem;color:var(--w)}
+
+/* ─── FOOTER ──────────────────────────────── */
+footer{background:var(--bg2);padding:72px var(--con) 32px;border-top:1px solid var(--bdr)}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:44px;margin-bottom:52px}
+.ft-logo{display:flex;align-items:center;gap:9px;margin-bottom:16px}
+.ft-logo img{height:30px;filter:brightness(0) invert(1)}
+.ft-logo span{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.22rem;letter-spacing:.05em;text-transform:uppercase;color:var(--w)}
+.ft-desc{font-size:.82rem;color:var(--w2);line-height:1.8;font-weight:300;max-width:255px}
+.ft-h{font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--w);margin-bottom:13px}
+.ft-links{display:flex;flex-direction:column;gap:8px}
+.ft-links a{font-size:.82rem;color:var(--w2);transition:color .2s}
+.ft-links a:hover{color:var(--or)}
+.ft-ci{font-size:.82rem;color:var(--w2);margin-bottom:8px;line-height:1.5}
+.ft-bar{border-top:1px solid var(--bdr);padding-top:22px;display:flex;justify-content:space-between;align-items:center}
+.ft-copy{font-size:.73rem;color:var(--w3)}
+.ft-tags{display:flex;gap:10px}
+.ft-tag{font-size:.66rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--w2);border:1px solid var(--bdr);padding:3px 9px;border-radius:100px}
+
+/* ─── CHATBOT ─────────────────────────────── */
+#cb-btn{
+  position:fixed;bottom:28px;right:28px;z-index:800;
+  width:48px;height:48px;background:var(--or);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px rgba(255,77,0,.45);cursor:pointer;transition:transform .2s,box-shadow .2s;
+}
+#cb-btn:hover{transform:scale(1.1);box-shadow:0 12px 36px rgba(255,77,0,.55)}
+#cb-btn svg{width:21px;height:21px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+#cb-win{
+  position:fixed;bottom:88px;right:28px;z-index:800;width:305px;
+  background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;overflow:hidden;
+  box-shadow:0 24px 72px rgba(0,0,0,.6);display:none;flex-direction:column;
+}
+#cb-win.on{display:flex}
+.cb-head{background:var(--or);padding:13px 17px;display:flex;align-items:center;justify-content:space-between}
+.cb-htt{font-size:.86rem;font-weight:700;color:#fff}
+.cb-hst{font-size:.68rem;color:rgba(255,255,255,.75)}
+.cb-x{color:#fff;font-size:1.12rem;cursor:pointer;padding:2px 5px}
+.cb-body{padding:14px 16px;min-height:160px;max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:7px}
+.cb-msg{max-width:88%;padding:8px 12px;border-radius:7px;font-size:.81rem;line-height:1.5}
+.cb-msg.bot{background:var(--card);color:var(--w);align-self:flex-start}
+.cb-msg.usr{background:var(--or);color:#fff;align-self:flex-end}
+.cb-opts{padding:0 16px 14px;display:flex;flex-direction:column;gap:6px}
+.cb-opt{
+  background:var(--card);border:1px solid var(--bdr);
+  color:var(--w2);padding:7px 11px;border-radius:5px;font-size:.79rem;text-align:left;cursor:pointer;
+  transition:border-color .2s,color .2s;
+}
+.cb-opt:hover{border-color:var(--or);color:var(--or)}
+
+/* ─── RESPONSIVE ──────────────────────────── */
+@media(max-width:1100px){
+  #hero{grid-template-columns:1fr}
+  .h-right{display:none}
+  .h-left{padding:80px var(--con) 72px}
+  #about{grid-template-columns:1fr;gap:52px}
+  .abt-badge{left:16px}.abt-corner{display:none}
+  .svc-top{grid-template-columns:1fr}
+  .net-wrap{grid-template-columns:1fr;gap:44px}
+  #contact{grid-template-columns:1fr}
+  .ct-right{min-height:300px}
+}
+@media(max-width:900px){
+  .n-links,.n-cta{display:none}
+  .burger{display:flex}
+  #stats{grid-template-columns:1fr 1fr;gap:20px;padding:44px var(--con)}
+  .st-item{padding:0;border-right:none;padding-bottom:18px;border-bottom:1px solid var(--bdr)}
+  .st-item:nth-last-child(-n+2){border-bottom:none}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .aw-grid{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .aw-top{flex-direction:column;align-items:flex-start;gap:14px}
+}
+@media(max-width:580px){
+  :root{--con:24px}
+  .svc-grid,.aw-grid{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .h-ms{flex-wrap:wrap;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="n-logo">
+    <img src="Roadtainers images/Roadtainers_logo.png" alt="Roadtainers">
+    <span class="n-brand">Roadtainers</span>
+  </a>
+  <div class="n-links">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#network">Network</a>
+    <a href="#fleet">Fleet</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+  </div>
+  <a href="#contact" class="n-cta">Get a Quote</a>
+  <button class="burger" id="burger"><b></b><b></b><b></b></button>
+</nav>
+<div id="mnav">
+  <nav class="mn-links">
+    <a href="#about">About</a><a href="#services">Services</a><a href="#network">Network</a>
+    <a href="#fleet">Fleet</a><a href="#awards">Awards</a><a href="#contact">Contact</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-left">
+    <div class="h-pill">
+      <div class="h-pill-dot"></div>
+      <span>Est. 1998 &nbsp;·&nbsp; Mombasa, Kenya</span>
+    </div>
+    <h1 class="h-title">EAST<br>AFRICA'S<br><span class="fire">PREMIER</span><br>CARGO</h1>
+    <p class="h-desc">Heavy commercial transport, tanker operations and full logistics solutions across Kenya, Uganda, Tanzania, Rwanda and South Sudan.</p>
+    <div class="h-btns">
+      <a href="#services" class="btn-hot">Our Services <span class="arr">→</span></a>
+      <a href="#contact" class="btn-line">Request a Quote <span class="arr">→</span></a>
+    </div>
+    <div class="h-ms">
+      <div class="hms"><div class="hms-v">200<sup style="font-size:.5em">+</sup></div><div class="hms-l">Trucks</div></div>
+      <div class="hms"><div class="hms-v">26</div><div class="hms-l">Years</div></div>
+      <div class="hms"><div class="hms-v">6</div><div class="hms-l">Countries</div></div>
+    </div>
+  </div>
+  <div class="h-right">
+    <img src="Roadtainers images/Roadtainers_hero.jpg" alt="Fleet" class="h-img">
+    <div class="h-grad"></div>
+    <div class="h-tag">
+      <div class="h-tag-v">24/7</div>
+      <div class="h-tag-l">Operational Support</div>
+    </div>
+  </div>
+  <div class="h-scroll"><div class="h-scroll-line"></div>Scroll</div>
+</section>
+
+<!-- TICKER -->
+<div id="ticker">
+  <div class="tick-inner">
+    <span>Heavy Haulage</span><span>Tractor Trailers</span><span>General Cargo</span>
+    <span>Tanker Operations</span><span>Transit Facilities</span><span>Warehousing</span>
+    <span>Workshop Services</span><span>Kenya</span><span>Uganda</span><span>Tanzania</span>
+    <span>Rwanda</span><span>South Sudan</span><span>Heavy Haulage</span><span>Tractor Trailers</span>
+    <span>General Cargo</span><span>Tanker Operations</span><span>Transit Facilities</span>
+    <span>Warehousing</span><span>Workshop Services</span><span>Kenya</span><span>Uganda</span>
+    <span>Tanzania</span><span>Rwanda</span><span>South Sudan</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="st-item rv"><div class="st-n"><span class="counter" data-to="200">0</span><span class="st-sfx">+</span></div><div class="st-label">Fleet Vehicles</div><div class="st-sub">Trucks, trailers &amp; tankers</div></div>
+  <div class="st-item rv" style="transition-delay:.1s"><div class="st-n"><span class="counter" data-to="26">0</span></div><div class="st-label">Years in Operation</div><div class="st-sub">Since 1998</div></div>
+  <div class="st-item rv" style="transition-delay:.2s"><div class="st-n"><span class="counter" data-to="6">0</span></div><div class="st-label">Countries Served</div><div class="st-sub">East &amp; Central Africa</div></div>
+  <div class="st-item rv" style="transition-delay:.3s"><div class="st-n"><span class="counter" data-to="1800">0</span><span class="st-sfx">m²</span></div><div class="st-label">Warehouse Space</div><div class="st-sub">Transit yard, Mombasa</div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="abt-media rv-l">
+    <img src="Roadtainers images/Roadtainers_network.jpg" alt="Roadtainers" class="abt-img">
+    <div class="abt-badge"><div class="abt-badge-n">1998</div><div class="abt-badge-l">Founded</div></div>
+    <div class="abt-corner"><img src="Roadtainers images/Workshop.jpg" alt="Workshop"></div>
+  </div>
+  <div class="rv-r">
+    <div class="kicker"><div class="kicker-line"></div><span>About Roadtainers</span></div>
+    <h2 class="sec-h">FROM INITIATION<br>TO COMPLETION</h2>
+    <p class="sec-p">Roadtainers (Mombasa) Limited is a privately owned heavy commercial transport company. With clear goals and strong leadership, we have become Kenya's most efficient transport operator.</p>
+    <p class="sec-p">We handle heavy commercial goods, oil products and tanker transport — delivering reliable, professional service across all of East Africa.</p>
+    <ul class="feat-list">
+      <li class="feat-item"><div class="feat-dot"></div><span class="feat-t">Operating 7 days a week, Monday through Sunday</span></li>
+      <li class="feat-item"><div class="feat-dot"></div><span class="feat-t">1,800 m² warehouse &amp; transit yard in Mombasa</span></li>
+      <li class="feat-item"><div class="feat-dot"></div><span class="feat-t">Fully equipped in-house vehicle workshop</span></li>
+      <li class="feat-item"><div class="feat-dot"></div><span class="feat-t">Certified experience across East &amp; Central Africa</span></li>
+    </ul>
+    <a href="#contact" class="btn-hot" style="display:inline-flex">Learn More <span class="arr">→</span></a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="svc-top">
+    <div class="rv-l">
+      <div class="kicker"><div class="kicker-line"></div><span>What We Do</span></div>
+      <h2 class="sec-h">OUR<br>SERVICES</h2>
+    </div>
+    <p class="sec-p rv-r" style="max-width:340px">End-to-end logistics from heavy haulage and tanker operations to warehousing and in-house workshop maintenance.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-cell rv"><div class="svc-num">01</div><div class="svc-img-wrap"><img src="Roadtainers images/Transport.jpg" alt="Transport"></div><div class="svc-body"><div class="svc-t">Transport</div><div class="svc-d">Well-maintained vehicles delivering goods reliably across East Africa's major corridors.</div></div><div class="svc-bar"></div></div>
+    <div class="svc-cell rv" style="transition-delay:.1s"><div class="svc-num">02</div><div class="svc-img-wrap"><img src="Roadtainers images/Tractor Trailers.jpg" alt="Tractor Trailers"></div><div class="svc-body"><div class="svc-t">Tractor Trailers</div><div class="svc-d">Specialised heavy-haul equipment precisely matched to every project requirement.</div></div><div class="svc-bar"></div></div>
+    <div class="svc-cell rv" style="transition-delay:.2s"><div class="svc-num">03</div><div class="svc-img-wrap"><img src="Roadtainers images/General Cargo.jpg" alt="General Cargo"></div><div class="svc-body"><div class="svc-t">General Cargo</div><div class="svc-d">Comprehensive logistics and transport solutions for all general freight needs.</div></div><div class="svc-bar"></div></div>
+    <div class="svc-cell rv" style="transition-delay:.1s"><div class="svc-num">04</div><div class="svc-img-wrap"><img src="Roadtainers images/Lifting Facilities.jpg" alt="Lifting"></div><div class="svc-body"><div class="svc-t">Lifting Facilities</div><div class="svc-d">Transit yard &amp; 1,800 m² warehousing in Mombasa with full lifting equipment.</div></div><div class="svc-bar"></div></div>
+    <div class="svc-cell rv" style="transition-delay:.2s"><div class="svc-num">05</div><div class="svc-img-wrap"><img src="Roadtainers images/Transit Facilities.jpg" alt="Transit"></div><div class="svc-body"><div class="svc-t">Transit Facilities</div><div class="svc-d">Professional, efficient cross-border transit facilities for all clientele.</div></div><div class="svc-bar"></div></div>
+    <div class="svc-cell rv" style="transition-delay:.3s"><div class="svc-num">06</div><div class="svc-img-wrap"><img src="Roadtainers images/Workshop.jpg" alt="Workshop"></div><div class="svc-body"><div class="svc-t">Workshop</div><div class="svc-d">Fully fledged in-house workshop carrying out all vehicle maintenance and repairs.</div></div><div class="svc-bar"></div></div>
+  </div>
+</section>
+
+<!-- NETWORK MAP -->
+<section id="network">
+  <div class="net-wrap">
+    <div class="net-map rv-l">
+      <svg viewBox="0 0 600 540" xmlns="http://www.w3.org/2000/svg">
+        <path class="ctry hi" d="M320,220 L400,210 L450,240 L465,310 L445,390 L410,420 L370,410 L345,360 L330,310 Z"/>
+        <path class="ctry hi" d="M200,200 L285,192 L320,220 L330,310 L295,330 L250,325 L215,290 L205,250 Z"/>
+        <path class="ctry hi" d="M310,410 L370,410 L420,440 L430,500 L375,530 L310,525 L268,505 L255,455 L278,418 Z"/>
+        <path class="ctry hi" d="M238,325 L268,318 L285,345 L265,372 L238,362 L228,342 Z"/>
+        <path class="ctry" d="M238,362 L260,356 L270,380 L248,398 L228,378 Z"/>
+        <path class="ctry" d="M195,110 L305,100 L340,148 L355,200 L315,218 L280,208 L205,215 L182,175 Z"/>
+        <path class="ctry" d="M340,78 L470,68 L515,115 L498,170 L448,205 L408,202 L358,175 L340,148 Z"/>
+        <path class="ctry" d="M84,155 L196,152 L205,215 L200,285 L175,325 L120,322 L80,268 L68,210 Z"/>
+        <path class="ctry" d="M454,76 L530,58 L568,170 L548,290 L498,316 L455,280 L472,210 L453,148 Z"/>
+        <line id="r1" class="rt" x1="390" y1="338" x2="250" y2="258"/>
+        <line id="r2" class="rt" x1="390" y1="338" x2="418" y2="430"/>
+        <line id="r3" class="rt" x1="250" y1="258" x2="248" y2="338"/>
+        <line id="r4" class="rt" x1="248" y1="338" x2="290" y2="460"/>
+        <line id="r5" class="rt" x1="390" y1="338" x2="275" y2="148" style="opacity:.35;stroke-dasharray:8 5"/>
+        <circle class="pr" id="pr1" cx="390" cy="338" r="8"/>
+        <circle class="pr" id="pr2" cx="390" cy="338" r="14"/>
+        <circle class="pr" id="pr3" cx="250" cy="258" r="7"/>
+        <circle class="pr" id="pr4" cx="248" cy="338" r="6"/>
+        <circle cx="390" cy="338" r="5.5" fill="#ffd000"/>
+        <circle cx="250" cy="258" r="4" fill="#ff4d00"/>
+        <circle cx="248" cy="338" r="3.5" fill="#ff4d00"/>
+        <circle cx="418" cy="430" r="3.5" fill="#ff4d00"/>
+        <circle cx="290" cy="460" r="3" fill="#ff4d00"/>
+        <circle cx="275" cy="148" r="3" fill="#ff4d00"/>
+        <text class="clbl" x="400" y="335">Nairobi ★</text>
+        <text class="clbl" x="258" y="255">Kampala</text>
+        <text class="clbl" x="252" y="334">Kigali</text>
+        <text class="clbl" x="426" y="428">Dar es Salaam</text>
+        <text class="clbl" x="278" y="475">Mombasa</text>
+        <text class="clbl" x="278" y="145">Juba</text>
+      </svg>
+      <div class="net-leg">
+        <div class="nl-row"><div class="nl-dot" style="background:var(--gold)"></div><span class="nl-txt">Nairobi — HQ &amp; Primary Hub</span></div>
+        <div class="nl-row"><div class="nl-dot" style="background:var(--or)"></div><span class="nl-txt">Regional Operations Centres</span></div>
+      </div>
+    </div>
+    <div class="rv-r">
+      <div class="kicker"><div class="kicker-line"></div><span>Our Network</span></div>
+      <h2 class="sec-h net-txt">COVERING ALL<br>OF <span style="color:var(--or)">EAST AFRICA</span></h2>
+      <p class="sec-p">Strategic hubs across Kenya, Uganda, Tanzania, Rwanda and South Sudan mean your cargo moves efficiently — with full knowledge of border procedures and customs.</p>
+      <p class="sec-p">From Mombasa port to landlocked destinations, every corridor is covered.</p>
+      <div class="net-nums">
+        <div class="nn rv"><div class="nn-v">6</div><div class="nn-l">Countries Covered</div></div>
+        <div class="nn rv" style="transition-delay:.1s"><div class="nn-v">4</div><div class="nn-l">Active Corridors</div></div>
+        <div class="nn rv" style="transition-delay:.2s"><div class="nn-v">24/7</div><div class="nn-l">Route Monitoring</div></div>
+        <div class="nn rv" style="transition-delay:.3s"><div class="nn-v">SGR</div><div class="nn-l">Rail Integration</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section id="fleet">
+  <div class="fleet-bg"></div>
+  <div class="fleet-grad"></div>
+  <div class="fleet-cnt">
+    <div class="kicker rv"><div class="kicker-line"></div><span>Our Fleet</span></div>
+    <h2 class="sec-h rv" style="transition-delay:.1s">BUILT FOR<br><span style="color:var(--gold)">EAST AFRICA</span></h2>
+    <p class="sec-p rv" style="transition-delay:.2s;max-width:460px">Every vehicle is maintained in our in-house workshop to the highest standard, ensuring reliability on every route across the region.</p>
+    <div class="fleet-grid rv" style="transition-delay:.3s">
+      <div class="fg-item"><div class="fg-v">200+</div><div class="fg-l">Total Fleet</div></div>
+      <div class="fg-item"><div class="fg-v">100%</div><div class="fg-l">In-house Serviced</div></div>
+      <div class="fg-item"><div class="fg-v">7 Days</div><div class="fg-l">Weekly Operations</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="aw-top">
+    <div class="rv-l">
+      <div class="kicker"><div class="kicker-line"></div><span>Recognition</span></div>
+      <h2 class="sec-h">AWARDS &amp;<br>MILESTONES</h2>
+    </div>
+    <p class="sec-p rv-r" style="max-width:280px">26 years of building trust, capability and reach across East Africa.</p>
+  </div>
+  <div class="aw-grid">
+    <div class="aw-card rv"><div class="aw-yr">1998</div><div class="aw-t">Company Founded</div><div class="aw-d">Roadtainers (Mombasa) Limited incorporated as a privately held transport company.</div></div>
+    <div class="aw-card rv" style="transition-delay:.1s"><div class="aw-yr">2005</div><div class="aw-t">Regional Expansion</div><div class="aw-d">Extended operations to Uganda, Tanzania and Rwanda transport corridors.</div></div>
+    <div class="aw-card rv" style="transition-delay:.2s"><div class="aw-yr">2010</div><div class="aw-t">Fleet Milestone</div><div class="aw-d">Reached 100+ vehicle fleet with a dedicated tanker and oil products division.</div></div>
+    <div class="aw-card rv"><div class="aw-yr">2015</div><div class="aw-t">Certified Excellence</div><div class="aw-d">Certified for transport safety, quality management and environmental standards.</div></div>
+    <div class="aw-card rv" style="transition-delay:.1s"><div class="aw-yr">2019</div><div class="aw-t">SGR Integration</div><div class="aw-d">Integrated multi-modal operations with Kenya's Standard Gauge Railway.</div></div>
+    <div class="aw-card rv" style="transition-delay:.2s"><div class="aw-yr">2024</div><div class="aw-t">200+ Fleet</div><div class="aw-d">Crossed 200-vehicle milestone, confirmed as Kenya's premier cargo carrier.</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="ct-left">
+    <div class="kicker rv"><div class="kicker-line"></div><span>Get in Touch</span></div>
+    <h2 class="sec-h rv" style="transition-delay:.1s;margin-bottom:26px">REQUEST<br>A QUOTE</h2>
+    <form>
+      <div class="f-row">
+        <div class="f-g"><label class="f-lbl">Full Name</label><input class="f-inp" type="text" placeholder="John Doe"></div>
+        <div class="f-g"><label class="f-lbl">Company</label><input class="f-inp" type="text" placeholder="Your Company"></div>
+      </div>
+      <div class="f-row">
+        <div class="f-g"><label class="f-lbl">Email</label><input class="f-inp" type="email" placeholder="john@company.com"></div>
+        <div class="f-g"><label class="f-lbl">Phone</label><input class="f-inp" type="tel" placeholder="+254 700 000 000"></div>
+      </div>
+      <div class="f-g">
+        <label class="f-lbl">Service Required</label>
+        <select class="f-inp">
+          <option value="" disabled selected>Select service…</option>
+          <option>Transport / Haulage</option><option>Tractor Trailer</option>
+          <option>General Cargo</option><option>Tanker / Oil Products</option>
+          <option>Warehousing</option><option>Transit Facilities</option>
+        </select>
+      </div>
+      <div class="f-g"><label class="f-lbl">Message</label><textarea class="f-inp" placeholder="Describe your requirements…"></textarea></div>
+      <button type="submit" class="f-sub">Send Request →</button>
+    </form>
+  </div>
+  <div class="ct-right">
+    <img src="Roadtainers images/Roadtainers_quote.jpg" alt="Contact" class="ct-img">
+    <div class="ct-ov">
+      <div class="ct-info"><div class="ct-ico">📍</div><div><div class="ct-lbl">Address</div><div class="ct-val">P.O. Box 83109–80100, Mombasa, Kenya</div></div></div>
+      <div class="ct-info"><div class="ct-ico">📞</div><div><div class="ct-lbl">Phone</div><div class="ct-val">+254 721 600 290</div></div></div>
+      <div class="ct-info"><div class="ct-ico">🕐</div><div><div class="ct-lbl">Office Hours</div><div class="ct-val">Mon–Sun: 08:00 – 17:30 EAT</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <div class="ft-logo"><img src="Roadtainers images/Roadtainers_logo.png" alt=""><span>Roadtainers</span></div>
+      <p class="ft-desc">East Africa's premier heavy commercial transport company. Reliable, efficient logistics since 1998.</p>
+    </div>
+    <div>
+      <div class="ft-h">Company</div>
+      <div class="ft-links"><a href="#about">About Us</a><a href="#awards">Awards</a><a href="#fleet">Our Fleet</a><a href="#">Careers</a></div>
+    </div>
+    <div>
+      <div class="ft-h">Services</div>
+      <div class="ft-links"><a href="#services">Transport</a><a href="#services">Tractor Trailers</a><a href="#services">General Cargo</a><a href="#services">Warehousing</a><a href="#services">Workshop</a></div>
+    </div>
+    <div>
+      <div class="ft-h">Contact</div>
+      <div class="ft-ci">P.O. Box 83109–80100<br>Mombasa, Kenya</div>
+      <div class="ft-ci">+254 721 600 290</div>
+      <div class="ft-ci">Mon–Sun: 08:00–17:30</div>
+    </div>
+  </div>
+  <div class="ft-bar">
+    <div class="ft-copy">© 2024 Roadtainers (Mombasa) Limited. All rights reserved.</div>
+    <div class="ft-tags"><span class="ft-tag">ISO Certified</span><span class="ft-tag">Est. 1998</span></div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<div id="cb-btn"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+<div id="cb-win">
+  <div class="cb-head">
+    <div><div class="cb-htt">Roadtainers Support</div><div class="cb-hst">Typically replies instantly</div></div>
+    <span class="cb-x" id="cb-x">×</span>
+  </div>
+  <div class="cb-body" id="cb-body"><div class="cb-msg bot">Hi! How can I help you today?</div></div>
+  <div class="cb-opts" id="cb-opts"></div>
+</div>
+
+<script>
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('up',scrollY>50),{passive:true});
+const burger=document.getElementById('burger'),mnav=document.getElementById('mnav');
+burger.addEventListener('click',()=>{burger.classList.toggle('on');mnav.classList.toggle('on');document.body.style.overflow=mnav.classList.contains('on')?'hidden':'';});
+mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('on');mnav.classList.remove('on');document.body.style.overflow='';}));
+
+const sro=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');sro.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>sro.observe(el));
+
+const mapObs=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){
+    ['r1','r2','r3','r4','r5'].forEach((id,i)=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('go');},i*480));
+    ['pr1','pr2','pr3','pr4'].forEach((id,i)=>setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('go');},900+i*280));
+    mapObs.disconnect();
+  }
+}),{threshold:.25});
+const mapEl=document.querySelector('.net-map');if(mapEl)mapObs.observe(mapEl);
+
+const cro=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target,to=+el.dataset.to,dur=1800,s=performance.now();
+  const run=t=>{const p=Math.min((t-s)/dur,1),ease=p<.5?2*p*p:-1+(4-2*p)*p;el.textContent=Math.round(ease*to).toLocaleString();if(p<1)requestAnimationFrame(run);else el.textContent=to.toLocaleString();};
+  requestAnimationFrame(run);cro.unobserve(el);
+}),{threshold:.3});
+document.querySelectorAll('.counter').forEach(el=>cro.observe(el));
+
+const cbBtn=document.getElementById('cb-btn'),cbWin=document.getElementById('cb-win'),cbX=document.getElementById('cb-x');
+const cbBody=document.getElementById('cb-body'),cbOpts=document.getElementById('cb-opts');
+cbBtn.addEventListener('click',()=>cbWin.classList.toggle('on'));
+cbX.addEventListener('click',()=>cbWin.classList.remove('on'));
+const back=[],main=[];
+back.push({l:'← Main Menu',next:main},{l:'Call: +254 721 600 290',next:main});
+main.push(
+  {l:'Our Services',r:'We offer Transport, Tractor Trailers, General Cargo, Lifting & Transit Facilities, and Workshop services.',next:back},
+  {l:'Get a Quote',r:'Fill our contact form above or call +254 721 600 290. We respond within 1 business hour.',next:back},
+  {l:'Our Network',r:'We operate across Kenya, Uganda, Tanzania, Rwanda and South Sudan — all major East African corridors.',next:back},
+  {l:'Office Hours',r:'We operate 7 days a week, Mon–Sun 08:00–17:30 EAT.',next:back}
+);
+function showOpts(opts){
+  cbOpts.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');b.className='cb-opt';b.textContent=o.l;
+    b.onclick=()=>{
+      const um=document.createElement('div');um.className='cb-msg usr';um.textContent=o.l;cbBody.appendChild(um);
+      if(o.r)setTimeout(()=>{const bm=document.createElement('div');bm.className='cb-msg bot';bm.textContent=o.r;cbBody.appendChild(bm);cbBody.scrollTop=cbBody.scrollHeight;showOpts(o.next||main);},400);
+      else showOpts(o.next||main);
+      cbBody.scrollTop=cbBody.scrollHeight;
+    };
+    cbOpts.appendChild(b);
+  });
+}
+showOpts(main);
+</script>
+</body>
+</html>
