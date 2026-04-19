@@ -1,0 +1,2461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadtainers (Msa) Ltd — Premier Transport Solutions in East Africa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           DESIGN TOKENS
+        ========================================= */
+        :root {
+            --g1: #0d3518;       /* darkest green */
+            --g2: #145a28;       /* dark green */
+            --g3: #1d7a38;       /* medium green */
+            --g4: #2ea34d;       /* bright green accent */
+            --gold: #c8971f;     /* deep gold */
+            --gold2: #e8b332;    /* mid gold */
+            --gold3: #f5cc55;    /* light gold */
+            --dark: #060e08;     /* near-black background */
+            --dark2: #0b180e;
+            --off: #f7f4ee;      /* warm off-white */
+            --white: #ffffff;
+            --txt: #1a1a1a;
+            --muted: #777;
+            --border-g: rgba(200,151,31,.18);
+            --ease: cubic-bezier(.25,.46,.45,.94);
+            --ease2: cubic-bezier(.165,.84,.44,1);
+            --ff-head: 'Playfair Display', Georgia, serif;
+            --ff-ui:   'Montserrat', sans-serif;
+            --ff-body: 'Inter', sans-serif;
+        }
+
+        /* =========================================
+           RESET & BASE
+        ========================================= */
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; font-size:16px; }
+        body {
+            font-family: var(--ff-body);
+            color: var(--txt);
+            background: var(--white);
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+        img { max-width:100%; display:block; }
+        a { text-decoration:none; color:inherit; }
+        button { font-family:inherit; }
+
+        .container {
+            max-width: 1220px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        /* =========================================
+           SCROLL REVEAL
+        ========================================= */
+        .sr { opacity:0; transform:translateY(36px); transition:opacity .75s var(--ease), transform .75s var(--ease); }
+        .sr.in { opacity:1; transform:none; }
+        .sr-l { opacity:0; transform:translateX(-48px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
+        .sr-l.in { opacity:1; transform:none; }
+        .sr-r { opacity:0; transform:translateX(48px); transition:opacity .85s var(--ease), transform .85s var(--ease); }
+        .sr-r.in { opacity:1; transform:none; }
+        .d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+        .d4{transition-delay:.32s} .d5{transition-delay:.40s} .d6{transition-delay:.48s}
+
+        /* =========================================
+           UTILITIES
+        ========================================= */
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--ff-ui);
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold2);
+            margin-bottom: 14px;
+        }
+        .kicker::before,.kicker::after{
+            content:'';
+            display:block;
+            width:28px; height:1px;
+            background:var(--gold2);
+            flex-shrink:0;
+        }
+        .kicker.dark{ color:var(--g3); }
+        .kicker.dark::before,.kicker.dark::after{ background:var(--g3); }
+
+        .h-xl {
+            font-family: var(--ff-head);
+            font-size: clamp(34px,4.5vw,58px);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        .h-lg {
+            font-family: var(--ff-head);
+            font-size: clamp(28px,3.5vw,46px);
+            font-weight: 700;
+            line-height: 1.15;
+        }
+        .h-md {
+            font-family: var(--ff-head);
+            font-size: clamp(20px,2vw,26px);
+            font-weight: 700;
+        }
+
+        .gold-bar {
+            display:block;
+            width:52px; height:3px;
+            background:linear-gradient(90deg,var(--gold),var(--gold3));
+            border-radius:2px;
+            margin-top:18px;
+        }
+        .gold-bar.center{ margin-left:auto; margin-right:auto; }
+
+        .body-copy { font-size:16px; color:var(--muted); line-height:1.75; }
+        .body-copy.white{ color:rgba(255,255,255,.62); }
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--ff-ui);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            padding: 15px 34px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            transition: transform .3s var(--ease2), box-shadow .3s var(--ease2), background .25s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-gold {
+            background: linear-gradient(120deg, var(--gold) 0%, var(--gold2) 55%, var(--gold3) 100%);
+            color: var(--dark);
+        }
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 38px rgba(200,151,31,.42);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--white);
+            border: 1.5px solid rgba(255,255,255,.38);
+        }
+        .btn-ghost:hover {
+            background: rgba(255,255,255,.08);
+            border-color: rgba(255,255,255,.7);
+            transform: translateY(-2px);
+        }
+        .btn svg { flex-shrink:0; }
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+        #nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 900;
+            padding: 20px 0;
+            transition: padding .4s var(--ease), background .4s var(--ease), box-shadow .4s;
+        }
+        #nav.stuck {
+            background: rgba(6,14,8,.96);
+            backdrop-filter: blur(14px);
+            padding: 13px 0;
+            box-shadow: 0 4px 32px rgba(0,0,0,.35);
+        }
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo img {
+            height: 50px;
+            width: auto;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            list-style: none;
+        }
+        .nav-menu a {
+            font-family: var(--ff-ui);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.8);
+            position: relative;
+            transition: color .25s;
+        }
+        .nav-menu a::after {
+            content:'';
+            position:absolute;
+            bottom:-4px; left:0;
+            width:0; height:1.5px;
+            background: var(--gold2);
+            transition: width .3s var(--ease);
+        }
+        .nav-menu a:hover { color: var(--gold2); }
+        .nav-menu a:hover::after { width:100%; }
+        .nav-menu a.active { color: var(--gold2); }
+        .nav-menu a.active::after { width:100%; }
+        .nav-menu .nav-quote {
+            background: linear-gradient(120deg,var(--gold),var(--gold3));
+            color: var(--dark) !important;
+            padding: 11px 24px;
+            border-radius: 3px;
+            font-weight: 700 !important;
+        }
+        .nav-menu .nav-quote::after { display:none !important; }
+        .nav-menu .nav-quote:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px rgba(200,151,31,.4);
+            color: var(--dark) !important;
+        }
+        .nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:5px; }
+        .nav-burger span { display:block; width:23px; height:2px; background:white; border-radius:2px; transition:.3s; }
+
+        /* =========================================
+           HERO SLIDER
+        ========================================= */
+        #hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 640px;
+            overflow: hidden;
+        }
+
+        /* Slides */
+        .hs-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.3s ease;
+            z-index: 0;
+        }
+        .hs-slide.on { opacity:1; z-index:1; }
+        .hs-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transform: scale(1.07);
+            transition: transform 7s linear;
+            will-change: transform;
+        }
+        .hs-slide.on .hs-bg { transform: scale(1); }
+
+        /* Overlay gradient */
+        .hs-slide::after {
+            content:'';
+            position:absolute;
+            inset:0;
+            background: linear-gradient(
+                115deg,
+                rgba(6,14,8,.78) 0%,
+                rgba(13,53,24,.52) 45%,
+                rgba(6,14,8,.65) 100%
+            );
+            z-index:1;
+        }
+
+        /* Content */
+        .hero-wrap {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+        }
+        .hero-copy { max-width: 700px; }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(200,151,31,.14);
+            border: 1px solid rgba(232,179,50,.38);
+            border-radius: 999px;
+            padding: 7px 18px;
+            margin-bottom: 26px;
+            backdrop-filter: blur(8px);
+            animation: fadeDown .9s var(--ease) .2s both;
+        }
+        .hero-pill-dot {
+            width: 7px; height: 7px;
+            background: var(--gold3);
+            border-radius: 50%;
+            animation: blink 2.2s ease infinite;
+        }
+        @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.6)} }
+
+        .hero-pill span {
+            font-family: var(--ff-ui);
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold3);
+        }
+
+        .hero-h1 {
+            font-family: var(--ff-head);
+            font-size: clamp(44px,6.5vw,82px);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 22px;
+            animation: fadeUp .9s var(--ease) .4s both;
+        }
+        .hero-h1 em { color:var(--gold3); font-style:italic; }
+
+        .hero-sub {
+            font-size: 16.5px;
+            color: rgba(255,255,255,.72);
+            line-height: 1.72;
+            max-width: 520px;
+            margin-bottom: 38px;
+            animation: fadeUp .9s var(--ease) .6s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            animation: fadeUp .9s var(--ease) .8s both;
+        }
+
+        @keyframes fadeDown { from{opacity:0;transform:translateY(-18px)} to{opacity:1;transform:none} }
+        @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)}  to{opacity:1;transform:none} }
+
+        /* Slider controls */
+        .hs-arrows {
+            position: absolute;
+            right: 52px;
+            bottom: 52px;
+            z-index: 20;
+            display: flex;
+            gap: 12px;
+        }
+        .hs-arr {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255,255,255,.28);
+            background: rgba(255,255,255,.07);
+            backdrop-filter: blur(8px);
+            display: flex; align-items:center; justify-content:center;
+            cursor: pointer;
+            color: white;
+            transition: background .25s, border-color .25s, transform .25s;
+        }
+        .hs-arr:hover { background:var(--gold); border-color:var(--gold); color:var(--dark); transform:scale(1.06); }
+
+        .hs-dots {
+            position: absolute;
+            bottom: 68px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: flex;
+            gap: 9px;
+        }
+        .hs-dot {
+            width: 8px; height: 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.35);
+            cursor: pointer;
+            transition: width .35s var(--ease), background .3s;
+        }
+        .hs-dot.on { width:28px; background:var(--gold2); }
+
+        /* Scroll cue */
+        .scroll-cue {
+            position: absolute;
+            bottom: 38px;
+            left: 52px;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            animation: fadeUp .9s var(--ease) 1.4s both;
+        }
+        .scroll-cue-mouse {
+            width: 21px; height: 34px;
+            border: 2px solid rgba(255,255,255,.3);
+            border-radius: 11px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .scroll-cue-mouse::before {
+            content:'';
+            position:absolute;
+            top:5px;
+            width:3px; height:7px;
+            background:var(--gold2);
+            border-radius:2px;
+            animation: scrollWheel 2s ease infinite;
+        }
+        @keyframes scrollWheel { 0%{opacity:1;top:5px} 100%{opacity:0;top:18px} }
+        .scroll-cue span {
+            font-family:var(--ff-ui);
+            font-size:9px;
+            font-weight:700;
+            letter-spacing:3px;
+            text-transform:uppercase;
+            color:rgba(255,255,255,.42);
+        }
+
+        /* Progress bar */
+        .hs-progress {
+            position: absolute;
+            bottom: 0; left: 0;
+            height: 3px;
+            background: linear-gradient(90deg,var(--gold),var(--gold3));
+            z-index: 20;
+            width: 0%;
+            transition: width 5.5s linear;
+        }
+
+        /* =========================================
+           MARQUEE STRIP
+        ========================================= */
+        #marquee {
+            background: linear-gradient(90deg, var(--g2) 0%, var(--g1) 50%, var(--g2) 100%);
+            padding: 0;
+            overflow: hidden;
+            border-top: 1px solid rgba(200,151,31,.15);
+            border-bottom: 1px solid rgba(200,151,31,.15);
+        }
+        .marquee-inner {
+            display: flex;
+            align-items: center;
+            padding: 18px 0;
+            white-space: nowrap;
+            animation: marqueeScroll 28s linear infinite;
+            width: max-content;
+        }
+        .marquee-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            padding: 0 36px;
+            font-family: var(--ff-ui);
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.55);
+        }
+        .marquee-item .dot {
+            width: 5px; height: 5px;
+            background: var(--gold2);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        @keyframes marqueeScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+        /* =========================================
+           STATS
+        ========================================= */
+        #stats {
+            background: linear-gradient(135deg, var(--g1) 0%, var(--dark2) 60%, var(--g1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        #stats::before {
+            content:'';
+            position:absolute;
+            inset:0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(200,151,31,.05) 0%, transparent 55%),
+                radial-gradient(circle at 80% 50%, rgba(29,122,56,.07) 0%, transparent 55%);
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            position: relative;
+            z-index:1;
+        }
+        .stat {
+            padding: 56px 32px;
+            text-align: center;
+            border-right: 1px solid rgba(200,151,31,.12);
+            position: relative;
+            transition: background .3s;
+        }
+        .stat:last-child { border-right:none; }
+        .stat:hover { background:rgba(200,151,31,.04); }
+        .stat-num {
+            font-family: var(--ff-head);
+            font-size: 60px;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .stat-num sup { font-size:36px; color:var(--gold2); }
+        .stat-bar { width:28px; height:2px; background:var(--gold); margin:10px auto; }
+        .stat-lbl {
+            font-family: var(--ff-ui);
+            font-size: 10.5px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.45);
+        }
+
+        /* =========================================
+           ABOUT
+        ========================================= */
+        #about {
+            padding: 128px 0;
+            background: var(--white);
+            overflow: hidden;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 88px;
+            align-items: center;
+        }
+        .about-img-wrap { position:relative; }
+        .about-img-main {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+        .about-img-thumb {
+            position: absolute;
+            bottom: -36px; right: -36px;
+            width: 215px; height: 215px;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 0 22px 60px rgba(0,0,0,.16);
+            border-radius: 2px;
+        }
+        .about-since {
+            position: absolute;
+            top: 36px; left: -24px;
+            background: linear-gradient(135deg,var(--gold),var(--gold2));
+            color: var(--dark);
+            padding: 18px 22px;
+            border-radius: 3px;
+            box-shadow: 0 14px 44px rgba(200,151,31,.38);
+            text-align: center;
+            min-width: 100px;
+        }
+        .about-since-yr {
+            font-family: var(--ff-head);
+            font-size: 34px;
+            font-weight: 900;
+            line-height: 1;
+        }
+        .about-since-lbl {
+            font-family: var(--ff-ui);
+            font-size: 8.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .about-text { padding-right:16px; }
+        .about-checks {
+            list-style:none;
+            margin:28px 0 36px;
+            display:flex;
+            flex-direction:column;
+            gap:14px;
+        }
+        .about-checks li {
+            display:flex;
+            align-items:flex-start;
+            gap:13px;
+            font-size:15px;
+            color:#555;
+        }
+        .chk {
+            width:20px; height:20px;
+            background:linear-gradient(135deg,var(--g2),var(--g4));
+            border-radius:50%;
+            flex-shrink:0;
+            display:flex; align-items:center; justify-content:center;
+            margin-top:1px;
+        }
+        .chk svg { width:10px; stroke:white; fill:none; stroke-width:3; }
+
+        /* =========================================
+           SERVICES
+        ========================================= */
+        #services {
+            padding: 128px 0;
+            background: var(--off);
+            position: relative;
+        }
+        #services::before {
+            content:'';
+            position:absolute;
+            top:0; left:0; right:0;
+            height:4px;
+            background:linear-gradient(90deg,var(--g2),var(--gold),var(--g2));
+        }
+        .section-head {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+        .section-head .body-copy { max-width:600px; margin:18px auto 0; }
+
+        .svc-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 26px;
+        }
+        .svc-card {
+            background: var(--white);
+            border-radius: 3px;
+            overflow: hidden;
+            box-shadow: 0 2px 22px rgba(0,0,0,.06);
+            transition: transform .4s var(--ease2), box-shadow .4s var(--ease2);
+            position: relative;
+        }
+        .svc-card::after {
+            content:'';
+            position:absolute;
+            bottom:0; left:0; right:0;
+            height:3px;
+            background:linear-gradient(90deg,var(--g2),var(--gold));
+            transform:scaleX(0);
+            transform-origin:left;
+            transition:transform .4s var(--ease);
+        }
+        .svc-card:hover { transform:translateY(-9px); box-shadow:0 22px 60px rgba(0,0,0,.13); }
+        .svc-card:hover::after { transform:scaleX(1); }
+        .svc-img-box { overflow:hidden; position:relative; height:220px; }
+        .svc-img-box img { width:100%; height:100%; object-fit:cover; transition:transform .65s var(--ease); }
+        .svc-card:hover .svc-img-box img { transform:scale(1.06); }
+        .svc-img-box::after {
+            content:'';
+            position:absolute;
+            inset:0;
+            background:linear-gradient(to bottom, transparent 45%, rgba(13,53,24,.55) 100%);
+        }
+        .svc-body { padding:28px 30px 32px; }
+        .svc-ico {
+            width:48px; height:48px;
+            background:linear-gradient(135deg,var(--g2),var(--g4));
+            border-radius:3px;
+            display:flex; align-items:center; justify-content:center;
+            margin-bottom:16px;
+        }
+        .svc-ico svg { width:22px; stroke:white; fill:none; stroke-width:1.6; }
+        .svc-title {
+            font-family: var(--ff-head);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: 9px;
+        }
+        .svc-desc { font-size:14px; color:var(--muted); line-height:1.65; }
+
+        /* =========================================
+           WHY CHOOSE US
+        ========================================= */
+        #why {
+            padding: 128px 0;
+            background: linear-gradient(135deg, var(--g1) 0%, var(--dark2) 55%, var(--g1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .why-glow {
+            position:absolute; inset:0; pointer-events:none;
+            background:
+                radial-gradient(circle at 15% 55%, rgba(200,151,31,.05) 0%, transparent 55%),
+                radial-gradient(circle at 85% 45%, rgba(46,163,77,.06) 0%, transparent 55%);
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center;
+            position: relative;
+        }
+        .feat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-top: 44px;
+        }
+        .feat {
+            padding: 26px 24px;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(200,151,31,.12);
+            border-radius: 3px;
+            transition: background .3s, border-color .3s, transform .35s var(--ease2);
+        }
+        .feat:hover {
+            background: rgba(255,255,255,.07);
+            border-color: rgba(200,151,31,.32);
+            transform: translateY(-5px);
+        }
+        .feat-ico {
+            width:42px; height:42px;
+            background:rgba(200,151,31,.1);
+            border:1px solid rgba(200,151,31,.28);
+            border-radius:3px;
+            display:flex; align-items:center; justify-content:center;
+            margin-bottom:14px;
+        }
+        .feat-ico svg { width:19px; stroke:var(--gold2); fill:none; stroke-width:1.6; }
+        .feat-ttl {
+            font-family: var(--ff-head);
+            font-size: 15.5px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 7px;
+        }
+        .feat-txt { font-size:12.5px; color:rgba(255,255,255,.47); line-height:1.6; }
+
+        .why-img-wrap { position:relative; }
+        .why-img {
+            width:100%;
+            height:570px;
+            object-fit:cover;
+            border-radius:2px;
+        }
+        .why-img-over {
+            position:absolute; inset:0;
+            background:linear-gradient(135deg,rgba(13,53,24,.32),transparent);
+            border-radius:2px;
+        }
+        .trophy-badge {
+            position: absolute;
+            bottom: 38px; left: -28px;
+            background: linear-gradient(135deg,var(--gold),var(--gold2));
+            padding: 22px 26px;
+            border-radius: 3px;
+            text-align: center;
+            box-shadow: 0 16px 52px rgba(200,151,31,.42);
+        }
+        .trophy-ico { font-size:30px; margin-bottom:7px; }
+        .trophy-lbl {
+            font-family: var(--ff-ui);
+            font-size: 8.5px;
+            font-weight: 700;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            color: var(--dark);
+            line-height: 1.5;
+        }
+
+        /* =========================================
+           LOCAL SHUNTING
+        ========================================= */
+        #shunting {
+            padding: 128px 0;
+            background: var(--white);
+            overflow: hidden;
+        }
+        .shunt-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 88px;
+            align-items: center;
+        }
+        .shunt-cards {
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+            margin-top:36px;
+        }
+        .shunt-card {
+            display:flex;
+            gap:18px;
+            padding:22px 26px;
+            background:var(--off);
+            border-left:3px solid var(--g2);
+            border-radius:0 3px 3px 0;
+            transition: border-color .3s, background .3s, transform .35s var(--ease2), box-shadow .35s;
+        }
+        .shunt-card:hover {
+            border-left-color:var(--gold);
+            background:var(--white);
+            box-shadow:0 8px 32px rgba(0,0,0,.08);
+            transform:translateX(7px);
+        }
+        .shunt-ico {
+            width:46px; height:46px;
+            background:linear-gradient(135deg,var(--g2),var(--g4));
+            border-radius:3px;
+            display:flex; align-items:center; justify-content:center;
+            flex-shrink:0;
+        }
+        .shunt-ico svg { width:21px; stroke:white; fill:none; stroke-width:1.6; }
+        .shunt-ttl {
+            font-family: var(--ff-head);
+            font-size: 16.5px;
+            font-weight: 700;
+            color: var(--txt);
+            margin-bottom: 5px;
+        }
+        .shunt-txt { font-size:13.5px; color:var(--muted); line-height:1.6; }
+        .shunt-img {
+            width:100%;
+            height:510px;
+            object-fit:cover;
+            border-radius:2px;
+            box-shadow:0 20px 60px rgba(0,0,0,.1);
+        }
+
+        /* =========================================
+           AWARDS
+        ========================================= */
+        #awards {
+            padding: 110px 0;
+            background: var(--off);
+            text-align: center;
+            position: relative;
+        }
+        .awards-tagline {
+            font-style:italic;
+            color:var(--gold);
+            font-size:15px;
+            margin-top:10px;
+        }
+        .aw-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 28px;
+            margin-top: 64px;
+        }
+        .aw-card {
+            background: var(--white);
+            padding: 50px 34px;
+            border-radius: 3px;
+            border: 1px solid rgba(0,0,0,.06);
+            transition: transform .4s var(--ease2), box-shadow .4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .aw-card::before {
+            content:'';
+            position:absolute;
+            top:0; left:0; right:0;
+            height:3.5px;
+            background:linear-gradient(90deg,var(--g2),var(--gold));
+        }
+        .aw-card:hover { transform:translateY(-9px); box-shadow:0 22px 60px rgba(0,0,0,.1); }
+        .aw-emoji { font-size:50px; display:block; margin-bottom:20px; filter:drop-shadow(0 4px 14px rgba(200,151,31,.3)); }
+        .aw-title {
+            font-family:var(--ff-head);
+            font-size:20px;
+            font-weight:700;
+            color:var(--txt);
+            margin-bottom:12px;
+        }
+        .aw-text { font-size:14px; color:var(--muted); line-height:1.65; }
+
+        /* =========================================
+           QUOTE / LEAD FORM
+        ========================================= */
+        #quote {
+            padding: 128px 0;
+            background: linear-gradient(135deg, var(--g1) 0%, var(--dark2) 55%, var(--g1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        #quote::before {
+            content:'';
+            position:absolute; inset:0;
+            background:
+                radial-gradient(circle at 8% 88%, rgba(200,151,31,.07) 0%, transparent 48%),
+                radial-gradient(circle at 92% 12%, rgba(46,163,77,.07) 0%, transparent 48%);
+        }
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 86px;
+            align-items: start;
+            position: relative;
+        }
+        .q-info { padding-top:16px; }
+        .q-pts {
+            display:flex;
+            flex-direction:column;
+            gap:18px;
+            margin-top:38px;
+        }
+        .q-pt {
+            display:flex;
+            align-items:center;
+            gap:14px;
+        }
+        .q-dot { width:9px; height:9px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+        .q-pt-txt { font-size:15px; color:rgba(255,255,255,.65); }
+        .q-addr {
+            margin-top:46px;
+            padding:26px;
+            background:rgba(200,151,31,.07);
+            border:1px solid rgba(200,151,31,.18);
+            border-radius:3px;
+        }
+        .q-addr-head {
+            font-family:var(--ff-ui);
+            font-size:10px;
+            font-weight:700;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:var(--gold2);
+            margin-bottom:11px;
+        }
+        .q-addr p { font-size:13.5px; color:rgba(255,255,255,.5); line-height:1.8; }
+
+        /* Form */
+        .form-box {
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(200,151,31,.16);
+            border-radius: 4px;
+            padding: 48px 44px;
+            backdrop-filter: blur(12px);
+        }
+        .form-box-ttl {
+            font-family: var(--ff-head);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+        .form-box-sub {
+            font-size:13.5px;
+            color:rgba(255,255,255,.46);
+            margin-bottom:30px;
+        }
+        .f-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .f-grp { margin-bottom:16px; }
+        .f-lbl {
+            display:block;
+            font-family:var(--ff-ui);
+            font-size:10px;
+            font-weight:700;
+            letter-spacing:1.5px;
+            text-transform:uppercase;
+            color:rgba(255,255,255,.45);
+            margin-bottom:8px;
+        }
+        .f-inp {
+            width:100%;
+            padding:13px 16px;
+            background:rgba(255,255,255,.06);
+            border:1px solid rgba(255,255,255,.12);
+            border-radius:3px;
+            color:var(--white);
+            font-family:var(--ff-body);
+            font-size:14px;
+            outline:none;
+            transition:border-color .25s, background .25s, box-shadow .25s;
+        }
+        .f-inp::placeholder { color:rgba(255,255,255,.28); }
+        .f-inp:focus {
+            border-color:var(--gold2);
+            background:rgba(255,255,255,.09);
+            box-shadow:0 0 0 3px rgba(200,151,31,.1);
+        }
+        select.f-inp { cursor:pointer; appearance:none; -webkit-appearance:none; }
+        select.f-inp option { background:var(--dark2); color:white; }
+        textarea.f-inp { min-height:96px; resize:vertical; }
+        .f-submit {
+            width:100%;
+            padding:16px;
+            background:linear-gradient(120deg,var(--gold),var(--gold2),var(--gold3));
+            color:var(--dark);
+            font-family:var(--ff-ui);
+            font-size:11px;
+            font-weight:700;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            border:none;
+            border-radius:3px;
+            cursor:pointer;
+            display:flex; align-items:center; justify-content:center; gap:10px;
+            transition:transform .3s var(--ease2), box-shadow .3s;
+            margin-top:8px;
+        }
+        .f-submit:hover { transform:translateY(-3px); box-shadow:0 12px 38px rgba(200,151,31,.42); }
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+        footer {
+            background: var(--dark);
+            padding: 72px 0 32px;
+            border-top: 1px solid rgba(200,151,31,.1);
+        }
+        .foot-grid {
+            display:grid;
+            grid-template-columns:2fr 1fr 1fr 1.6fr;
+            gap:52px;
+            padding-bottom:52px;
+            border-bottom:1px solid rgba(255,255,255,.07);
+        }
+        .foot-brand img { height:52px; margin-bottom:18px; }
+        .foot-brand p { font-size:13px; color:rgba(255,255,255,.42); line-height:1.75; max-width:250px; }
+        .foot-soc {
+            display:flex; gap:10px;
+            margin-top:22px;
+        }
+        .soc-btn {
+            width:36px; height:36px;
+            border:1px solid rgba(255,255,255,.12);
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            color:rgba(255,255,255,.45);
+            font-size:13px;
+            transition:background .25s, border-color .25s, color .25s;
+        }
+        .soc-btn:hover { background:var(--gold); border-color:var(--gold); color:var(--dark); }
+        .foot-h {
+            font-family:var(--ff-ui);
+            font-size:10.5px;
+            font-weight:700;
+            letter-spacing:2px;
+            text-transform:uppercase;
+            color:var(--gold2);
+            margin-bottom:22px;
+        }
+        .foot-list { list-style:none; display:flex; flex-direction:column; gap:11px; }
+        .foot-list a {
+            font-size:13px;
+            color:rgba(255,255,255,.42);
+            transition:color .22s, padding-left .22s;
+            display:flex; align-items:center; gap:7px;
+        }
+        .foot-list a::before { content:'—'; color:var(--gold); opacity:0; transition:opacity .2s; }
+        .foot-list a:hover { color:var(--white); padding-left:5px; }
+        .foot-list a:hover::before { opacity:1; }
+        .foot-ci { display:flex; align-items:flex-start; gap:11px; margin-bottom:14px; }
+        .foot-ci-ico {
+            width:30px; height:30px;
+            background:rgba(200,151,31,.1);
+            border:1px solid rgba(200,151,31,.2);
+            border-radius:3px;
+            display:flex; align-items:center; justify-content:center; flex-shrink:0;
+        }
+        .foot-ci-ico svg { width:13px; stroke:var(--gold2); fill:none; stroke-width:1.6; }
+        .foot-ci p { font-size:13px; color:rgba(255,255,255,.42); line-height:1.55; }
+        .foot-bar {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding-top:26px;
+        }
+        .foot-copy { font-size:12px; color:rgba(255,255,255,.28); }
+        .foot-copy span { color:var(--gold2); }
+
+        /* =========================================
+           GOOGLE MAP
+        ========================================= */
+        .q-map {
+            margin-top: 28px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(200,151,31,.22);
+            box-shadow: 0 8px 32px rgba(0,0,0,.28);
+        }
+        .q-map iframe {
+            width: 100%;
+            height: 220px;
+            display: block;
+            border: none;
+            filter: saturate(.85) contrast(1.05);
+        }
+        .q-map-lbl {
+            background: rgba(200,151,31,.1);
+            border-top: 1px solid rgba(200,151,31,.18);
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .q-map-lbl svg { width:13px; stroke:var(--gold2); fill:none; stroke-width:1.8; flex-shrink:0; }
+        .q-map-lbl a {
+            font-family: var(--ff-ui);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--gold2);
+            transition: color .2s;
+        }
+        .q-map-lbl a:hover { color: var(--gold3); }
+
+        /* =========================================
+           WHATSAPP CHATBOT WIDGET
+        ========================================= */
+        .wa-widget {
+            position: fixed;
+            bottom: 28px; right: 28px;
+            z-index: 900;
+        }
+        /* Chat panel */
+        .wa-panel {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 340px;
+            background: #ece5dd;
+            border-radius: 16px;
+            box-shadow: 0 18px 56px rgba(0,0,0,.28);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 520px;
+            transform: scale(.88) translateY(18px);
+            opacity: 0;
+            pointer-events: none;
+            transition: transform .35s cubic-bezier(.165,.84,.44,1), opacity .3s ease;
+            transform-origin: bottom right;
+        }
+        .wa-panel.open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            pointer-events: all;
+        }
+        /* Header */
+        .wa-head {
+            background: linear-gradient(135deg, #075e54 0%, #128c7e 100%);
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            flex-shrink: 0;
+        }
+        .wa-head-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: rgba(255,255,255,.7);
+            cursor: pointer;
+            padding: 4px;
+            line-height: 0;
+            border-radius: 50%;
+            transition: background .2s, color .2s;
+        }
+        .wa-head-close:hover { background: rgba(255,255,255,.15); color: white; }
+        .wa-avatar {
+            width: 42px; height: 42px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex; align-items:center; justify-content:center;
+            flex-shrink: 0;
+            font-size: 20px;
+        }
+        .wa-head-info .wa-name {
+            font-family: var(--ff-ui);
+            font-size: 13.5px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+        .wa-head-info .wa-status {
+            font-size: 11px;
+            color: rgba(255,255,255,.7);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 2px;
+        }
+        .wa-status-dot {
+            width: 6px; height: 6px;
+            background: #25d366;
+            border-radius: 50%;
+            animation: blink 2.5s ease infinite;
+        }
+        /* Messages area */
+        .wa-msgs {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-height: 200px;
+            scroll-behavior: smooth;
+            background: #ece5dd url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(0,0,0,.04)'/%3E%3C/svg%3E");
+        }
+        .wa-msgs::-webkit-scrollbar { width: 4px; }
+        .wa-msgs::-webkit-scrollbar-thumb { background: rgba(0,0,0,.18); border-radius: 4px; }
+        /* Bubble */
+        .wa-bubble {
+            max-width: 80%;
+            padding: 9px 13px 7px;
+            border-radius: 8px;
+            font-family: var(--ff-body);
+            font-size: 13.5px;
+            line-height: 1.5;
+            position: relative;
+            animation: bubblePop .25s cubic-bezier(.165,.84,.44,1);
+        }
+        @keyframes bubblePop { from{transform:scale(.85);opacity:0} to{transform:scale(1);opacity:1} }
+        .wa-bubble.bot {
+            background: white;
+            color: #1a1a1a;
+            align-self: flex-start;
+            border-top-left-radius: 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        }
+        .wa-bubble.user {
+            background: #dcf8c6;
+            color: #1a1a1a;
+            align-self: flex-end;
+            border-top-right-radius: 0;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        }
+        .wa-bubble-time {
+            font-size: 10px;
+            color: rgba(0,0,0,.38);
+            float: right;
+            margin-left: 8px;
+            margin-top: 3px;
+        }
+        .wa-bubble.user .wa-bubble-time {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+        /* Typing indicator */
+        .wa-typing {
+            background: white;
+            border-radius: 8px;
+            border-top-left-radius: 0;
+            padding: 12px 14px;
+            align-self: flex-start;
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            box-shadow: 0 1px 2px rgba(0,0,0,.1);
+            animation: bubblePop .25s ease;
+        }
+        .wa-typing span {
+            width: 7px; height: 7px;
+            background: #aaa;
+            border-radius: 50%;
+            animation: typingDot 1.2s ease infinite;
+        }
+        .wa-typing span:nth-child(2) { animation-delay: .2s; }
+        .wa-typing span:nth-child(3) { animation-delay: .4s; }
+        @keyframes typingDot { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+        /* Quick replies */
+        .wa-qr {
+            padding: 6px 12px 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            flex-shrink: 0;
+            background: #ece5dd;
+        }
+        .wa-qr-btn {
+            background: white;
+            color: #128c7e;
+            border: 1.5px solid #128c7e;
+            border-radius: 18px;
+            padding: 6px 13px;
+            font-family: var(--ff-ui);
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background .2s, color .2s;
+            white-space: nowrap;
+        }
+        .wa-qr-btn:hover { background: #128c7e; color: white; }
+        /* Input row */
+        .wa-inp-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            background: #f0f0f0;
+            border-top: 1px solid rgba(0,0,0,.08);
+            flex-shrink: 0;
+        }
+        .wa-txt {
+            flex: 1;
+            padding: 9px 14px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-family: var(--ff-body);
+            font-size: 13.5px;
+            background: white;
+            color: #1a1a1a;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1);
+        }
+        .wa-txt::placeholder { color: #aaa; }
+        .wa-send-btn {
+            width: 40px; height: 40px;
+            background: #25d366;
+            border: none;
+            border-radius: 50%;
+            display: flex; align-items:center; justify-content:center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background .2s, transform .2s;
+        }
+        .wa-send-btn:hover { background: #20c25c; transform: scale(1.07); }
+        /* Toggle button */
+        .wa-toggle {
+            width: 58px; height: 58px;
+            background: #25d366;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex; align-items:center; justify-content:center;
+            box-shadow: 0 8px 28px rgba(37,211,102,.42);
+            transition: transform .3s, box-shadow .3s;
+            animation: waBounce 3.5s ease infinite;
+            flex-shrink: 0;
+            position: relative;
+        }
+        .wa-toggle:hover { transform: scale(1.1); box-shadow: 0 14px 36px rgba(37,211,102,.52); animation: none; }
+        .wa-toggle .wa-toggle-notif {
+            position: absolute;
+            top: 2px; right: 2px;
+            width: 14px; height: 14px;
+            background: #ff4444;
+            border-radius: 50%;
+            border: 2px solid white;
+            font-size: 8px;
+            color: white;
+            display: flex; align-items:center; justify-content:center;
+            font-weight: 700;
+            font-family: var(--ff-ui);
+        }
+        @keyframes waBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+        /* =========================================
+           BACK TO TOP
+        ========================================= */
+        #btt {
+            position:fixed;
+            bottom:28px; right:96px;
+            z-index:800;
+            width:44px; height:44px;
+            background:rgba(13,53,24,.85);
+            border:1px solid rgba(200,151,31,.3);
+            border-radius:3px;
+            display:none; align-items:center; justify-content:center;
+            cursor:pointer;
+            color:var(--gold2);
+            backdrop-filter:blur(8px);
+            transition:background .25s, transform .25s;
+        }
+        #btt:hover { background:var(--g2); transform:translateY(-3px); }
+        #btt.show { display:flex; }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+        @media(max-width:1024px){
+            .container{ padding:0 28px; }
+            .about-grid,.why-grid,.shunt-grid,.q-grid{ grid-template-columns:1fr; gap:52px; }
+            .about-img-main,.why-img,.shunt-img{ height:420px; }
+            .about-img-thumb{ right:0; bottom:-20px; width:160px; height:160px; }
+            .about-since{ left:0; }
+            .trophy-badge{ left:20px; }
+            .svc-grid{ grid-template-columns:repeat(2,1fr); }
+            .stats-row{ grid-template-columns:repeat(2,1fr); }
+            .stat:nth-child(2){ border-right:none; }
+            .stat:nth-child(1),.stat:nth-child(2){ border-bottom:1px solid rgba(200,151,31,.12); }
+            .foot-grid{ grid-template-columns:1fr 1fr; gap:38px; }
+            .aw-grid{ grid-template-columns:1fr 1fr; }
+        }
+        @media(max-width:768px){
+            .nav-menu{ display:none; }
+            .nav-burger{ display:flex; }
+            .hero-h1{ font-size:38px; }
+            .svc-grid{ grid-template-columns:1fr; }
+            .feat-grid{ grid-template-columns:1fr; }
+            .aw-grid{ grid-template-columns:1fr; }
+            .f-row{ grid-template-columns:1fr; }
+            .foot-grid{ grid-template-columns:1fr; }
+            .hs-arrows{ display:none; }
+            .scroll-cue{ display:none; }
+            .foot-bar{ flex-direction:column; gap:10px; text-align:center; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ================================================================
+     NAVBAR
+================================================================ -->
+<nav id="nav">
+    <div class="container">
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <a href="https://www.roadtainers.co.ke/" target="_blank" rel="noopener noreferrer">
+                    <img src="Roadtainers images/Roadtainers_logo.png" alt="Roadtainers Mombasa Ltd">
+                </a>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why">Why Us</a></li>
+                <li><a href="#shunting">Shunting</a></li>
+                <li><a href="#awards">Awards</a></li>
+                <li><a href="https://www.roadtainers.co.ke/quote/" target="_blank" rel="noopener noreferrer" class="nav-quote">Request a Quote</a></li>
+            </ul>
+            <div class="nav-burger" id="burger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ================================================================
+     HERO SLIDER
+================================================================ -->
+<section id="hero">
+
+    <div class="hs-slide on" data-idx="0">
+        <div class="hs-bg" style="background-image:url('Roadtainers images/Roadtainers_hero.jpg')"></div>
+    </div>
+    <div class="hs-slide" data-idx="1">
+        <div class="hs-bg" style="background-image:url('Roadtainers images/Transport.jpg')"></div>
+    </div>
+    <div class="hs-slide" data-idx="2">
+        <div class="hs-bg" style="background-image:url('Roadtainers images/Tractor Trailers.jpg')"></div>
+    </div>
+    <div class="hs-slide" data-idx="3">
+        <div class="hs-bg" style="background-image:url('Roadtainers images/Centralized Facilities.jpg')"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="hero-wrap">
+        <div class="container">
+            <div class="hero-copy">
+                <div class="hero-pill">
+                    <div class="hero-pill-dot"></div>
+                    <span>Kenya's Premier Transport Company</span>
+                </div>
+                <h1 class="hero-h1">
+                    Moving Cargo.<br>
+                    <em>Delivering</em><br>
+                    Excellence.
+                </h1>
+                <p class="hero-sub">
+                    Trusted by businesses across East Africa since 1998. Heavy commercial
+                    transport, lifting facilities &amp; end-to-end logistics — delivered
+                    with precision and care.
+                </p>
+                <div class="hero-btns">
+                    <a href="https://www.roadtainers.co.ke/quote/" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+                        <span>Request a Quote</span>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                    </a>
+                    <a href="#services" class="btn btn-ghost">
+                        <span>Our Services</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dots -->
+    <div class="hs-dots" id="hsDots">
+        <div class="hs-dot on" data-i="0"></div>
+        <div class="hs-dot" data-i="1"></div>
+        <div class="hs-dot" data-i="2"></div>
+        <div class="hs-dot" data-i="3"></div>
+    </div>
+
+    <!-- Arrows -->
+    <div class="hs-arrows">
+        <button class="hs-arr" id="hsPrev" aria-label="Previous slide">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="hs-arr" id="hsNext" aria-label="Next slide">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="scroll-cue">
+        <div class="scroll-cue-mouse"></div>
+        <span>Scroll</span>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="hs-progress" id="hsProgress"></div>
+</section>
+
+
+<!-- ================================================================
+     MARQUEE STRIP
+================================================================ -->
+<section id="marquee">
+    <div class="marquee-inner">
+        <!-- duplicated for seamless loop -->
+        <div class="marquee-item"><div class="dot"></div>Heavy Commercial Transport</div>
+        <div class="marquee-item"><div class="dot"></div>Tractor Trailers &amp; Tankers</div>
+        <div class="marquee-item"><div class="dot"></div>50-Ton Lifting Cranes</div>
+        <div class="marquee-item"><div class="dot"></div>18-Acre Transit Facility</div>
+        <div class="marquee-item"><div class="dot"></div>GPS &amp; ECTS Fleet Tracking</div>
+        <div class="marquee-item"><div class="dot"></div>Local Shunting Services</div>
+        <div class="marquee-item"><div class="dot"></div>International Transport Award</div>
+        <div class="marquee-item"><div class="dot"></div>In-House Workshop</div>
+        <div class="marquee-item"><div class="dot"></div>Heavy Commercial Transport</div>
+        <div class="marquee-item"><div class="dot"></div>Tractor Trailers &amp; Tankers</div>
+        <div class="marquee-item"><div class="dot"></div>50-Ton Lifting Cranes</div>
+        <div class="marquee-item"><div class="dot"></div>18-Acre Transit Facility</div>
+        <div class="marquee-item"><div class="dot"></div>GPS &amp; ECTS Fleet Tracking</div>
+        <div class="marquee-item"><div class="dot"></div>Local Shunting Services</div>
+        <div class="marquee-item"><div class="dot"></div>International Transport Award</div>
+        <div class="marquee-item"><div class="dot"></div>In-House Workshop</div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     STATS
+================================================================ -->
+<section id="stats">
+    <div class="stats-row">
+        <div class="stat sr d1">
+            <div class="stat-num"><span class="ctr" data-to="27">0</span><sup>+</sup></div>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Years in Business</div>
+        </div>
+        <div class="stat sr d2">
+            <div class="stat-num"><span class="ctr" data-to="140">0</span><sup>+</sup></div>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Fleet of Trucks</div>
+        </div>
+        <div class="stat sr d3">
+            <div class="stat-num"><span class="ctr" data-to="18">0</span></div>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Acre Transit Facility</div>
+        </div>
+        <div class="stat sr d4">
+            <div class="stat-num"><span class="ctr" data-to="135">0</span><sup>T</sup></div>
+            <div class="stat-bar"></div>
+            <div class="stat-lbl">Max Lifting Capacity</div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     ABOUT
+================================================================ -->
+<section id="about">
+    <div class="container">
+        <div class="about-grid">
+
+            <!-- Image column -->
+            <div class="about-img-wrap sr-l">
+                <img src="Roadtainers images/Certified Experience.jpg" alt="Roadtainers experience" class="about-img-main">
+                <img src="Roadtainers images/Professional Support.jpg" alt="Professional support" class="about-img-thumb">
+                <div class="about-since">
+                    <div class="about-since-yr">1998</div>
+                    <div class="about-since-lbl">Est. Mombasa</div>
+                </div>
+            </div>
+
+            <!-- Text column -->
+            <div class="about-text sr-r">
+                <div class="kicker dark">Who We Are</div>
+                <h2 class="h-xl">East Africa's Most<br>Trusted Transport<br>Company</h2>
+                <span class="gold-line"></span>
+                <p class="body-copy" style="margin-top:22px;">
+                    Roadtainers (Mombasa) Ltd is a privately-owned company dealing in heavy
+                    commercial transport. From our 18-acre, fully secured facility — just 3.5 km
+                    from the Port of Mombasa — we deliver logistics solutions built on over two
+                    decades of excellence and a Gold Medal for Business in Excellence.
+                </p>
+                <ul class="about-checks">
+                    <li>
+                        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        Headquarters on the Mombasa-Nairobi Highway — 10 km from Mombasa City
+                    </li>
+                    <li>
+                        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        Liaison office in Kampala, Uganda for regional coverage
+                    </li>
+                    <li>
+                        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        Fleet of 140+ Mercedes Benz trucks — GPS &amp; ECTS tracked
+                    </li>
+                    <li>
+                        <div class="chk"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+                        Winner — Trade Leaders Club International Transport Award
+                    </li>
+                </ul>
+                <a href="https://www.roadtainers.co.ke/quote/" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
+                    <span>Get a Quote Today</span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     SERVICES
+================================================================ -->
+<section id="services">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="kicker dark">What We Offer</div>
+            <h2 class="h-xl">Comprehensive Transport<br>&amp; Logistics Solutions</h2>
+            <span class="gold-line center"></span>
+            <p class="body-copy">
+                From heavy cargo transport to precision lifting, secured transit facilities
+                and a full in-house workshop — we cover every aspect of your logistics needs.
+            </p>
+        </div>
+
+        <div class="svc-grid">
+
+            <!-- Transport -->
+            <div class="svc-card sr d1">
+                <div class="svc-img-box">
+                    <img src="Roadtainers images/Transport.jpg" alt="Heavy Transport">
+                </div>
+                <div class="svc-body">
+                    <div class="svc-ico">
+                        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                    </div>
+                    <h3 class="svc-title">Heavy Transport</h3>
+                    <p class="svc-desc">GPS/ECTS-tracked fleet of 140+ trucks. We import our own tyres and spares with an in-house fueling facility — maximum uptime guaranteed.</p>
+                </div>
+            </div>
+
+            <!-- Tractor Trailers -->
+            <div class="svc-card sr d2">
+                <div class="svc-img-box">
+                    <img src="Roadtainers images/Tractor Trailers.jpg" alt="Tractor Trailers">
+                </div>
+                <div class="svc-body">
+                    <div class="svc-ico">
+                        <svg viewBox="0 0 24 24"><path d="M3 3h11v13H3z"/><path d="M14 7h4l3 3v6h-7V7z"/><circle cx="7" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+                    </div>
+                    <h3 class="svc-title">Tractor Trailers</h3>
+                    <p class="svc-desc">Tippers, oil tankers, low loaders up to 135 tons for Oil &amp; Gas, flatbeds, sided trailers and box body trailers — fully equipped for any cargo.</p>
+                </div>
+            </div>
+
+            <!-- Lifting Facilities -->
+            <div class="svc-card sr d3">
+                <div class="svc-img-box">
+                    <img src="Roadtainers images/Lifting Facilities.jpg" alt="Lifting Facilities">
+                </div>
+                <div class="svc-body">
+                    <div class="svc-ico">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3 class="svc-title">Lifting Facilities</h3>
+                    <p class="svc-desc">Three 50-ton cranes, one 30-ton crane plus forklifts up to 13 tons. Precision lifting engineered for the most demanding cargo requirements.</p>
+                </div>
+            </div>
+
+            <!-- Transit Facilities -->
+            <div class="svc-card sr d4">
+                <div class="svc-img-box">
+                    <img src="Roadtainers images/Transit Facilities.jpg" alt="Transit Facilities">
+                </div>
+                <div class="svc-body">
+                    <div class="svc-ico">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <h3 class="svc-title">Transit Facilities</h3>
+                    <p class="svc-desc">18-acre fully secured facility, 3.5 km from port. Handles exports &amp; imports with a resident customs officer on-site for fast clearance.</p>
+                </div>
+            </div>
+
+            <!-- General Cargo -->
+            <div class="svc-card sr d5">
+                <div class="svc-img-box">
+                    <img src="Roadtainers images/General Cargo.jpg" alt="General Cargo">
+                </div>
+                <div class="svc-body">
+                    <div class="svc-ico">
+                        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                    </div>
+                    <h3 class="svc-title">General Cargo</h3>
+                    <p class="svc-desc">End-to-end logistics and transport solutions. Successfully providing comprehensive logistics &amp; transport services across East Africa.</p>
+                </div>
+            </div>
+
+            <!-- Workshop -->
+            <div class="svc-card sr d6">
+                <div class="svc-img-box">
+                    <img src="Roadtainers images/Workshop.jpg" alt="Workshop">
+                </div>
+                <div class="svc-body">
+                    <div class="svc-ico">
+                        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <h3 class="svc-title">In-House Workshop</h3>
+                    <p class="svc-desc">Full-fledged workshop handling engine &amp; gearbox maintenance, trailer construction &amp; repair, chassis repair — keeping our fleet in prime condition.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     WHY CHOOSE US
+================================================================ -->
+<section id="why">
+    <div class="why-glow"></div>
+    <div class="container">
+        <div class="why-grid">
+
+            <!-- Text side -->
+            <div>
+                <div class="kicker">Why Choose Us</div>
+                <h2 class="h-xl" style="color:var(--white)">Built on Trust.<br>Driven by Results.</h2>
+                <span class="gold-line"></span>
+                <p class="body-copy white" style="margin-top:20px;">
+                    We don't just move cargo — we move businesses forward. Our combination
+                    of modern fleet, expert team and world-class infrastructure makes us the
+                    benchmark of heavy transport in East Africa.
+                </p>
+
+                <div class="feat-grid">
+                    <div class="feat sr d1">
+                        <div class="feat-ico">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div class="feat-ttl">Road Safety Award</div>
+                        <div class="feat-txt">Nationally recognised for our commitment to road safety and best practices across all 140+ vehicles.</div>
+                    </div>
+                    <div class="feat sr d2">
+                        <div class="feat-ico">
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <div class="feat-ttl">24 Hr Response</div>
+                        <div class="feat-txt">Fast turnaround on every quote request and round-the-clock dedicated client support.</div>
+                    </div>
+                    <div class="feat sr d3">
+                        <div class="feat-ico">
+                            <svg viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+                        </div>
+                        <div class="feat-ttl">GPS Tracked Fleet</div>
+                        <div class="feat-txt">Real-time GPS &amp; ECTS tracking on every vehicle — full visibility of your cargo at all times.</div>
+                    </div>
+                    <div class="feat sr d4">
+                        <div class="feat-ico">
+                            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div class="feat-ttl">Competitive Rates</div>
+                        <div class="feat-txt">Strict cost controls and in-house spares ensure the very best value without compromising quality.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image side -->
+            <div class="why-img-wrap sr-r">
+                <img src="Roadtainers images/Safe & Smooth Movement.jpg" alt="Safe and smooth transport" class="why-img">
+                <div class="why-img-over"></div>
+                <div class="trophy-badge">
+                    <div class="trophy-ico">🏆</div>
+                    <div class="trophy-lbl">International<br>Transport Award<br>Winner</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     LOCAL SHUNTING
+================================================================ -->
+<section id="shunting">
+    <div class="container">
+        <div class="shunt-grid">
+
+            <!-- Text side -->
+            <div class="sr-l">
+                <div class="kicker dark">Local Shunting</div>
+                <h2 class="h-xl">Seamless Yard &amp;<br>Port Operations</h2>
+                <span class="gold-line"></span>
+                <p class="body-copy" style="margin-top:20px;">
+                    Our local shunting service processes multiple assets continuously moving
+                    into, out of and throughout a single yard — with optimized workflows and
+                    unmatched efficiency from start to finish.
+                </p>
+                <div class="shunt-cards">
+                    <div class="shunt-card">
+                        <div class="shunt-ico">
+                            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div>
+                            <div class="shunt-ttl">Competitive Rates</div>
+                            <div class="shunt-txt">Independent local shunting with strict cost controls. We promise comprehensive service from the first move to the last.</div>
+                        </div>
+                    </div>
+                    <div class="shunt-card">
+                        <div class="shunt-ico">
+                            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <div>
+                            <div class="shunt-ttl">Centralized Facilities</div>
+                            <div class="shunt-txt">4.5 km from Port of Mombasa. 18-acre independently operated facility with dedicated equipment for containers, general cargo and steel products.</div>
+                        </div>
+                    </div>
+                    <div class="shunt-card">
+                        <div class="shunt-ico">
+                            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <div>
+                            <div class="shunt-ttl">Safe &amp; Smooth Movement</div>
+                            <div class="shunt-txt">Optimized workflows ensure cargo moves safely from point to point throughout the yard with minimal handling and zero delays.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image side -->
+            <div class="sr-r">
+                <img src="Roadtainers images/Competitive Rates.jpg" alt="Shunting operations" class="shunt-img">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     AWARDS
+================================================================ -->
+<section id="awards">
+    <div class="container">
+        <div class="sr">
+            <div class="kicker dark" style="justify-content:center">Recognition</div>
+            <h2 class="h-xl" style="text-align:center">Awards &amp; Achievements</h2>
+            <p class="awards-tagline">Currently the most efficient Transport company in Kenya</p>
+            <span class="gold-line center"></span>
+        </div>
+        <div class="aw-grid">
+
+            <div class="aw-card sr d1">
+                <span class="aw-emoji">🛡️</span>
+                <h3 class="aw-title">Road Safety Award</h3>
+                <p class="aw-text">Recognised nationally for exceptional commitment to road safety standards, driver training and accident prevention across our entire growing fleet.</p>
+            </div>
+
+            <div class="aw-card sr d2">
+                <span class="aw-emoji">🏆</span>
+                <h3 class="aw-title">International Transport Award</h3>
+                <p class="aw-text">Winner of the 13th International Transport Award — New Millennium Award — by the Trade Leaders Club, selected from 14,000 members across 120 countries.</p>
+            </div>
+
+            <div class="aw-card sr d3">
+                <span class="aw-emoji">🥇</span>
+                <h3 class="aw-title">Gold Medal — Business Excellence</h3>
+                <p class="aw-text">Awarded the Gold Medal for Business in Excellence at the Trade Leaders Club function in Madrid, Spain — a testament to 27+ years of relentless dedication.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     QUOTE / LEAD FORM
+================================================================ -->
+<section id="quote">
+    <div class="container">
+        <div class="q-grid">
+
+            <!-- Info side -->
+            <div class="q-info sr-l">
+                <div class="kicker">Get In Touch</div>
+                <h2 class="h-xl" style="color:var(--white)">Request a Quote<br>in Minutes</h2>
+                <span class="gold-line"></span>
+                <p class="body-copy white" style="margin-top:20px;">
+                    Tell us about your cargo and we'll respond within 24 hours with a
+                    competitive, tailored quote designed specifically for your transport needs.
+                </p>
+                <div class="q-pts">
+                    <div class="q-pt">
+                        <div class="q-dot"></div>
+                        <span class="q-pt-txt">Fast 24-hour response guarantee</span>
+                    </div>
+                    <div class="q-pt">
+                        <div class="q-dot"></div>
+                        <span class="q-pt-txt">Transparent, competitive pricing — no hidden fees</span>
+                    </div>
+                    <div class="q-pt">
+                        <div class="q-dot"></div>
+                        <span class="q-pt-txt">Dedicated account manager assigned to you</span>
+                    </div>
+                    <div class="q-pt">
+                        <div class="q-dot"></div>
+                        <span class="q-pt-txt">All cargo types and East African routes covered</span>
+                    </div>
+                </div>
+                <div class="q-addr">
+                    <div class="q-addr-head">Head Office — Mombasa</div>
+                    <p>
+                        Mombasa-Nairobi Highway, approx. 10 km from Mombasa City<br>
+                        3.5 km from Port of Mombasa, Kenya<br>
+                        Liaison Office: Kampala, Uganda (Industrial Area)
+                    </p>
+                </div>
+                <div class="q-map">
+                    <iframe
+                        src="https://maps.google.com/maps?q=-4.0098214,39.6241649&z=16&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Roadtainers (Msa) Ltd Location"
+                        allowfullscreen
+                    ></iframe>
+                    <div class="q-map-lbl">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <a href="https://www.google.com/maps/place/Roadtainers+(Msa)+Ltd/@-4.009343,39.6238749,753m/" target="_blank" rel="noopener noreferrer">View on Google Maps &rarr;</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="form-box sr-r">
+                <div class="form-box-ttl">Get Your Free Quote</div>
+                <div class="form-box-sub">Fill in the details — we'll respond within 24 hours</div>
+
+                <form id="quoteForm" onsubmit="handleFormSubmit(event)" novalidate>
+                    <div class="f-row">
+                        <div class="f-grp">
+                            <label class="f-lbl">Company Name</label>
+                            <input type="text" class="f-inp" placeholder="Your company" required>
+                        </div>
+                        <div class="f-grp">
+                            <label class="f-lbl">Contact Person</label>
+                            <input type="text" class="f-inp" placeholder="Full name" required>
+                        </div>
+                    </div>
+                    <div class="f-row">
+                        <div class="f-grp">
+                            <label class="f-lbl">Email Address</label>
+                            <input type="email" class="f-inp" placeholder="email@company.com" required>
+                        </div>
+                        <div class="f-grp">
+                            <label class="f-lbl">Phone Number</label>
+                            <input type="tel" class="f-inp" placeholder="+254 ...">
+                        </div>
+                    </div>
+                    <div class="f-grp">
+                        <label class="f-lbl">Type of Service</label>
+                        <select class="f-inp">
+                            <option value="" disabled selected>Select a service</option>
+                            <option>Heavy Transport</option>
+                            <option>Tractor Trailers</option>
+                            <option>Lifting Facilities</option>
+                            <option>Transit Facilities</option>
+                            <option>Local Shunting</option>
+                            <option>General Cargo</option>
+                            <option>Workshop Services</option>
+                        </select>
+                    </div>
+                    <div class="f-row">
+                        <div class="f-grp">
+                            <label class="f-lbl">Loading Point</label>
+                            <input type="text" class="f-inp" placeholder="e.g. Mombasa Port">
+                        </div>
+                        <div class="f-grp">
+                            <label class="f-lbl">Delivery Point</label>
+                            <input type="text" class="f-inp" placeholder="e.g. Nairobi">
+                        </div>
+                    </div>
+                    <div class="f-grp">
+                        <label class="f-lbl">Cargo / Requirements</label>
+                        <textarea class="f-inp" placeholder="Type of commodity, quantity, special handling needs, period of transport..."></textarea>
+                    </div>
+                    <button type="submit" class="f-submit" id="fSubmit">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        Send Quote Request
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer>
+    <div class="container">
+        <div class="foot-grid">
+
+            <!-- Brand -->
+            <div class="foot-brand">
+                <img src="Roadtainers images/Roadtainers_logo.png" alt="Roadtainers Logo">
+                <p>Kenya's premier heavy commercial transport company. Moving cargo across East Africa with precision, reliability, and over 27 years of trusted experience.</p>
+                <div class="foot-soc">
+                    <a href="#" class="soc-btn" aria-label="Facebook">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="soc-btn" aria-label="LinkedIn">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="#" class="soc-btn" aria-label="X / Twitter">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Services -->
+            <div>
+                <div class="foot-h">Services</div>
+                <ul class="foot-list">
+                    <li><a href="#services">Heavy Transport</a></li>
+                    <li><a href="#services">Tractor Trailers</a></li>
+                    <li><a href="#services">Lifting Facilities</a></li>
+                    <li><a href="#services">Transit Facilities</a></li>
+                    <li><a href="#shunting">Local Shunting</a></li>
+                    <li><a href="#services">Workshop Services</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div>
+                <div class="foot-h">Company</div>
+                <ul class="foot-list">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#why">Why Choose Us</a></li>
+                    <li><a href="#awards">Awards</a></li>
+                    <li><a href="#quote">Request a Quote</a></li>
+                    <li><a href="#quote">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <div class="foot-h">Contact</div>
+                <div class="foot-ci">
+                    <div class="foot-ci-ico">
+                        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <p>Mombasa-Nairobi Highway,<br>10 km from Mombasa City, Kenya</p>
+                </div>
+                <div class="foot-ci">
+                    <div class="foot-ci-ico">
+                        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <p>info@roadtainers.co.ke</p>
+                </div>
+                <div class="foot-ci">
+                    <div class="foot-ci-ico">
+                        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.24 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 5.49 5.49l.96-.96a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <p>+254 (0) XXX XXX XXX</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="foot-bar">
+            <div class="foot-copy">© 2025 <span>Roadtainers (Mombasa) Ltd</span>. All rights reserved. Est. 1998.</div>
+            <div class="foot-copy">Designed with excellence for <span>excellence</span></div>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ================================================================
+     WHATSAPP CHATBOT WIDGET
+================================================================ -->
+<div class="wa-widget" id="waWidget">
+
+    <!-- Chat panel -->
+    <div class="wa-panel" id="waPanel">
+
+        <!-- Header -->
+        <div class="wa-head">
+            <div class="wa-avatar">🚛</div>
+            <div class="wa-head-info">
+                <div class="wa-name">Roadtainers Support</div>
+                <div class="wa-status"><div class="wa-status-dot"></div> Online</div>
+            </div>
+            <button class="wa-head-close" id="waClose" aria-label="Close chat">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+
+        <!-- Messages -->
+        <div class="wa-msgs" id="waMsgs"></div>
+
+        <!-- Quick replies -->
+        <div class="wa-qr" id="waQr"></div>
+
+        <!-- Input row -->
+        <div class="wa-inp-row">
+            <input type="text" class="wa-txt" id="waTxt" placeholder="Type a message..." autocomplete="off">
+            <button class="wa-send-btn" id="waSend" aria-label="Send">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="white"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Toggle button -->
+    <button class="wa-toggle" id="waToggle" aria-label="Chat with us">
+        <div class="wa-toggle-notif" id="waNotif">1</div>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+        </svg>
+    </button>
+
+</div>
+
+<button id="btt" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
+
+<!-- ================================================================
+     JAVASCRIPT
+================================================================ -->
+<script>
+(function () {
+    'use strict';
+
+    /* ---- NAVBAR ---- */
+    const nav = document.getElementById('nav');
+    function onScroll() {
+        nav.classList.toggle('stuck', window.scrollY > 60);
+        document.getElementById('btt').classList.toggle('show', window.scrollY > 400);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ---- MOBILE MENU ---- */
+    const burger = document.getElementById('burger');
+    const menu   = document.getElementById('navMenu');
+    burger.addEventListener('click', () => {
+        const open = menu.style.display === 'flex';
+        Object.assign(menu.style, {
+            display:         open ? 'none' : 'flex',
+            flexDirection:   'column',
+            position:        'fixed',
+            top:             '70px',
+            left:            '0',
+            right:           '0',
+            background:      'rgba(6,14,8,.98)',
+            padding:         '24px 36px',
+            gap:             '22px',
+            borderTop:       '1px solid rgba(200,151,31,.18)',
+        });
+        // close on any link click
+        if (!open) {
+            menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                menu.style.display = 'none';
+            }, { once: true }));
+        }
+    });
+
+    /* ---- HERO SLIDER ---- */
+    const slides   = Array.from(document.querySelectorAll('.hs-slide'));
+    const dots     = Array.from(document.querySelectorAll('.hs-dot'));
+    const progress = document.getElementById('hsProgress');
+    let cur = 0;
+    let timer;
+
+    function goTo(idx) {
+        slides[cur].classList.remove('on');
+        dots[cur].classList.remove('on');
+        cur = (idx + slides.length) % slides.length;
+        slides[cur].classList.add('on');
+        dots[cur].classList.add('on');
+        // reset progress bar
+        progress.style.transition = 'none';
+        progress.style.width = '0%';
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                progress.style.transition = 'width 5.5s linear';
+                progress.style.width = '100%';
+            });
+        });
+    }
+
+    function startAuto() {
+        clearInterval(timer);
+        timer = setInterval(() => goTo(cur + 1), 5500);
+    }
+
+    function resetAuto() { startAuto(); }
+
+    document.getElementById('hsNext').addEventListener('click', () => { goTo(cur + 1); resetAuto(); });
+    document.getElementById('hsPrev').addEventListener('click', () => { goTo(cur - 1); resetAuto(); });
+    dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.i); resetAuto(); }));
+
+    // pause on hover
+    document.getElementById('hero').addEventListener('mouseenter', () => clearInterval(timer));
+    document.getElementById('hero').addEventListener('mouseleave', startAuto);
+
+    goTo(0);
+    startAuto();
+
+    /* ---- SMOOTH SCROLL ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            const top = target.getBoundingClientRect().top + window.pageYOffset - 78;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+    });
+
+    /* ---- SCROLL REVEAL ---- */
+    const revEls = document.querySelectorAll('.sr, .sr-l, .sr-r');
+    const revObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.10 });
+    revEls.forEach(el => revObs.observe(el));
+
+    /* ---- COUNTER ANIMATION ---- */
+    let counted = false;
+    const ctrs = document.querySelectorAll('.ctr');
+
+    function animCtr(el) {
+        const target = +el.dataset.to;
+        const dur    = 2200;
+        const fps    = 1000 / 60;
+        const steps  = dur / fps;
+        const inc    = target / steps;
+        let val = 0;
+        const id = setInterval(() => {
+            val += inc;
+            if (val >= target) { el.textContent = target; clearInterval(id); }
+            else el.textContent = Math.floor(val);
+        }, fps);
+    }
+
+    const statObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting && !counted) {
+                counted = true;
+                ctrs.forEach(animCtr);
+            }
+        });
+    }, { threshold: 0.25 });
+    const statsEl = document.getElementById('stats');
+    if (statsEl) statObs.observe(statsEl);
+
+    /* ---- FORM SUBMIT ---- */
+    window.handleFormSubmit = function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('fSubmit');
+        btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Quote Request Sent!`;
+        btn.style.cssText += 'background:linear-gradient(120deg,#1d7a38,#2ea34d);color:white;';
+        setTimeout(() => {
+            btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Send Quote Request`;
+            btn.style.background = '';
+            btn.style.color = '';
+            e.target.reset();
+        }, 4000);
+    };
+
+    /* ---- ACTIVE NAV ---- */
+    (function () {
+        const navLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+        const sectionIds = ['about','services','why','shunting','awards','quote'];
+        const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+        function setActive(id) {
+            navLinks.forEach(a => {
+                a.classList.remove('active');
+                if (a.getAttribute('href') === '#' + id) a.classList.add('active');
+            });
+        }
+
+        const activeObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) setActive(e.target.id);
+            });
+        }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+        sections.forEach(s => activeObs.observe(s));
+    })();
+
+    /* ---- WHATSAPP CHATBOT ---- */
+    (function () {
+        const panel   = document.getElementById('waPanel');
+        const toggle  = document.getElementById('waToggle');
+        const closeBtn= document.getElementById('waClose');
+        const msgs    = document.getElementById('waMsgs');
+        const qr      = document.getElementById('waQr');
+        const txt     = document.getElementById('waTxt');
+        const send    = document.getElementById('waSend');
+        const notif   = document.getElementById('waNotif');
+        let panelOpen = false;
+        let greeted   = false;
+
+        if (!panel || !toggle) return;
+
+        function nowTime() {
+            return new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
+        }
+
+        function addBubble(text, who) {
+            const d = document.createElement('div');
+            d.className = 'wa-bubble ' + who;
+            const ticks = who === 'user'
+                ? ' <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#53bdeb" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/><polyline points="20 6 13 17 8 12"/></svg>'
+                : '';
+            d.innerHTML = text + `<span class="wa-bubble-time">${nowTime()}${ticks}</span>`;
+            msgs.appendChild(d);
+            msgs.scrollTop = msgs.scrollHeight;
+            return d;
+        }
+
+        function showTyping(cb, delay) {
+            const t = document.createElement('div');
+            t.className = 'wa-typing';
+            t.innerHTML = '<span></span><span></span><span></span>';
+            msgs.appendChild(t);
+            msgs.scrollTop = msgs.scrollHeight;
+            setTimeout(() => {
+                t.remove();
+                cb();
+            }, delay || 1000);
+        }
+
+        function setQR(items) {
+            qr.innerHTML = '';
+            items.forEach(item => {
+                const b = document.createElement('button');
+                b.className = 'wa-qr-btn';
+                b.textContent = item.label;
+                b.onclick = () => {
+                    setQR([]);
+                    addBubble(item.label, 'user');
+                    showTyping(() => {
+                        addBubble(item.reply, 'bot');
+                        if (item.next) setQR(item.next);
+                    }, 900);
+                };
+                qr.appendChild(b);
+            });
+        }
+
+        function greet() {
+            if (greeted) return;
+            greeted = true;
+            showTyping(() => {
+                addBubble('👋 Hi there! Welcome to <strong>Roadtainers (Msa) Ltd</strong> — East Africa\'s premier transport company.', 'bot');
+                showTyping(() => {
+                    addBubble('How can we help you today? Please choose an option below 👇', 'bot');
+                    setQR(mainMenu);
+                }, 700);
+            }, 1000);
+        }
+
+        // Pre-declare as empty arrays so circular references work correctly
+        var mainMenu = [];
+        var backMenu = [];
+
+        backMenu.push(
+            { label: '🔙 Main Menu',   reply: 'Of course! What else can we help you with?', next: mainMenu },
+            { label: '💰 Get a Quote', reply: 'You can fill our quick form here: <a href="https://www.roadtainers.co.ke/quote/" target="_blank" style="color:#128c7e;font-weight:700;">Get a Quote →</a>', next: mainMenu }
+        );
+
+        mainMenu.push(
+            {
+                label: '📦 Our Services',
+                reply: 'We offer: Heavy Commercial Transport, Tractor Trailers &amp; Tankers, 50T Lifting Cranes, 18-Acre Transit Facility, Local Shunting and a full in-house Workshop. Which service interests you?',
+                next: [
+                    { label: '🚛 Heavy Transport',  reply: 'Our GPS/ECTS-tracked fleet of 140+ Mercedes Benz trucks handles all heavy cargo across East Africa — from Mombasa Port to Uganda, Rwanda and beyond.', next: backMenu },
+                    { label: '🏗️ Lifting & Cranes', reply: 'We operate 3 × 50-ton cranes, 1 × 30-ton crane and forklifts up to 13 tons. Ideal for containers, heavy machinery and oversized loads.', next: backMenu },
+                    { label: '🏭 Transit Facility',  reply: 'Our 18-acre fully-secured facility is just 3.5 km from Mombasa Port with a resident customs officer on-site for fast clearance.', next: backMenu }
+                ]
+            },
+            {
+                label: '💰 Request a Quote',
+                reply: 'Great! Fill in our quick quote form and we\'ll respond within <strong>24 hours</strong>. 👉 <a href="https://www.roadtainers.co.ke/quote/" target="_blank" style="color:#128c7e;font-weight:700;">Get a Quote Now →</a>',
+                next: backMenu
+            },
+            {
+                label: '📍 Find Our Location',
+                reply: 'We are on the <strong>Mombasa-Nairobi Highway</strong>, ~10 km from Mombasa City and 3.5 km from Mombasa Port. Liaison office in <strong>Kampala, Uganda</strong>. <a href="https://www.google.com/maps/place/Roadtainers+(Msa)+Ltd/" target="_blank" style="color:#128c7e;font-weight:700;">View on Google Maps →</a>',
+                next: backMenu
+            },
+            {
+                label: '🏆 Awards & About',
+                reply: 'Founded in <strong>1998</strong>. Winners of the <em>13th International Transport Award</em> by the Trade Leaders Club and holders of a <strong>Gold Medal for Business Excellence</strong>. Kenya\'s most efficient transport company! 🥇',
+                next: backMenu
+            },
+            {
+                label: '📞 Talk to an Agent',
+                reply: 'You can reach us at:<br>📧 <strong>info@roadtainers.co.ke</strong><br>🌐 <a href="https://www.roadtainers.co.ke/" target="_blank" style="color:#128c7e;font-weight:700;">www.roadtainers.co.ke</a><br><br>Available Mon–Fri 8am–5pm EAT. We respond within 24 hours.',
+                next: backMenu
+            }
+        );
+
+        function handleUserInput(val) {
+            const v = val.trim();
+            if (!v) return;
+            txt.value = '';
+            setQR([]);
+            addBubble(v, 'user');
+            showTyping(() => {
+                const lv = v.toLowerCase();
+                let reply = 'Thanks for your message! For faster assistance, please <a href="https://www.roadtainers.co.ke/quote/" target="_blank" style="color:#128c7e;font-weight:700;">request a quote online</a> or email us at <strong>info@roadtainers.co.ke</strong>. We respond within 24 hours. 😊';
+                if (/(quote|price|cost|rate|transport|move|cargo|truck)/.test(lv))
+                    reply = 'We\'d love to give you a competitive quote! Please fill our form at <a href="https://www.roadtainers.co.ke/quote/" target="_blank" style="color:#128c7e;font-weight:700;">roadtainers.co.ke/quote</a> with your cargo details and we\'ll respond within 24 hours.';
+                else if (/(location|address|where|find|map|office)/.test(lv))
+                    reply = 'We\'re on the Mombasa-Nairobi Highway, 10 km from Mombasa City. <a href="https://www.google.com/maps/place/Roadtainers+(Msa)+Ltd/" target="_blank" style="color:#128c7e;font-weight:700;">View on Google Maps →</a>';
+                else if (/(service|offer|lift|crane|workshop|trailer|tanker)/.test(lv))
+                    reply = 'Our services include: Heavy Transport, Tractor Trailers, 50T Lifting Cranes, 18-Acre Transit Facility, Local Shunting and Workshop. Visit <a href="https://www.roadtainers.co.ke/" target="_blank" style="color:#128c7e;font-weight:700;">our website</a> for full details.';
+                addBubble(reply, 'bot');
+                setQR(mainMenu);
+            }, 900);
+        }
+
+        toggle.addEventListener('click', () => {
+            panelOpen = !panelOpen;
+            panel.classList.toggle('open', panelOpen);
+            notif.style.display = 'none';
+            if (panelOpen) greet();
+        });
+        closeBtn.addEventListener('click', () => {
+            panelOpen = false;
+            panel.classList.remove('open');
+        });
+        send.addEventListener('click', () => handleUserInput(txt.value));
+        txt.addEventListener('keydown', e => { if (e.key === 'Enter') handleUserInput(txt.value); });
+    })();
+
+})();
+</script>
+
+</body>
+</html>
