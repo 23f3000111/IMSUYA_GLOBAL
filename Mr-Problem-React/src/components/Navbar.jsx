@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { Menu, X, Phone } from 'lucide-react'
 
@@ -63,10 +63,11 @@ export default function Navbar() {
 
           {/* Logo */}
           <a href="#" className="flex items-center select-none group" aria-label="Mr Problem Home">
-            <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
-              style={{ background: 'linear-gradient(135deg, #7C3AED, #A855F7)' }}>
-              <img src="/images/logo.avif" alt="Mr Problem" className="w-full h-full object-contain" />
-            </div>
+            <img
+              src="/images/logo.avif"
+              alt="Mr Problem"
+              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            />
           </a>
 
           {/* Desktop links */}
