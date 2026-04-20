@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Fonts ───────────────────────────────── */
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #fff;
+    color: #111827;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #F5F3FF; }
+  ::-webkit-scrollbar-thumb { background: #7C3AED; border-radius: 99px; }
+}
+
+/* ── Shared utilities ────────────────────── */
+@layer components {
+  .font-display { font-family: 'Sora', sans-serif; }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-base text-white
+           transition-all duration-300
+           hover:-translate-y-0.5 active:translate-y-0;
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    box-shadow: 0 4px 20px rgba(124,58,237,0.35);
+  }
+  .btn-primary:hover { box-shadow: 0 8px 32px rgba(124,58,237,0.5); }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-base
+           border border-white/25 text-white backdrop-blur-sm
+           transition-all duration-300 hover:bg-white/10 hover:border-white/40;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl font-semibold text-base
+           border-2 border-purple-600 text-purple-600
+           transition-all duration-300 hover:bg-purple-600 hover:text-white hover:-translate-y-0.5;
+  }
+
+  .section-wrap { @apply max-w-7xl mx-auto px-5 lg:px-8; }
+
+  .section-badge {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full
+           bg-purple-100 text-purple-600 text-xs font-bold uppercase tracking-widest;
+  }
+  .section-badge-dark {
+    @apply inline-flex items-center gap-2 px-4 py-1.5 rounded-full
+           bg-white/10 text-purple-200 text-xs font-bold uppercase tracking-widest backdrop-blur-sm;
+  }
+}
+
+/* ── Spotlight card (CSS custom property + ::before) ─── */
+.spotlight-card { position: relative; overflow: hidden; }
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    360px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(124, 58, 237, 0.10),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 1;
+  pointer-events: none;
+}
+.spotlight-card:hover::before { opacity: 1; }
+.spotlight-card > * { position: relative; z-index: 2; }
+
+/* ── Gradient border on hover ─────────────────────────── */
+.grad-border-card {
+  position: relative;
+  background: #fff;
+  border-radius: 1.25rem;
+}
+.grad-border-card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #7C3AED, #A855F7);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+.grad-border-card:hover::after { opacity: 1; }
+
+/* ── Particle canvas ──────────────────────────────────── */
+.particle-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Floating orb ─────────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+/* ── Marquee (trust logos) ───────────────────────────── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+/* ── FAQ item ─────────────────────────────────────────── */
+.faq-answer { overflow: hidden; }
+
+/* ── Shimmer shine on image ──────────────────────────── */
+.img-shine {
+  position: relative;
+  overflow: hidden;
+}
+.img-shine::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+}
+.img-shine:hover::after { left: 130%; }
+
+/* ── Animated gradient text shift ───────────────────── */
+@keyframes gradShift {
+  0%   { background-position: 0% center; }
+  50%  { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+.gradient-text {
+  background: linear-gradient(135deg, #A78BFA 0%, #E879F9 40%, #C4B5FD 70%, #A78BFA 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 5s linear infinite;
+}
+.gradient-text-dark {
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 40%, #6D28D9 70%, #7C3AED 100%);
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 5s linear infinite;
+}
+
+/* ── Section badge pulse glow ────────────────────────── */
+@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(124,58,237,0); }
+  50%       { box-shadow: 0 0 12px 4px rgba(124,58,237,0.18); }
+}
+.section-badge      { animation: badgePulse 4s ease-in-out infinite; }
+.section-badge-dark { animation: badgePulse 4s ease-in-out infinite; }
+
+/* ── Chat typing bounce ──────────────────────────────── */
+@keyframes typeBounce {
+  0%, 60%, 100% { transform: translateY(0);   opacity: 0.4; }
+  30%           { transform: translateY(-6px); opacity: 1;   }
+}
+
+/* ── Floating animations ─────────────────────────────── */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-18px) scale(1.04); }
+}
+@keyframes floatDelay {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.animate-float       { animation: floatY 5s ease-in-out infinite; }
+.animate-float-slow  { animation: floatSlow 8s ease-in-out infinite; }
+.animate-float-delay { animation: floatDelay 6s ease-in-out infinite 1.5s; }
+
+/* ── Marquee ─────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Service card shimmer sweep on hover ─────────────── */
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.20) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.6s cubic-bezier(0.25,0.8,0.25,1);
+  pointer-events: none;
+  border-radius: 1.25rem;
+}
+.spotlight-card:hover::after { transform: translateX(130%); }
+
+/* ── WhyUs icon wiggle on hover ──────────────────────── */
+@keyframes iconWiggle {
+  0%   { transform: scale(1) rotate(0); }
+  30%  { transform: scale(1.25) rotate(-10deg); }
+  60%  { transform: scale(0.9) rotate(5deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+.why-icon-wrap:hover { animation: iconWiggle 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ── HowItWorks step card hover ──────────────────────── */
+@keyframes numBounce {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.22) rotate(-5deg); }
+  65%  { transform: scale(0.92) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+/* ── Result card number shimmer ──────────────────────── */
+@keyframes numberShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ── Scroll-reveal base (for non-Framer Motion use) ─── */
+[data-reveal] {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.25,0.8,0.25,1),
+              transform 0.7s cubic-bezier(0.25,0.8,0.25,1);
+}
+[data-reveal="up"]    { transform: translateY(40px); }
+[data-reveal].revealed { opacity: 1; transform: none; }
+
+/* ── Page-level smooth entry ─────────────────────────── */
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+#root { animation: pageIn 0.6s ease-out both; }
+
+/* ── FAB chat button entrance ────────────────────────── */
+@keyframes fabIn {
+  0%   { opacity: 0; transform: scale(0) rotate(-30deg); }
+  70%  { transform: scale(1.08) rotate(4deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.fab-entrance { animation: fabIn 0.55s cubic-bezier(0.34,1.56,0.64,1) 1.6s both; }
+
+/* ── 3-D card tilt via CSS custom properties ─────────── */
+/* Set --rx and --ry via JS for real tilt; fallback = 0 */
+.tilt-card {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.12s ease-out, box-shadow 0.3s ease;
+  will-change: transform;
+}
+.tilt-card:hover {
+  box-shadow: 0 20px 50px rgba(124,58,237,0.15), 0 6px 16px rgba(0,0,0,0.06);
+}
+
+/* ── Text reveal via clip-path ───────────────────────── */
+@keyframes textReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+.text-reveal { animation: textReveal 0.8s cubic-bezier(0.22,1,0.36,1) both; }
+
+/* ── CTA button glow pulse ───────────────────────────── */
+@keyframes ctaGlow {
+  0%, 100% { box-shadow: 0 4px 20px rgba(124,58,237,0.35); }
+  50%       { box-shadow: 0 8px 40px rgba(124,58,237,0.65), 0 0 0 4px rgba(168,85,247,0.15); }
+}
+.btn-primary { animation: ctaGlow 3s ease-in-out infinite; }
+
+/* ── Ripple effect on button click ──────────────────── */
+@keyframes ripple {
+  from { transform: scale(0); opacity: 0.5; }
+  to   { transform: scale(4); opacity: 0; }
+}
+.ripple-btn { position: relative; overflow: hidden; }
+.ripple-btn .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  background: rgba(255,255,255,0.35);
+  margin-top: -20px; margin-left: -20px;
+  animation: ripple 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+/* ── Stagger reveal helper ───────────────────────────── */
+.stagger-child { opacity: 0; transform: translateY(20px); }
+.stagger-child.in-view {
+  animation: staggerIn 0.55s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes staggerIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Gradient border spin on focus/hover ─────────────── */
+@keyframes borderSpin {
+  to { --gradient-angle: 360deg; }
+}
+@property --gradient-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+/* ── Image card zoom-shine combo ─────────────────────── */
+.service-img-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.service-img-wrap img {
+  transition: transform 0.7s cubic-bezier(0.25,0.8,0.25,1);
+}
+.service-img-wrap:hover img { transform: scale(1.08); }
+.service-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.65s cubic-bezier(0.25,0.8,0.25,1);
+  pointer-events: none;
+}
+.service-img-wrap:hover::after { transform: translateX(130%); }
+
+/* ── Scrollbar progress bar at top ───────────────────── */
+
