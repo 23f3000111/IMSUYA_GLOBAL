@@ -33,11 +33,7 @@ export default function Footer() {
           {/* Brand column */}
           <div className="flex flex-col gap-5 lg:col-span-1">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0"
-                style={{ background: 'linear-gradient(135deg, #7C3AED, #A855F7)' }}>
-                <img src="/images/logo.avif" alt="Mr Problem" className="w-full h-full object-contain" />
-              </div>
-              <span className="text-white font-display font-black text-lg">Mr Problem</span>
+              <img src="/images/logo.avif" alt="Mr Problem" className="h-10 w-auto object-contain" />
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-xs">
               Klang Valley's most trusted home services brand. Professional, insured, and always on time.
