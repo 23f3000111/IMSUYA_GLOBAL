@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply font-sans antialiased bg-white text-v2-text; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+}
+
+@layer components {
+  /* Layout */
+  .sec      { @apply py-24 lg:py-36; }
+  .wrap     { @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12; }
+  .wrap-xl  { @apply max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12; }
+
+  /* Buttons */
+  .btn-yellow {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+           bg-v2-yellow text-v2-dark font-bold text-sm
+           hover:bg-yellow-300 hover:shadow-[0_0_30px_rgba(250,204,21,0.5)]
+           transition-all duration-300;
+  }
+  .btn-ghost-white {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+           border border-white/30 text-white font-bold text-sm
+           hover:bg-white/10 hover:border-white/60
+           transition-all duration-300;
+  }
+  .btn-ghost-dark {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+           border border-v2-text/20 text-v2-text font-bold text-sm
+           hover:bg-v2-text hover:text-white
+           transition-all duration-300;
+  }
+  .btn-green {
+    @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full
+           bg-v2-green text-white font-bold text-sm
+           hover:bg-v2-deep hover:shadow-[0_0_30px_rgba(15,123,70,0.4)]
+           transition-all duration-300;
+  }
+
+  /* Badge */
+  .badge-v2 {
+    @apply inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full
+           text-[11px] font-bold uppercase tracking-[0.12em];
+  }
+
+  /* Card glass */
+  .glass-dark {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  }
+  .glass-light {
+    @apply bg-white/80 backdrop-blur-md border border-gray-200/60 rounded-2xl;
+  }
+
+  /* Section headings */
+  .heading-display {
+    @apply font-black leading-[0.95] tracking-tight;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+  }
+  .heading-xl {
+    @apply font-black leading-[1.05] tracking-tight;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+  }
+  .heading-lg {
+    @apply font-extrabold leading-[1.1] tracking-tight;
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+  }
+}
+
+@layer utilities {
+  /* Text gradients */
+  .text-grad-green {
+    background: linear-gradient(135deg, #0F7B46 0%, #22c55e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-grad-yellow {
+    background: linear-gradient(135deg, #FACC15 0%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-grad-hero {
+    background: linear-gradient(135deg, #FACC15 0%, #FDE68A 50%, #FACC15 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Route line animation */
+  .route-line {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+  }
+
+  /* Noise texture overlay */
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    opacity: 0.4;
+  }
+
+  /* Glow effects */
+  .glow-green  { box-shadow: 0 0 40px rgba(15, 123, 70, 0.3); }
+  .glow-yellow { box-shadow: 0 0 40px rgba(250, 204, 21, 0.35); }
+
+  /* Shimmer text */
+  .shimmer-text {
+    background: linear-gradient(90deg, #FACC15 0%, #FDE68A 40%, #FACC15 80%, #FDE68A 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050F09; }
+::-webkit-scrollbar-thumb { background: #0F7B46; border-radius: 3px; }
