@@ -7,9 +7,6 @@ let h = fs.readFileSync("C:/Users/hp/Desktop/mock2/Roadtainers-React-V2/src/comp
 // It starts with the "{/* Header bar */}" comment
 // and ends just before the SECOND map (identified by the "Real East Africa map \u2014" comment which uses an em dash \u2014)
 
-// The broken header bar + first duplicate map ends at the </div> that closes the header bar div.
-// Then comes: "\n\n              {/* Mini East Africa SVG map */}\n              {/* Real East Africa map \u2014"
-// The clean second map starts at: '              <div className="relative rounded-2xl overflow-hidden mb-4'
 
 const HEADER_START = '              {/* Header bar */}';
 const CLEAN_MAP_DIV = '              <div className="relative rounded-2xl overflow-hidden mb-4 border border-white/5"\n                   style={{ background: \'linear-gradient(160deg,#020c08,#041510)\' }}>';
