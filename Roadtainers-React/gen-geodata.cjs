@@ -1,0 +1,11 @@
+const fs = require("fs");
+const geo = JSON.parse(fs.readFileSync("geo-output.json","utf8"));
+let out = "// Pre-computed from world-atlas@2 + d3-geo\n// center=[35.5,0] scale=1350  Big:translate=[350,260] viewBox=0 0 700 500  Mini:translate=[300,250] viewBox=0 0 600 480\n";
+out += "export const GEO_BIG = {\n";
+geo.forEach(c => { out += "  "+c.name+": "+JSON.stringify(c.dBig)+",\n"; });
+out += "};\nexport const GEO_MINI = {\n";
+geo.forEach(c => { out += "  "+c.name+": "+JSON.stringify(c.dMini)+",\n"; });
+out += "};\n";
+fs.writeFileSync("src/geoData.js", out, "utf8");
+fs.writeFileSync("../Roadtainers-React-V2/src/geoData.js", out, "utf8");
+console.log("geoData.js written to both projects: " + out.length + " bytes");

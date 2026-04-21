@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #111827;
+  }
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .section-pad {
+    @apply py-20 lg:py-28;
+  }
+  .container-xl {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .heading-xl {
+    @apply text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight;
+  }
+  .heading-lg {
+    @apply text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight;
+  }
+  .heading-md {
+    @apply text-2xl sm:text-3xl font-bold leading-tight;
+  }
+  .badge {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full;
+  }
+  .btn-primary {
+    @apply bg-brand-yellow text-brand-deep font-bold px-7 py-4 rounded-xl transition-all duration-300 hover:bg-yellow-300 hover:shadow-glow-yellow hover:-translate-y-0.5 active:scale-95 shine-btn;
+  }
+  .btn-outline-white {
+    @apply border-2 border-white/30 text-white font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/60 active:scale-95 flex items-center gap-2;
+  }
+  .btn-outline-green {
+    @apply border-2 border-brand-green text-brand-green font-semibold px-7 py-4 rounded-xl transition-all duration-300 hover:bg-brand-green hover:text-white active:scale-95 flex items-center gap-2;
+  }
+  .card-premium {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-card hover:shadow-card-hover hover:-translate-y-1.5 transition-all duration-300;
+  }
+}
+
+/* ── Shine button effect ── */
+.shine-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shine-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 55%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.65s ease;
+}
+.shine-btn:hover::after {
+  left: 150%;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #0F7B46; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #065F46; }
+
+/* ── SVG route path draw animation ── */
+.path-draw {
+  stroke-dasharray: 800;
+  stroke-dashoffset: 800;
+  animation: draw-route 3s ease forwards;
+}
+@keyframes draw-route {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Fleet ticker / scroll ── */
+.fleet-ticker {
+  display: flex;
+  animation: scroll-x 22s linear infinite;
+}
+.fleet-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* ── Text gradient ── */
+.text-gradient-green {
+  background: linear-gradient(135deg, #0F7B46, #1a9155);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-yellow {
+  background: linear-gradient(135deg, #FACC15, #F59E0B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glowing ring for map nodes ── */
+.map-pulse {
+  animation: map-pulse-anim 2s ease-out infinite;
+}
+@keyframes map-pulse-anim {
+  0% { r: 8; opacity: 0.7; }
+  100% { r: 18; opacity: 0; }
+}
+
+/* ── Process timeline line draw ── */
+.timeline-line {
+  transform-origin: left center;
+  animation: line-grow 1.2s ease-out forwards;
+}
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
