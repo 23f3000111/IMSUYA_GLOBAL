@@ -1,0 +1,2429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BalrCutz Barbershop — Where Style Meets Sport</title>
+    <meta name="description" content="BalrCutz Barbershop — Precision Fades & Premium Grooming in Petaling Jaya & Kuala Lumpur. Step In. Level Up. Stay Sharp.">
+    <meta property="og:title" content="BalrCutz Barbershop — Where Style Meets Sport">
+    <meta property="og:description" content="Precision Fades & Expert Grooming. Two locations in PJ & KL. Step In. Level Up. Stay Sharp.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    /* ========================================================
+       BALRCUTZ BARBERSHOP — V1 DARK ATHLETIC THEME
+       Color: Black + Crimson / Red
+       Fonts: Bebas Neue · Lora · Outfit
+       ======================================================== */
+
+    /* ---------- ROOT VARIABLES ---------- */
+    :root {
+        --bg: #0A0A0A;
+        --bg-2: #111111;
+        --bg-card: #181818;
+        --bg-elevated: #1F1F1F;
+        --copper: #C41E3A;
+        --copper-light: #E83B53;
+        --copper-dark: #9B182E;
+        --white: #FFFFFF;
+        --text: #F0EFED;
+        --text-2: #999999;
+        --text-muted: #555555;
+        --border: rgba(255,255,255,0.08);
+        --border-copper: rgba(196,30,58,0.3);
+        --font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+        --font-serif: 'Lora', Georgia, serif;
+        --font-body: 'Outfit', 'Segoe UI', sans-serif;
+        --nav-h: 72px;
+        --ease: cubic-bezier(.25,.46,.45,.94);
+        --ease-out: cubic-bezier(.16,1,.3,1);
+        --radius: 4px;
+    }
+
+    /* ---------- RESET ---------- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ul, ol { list-style: none; }
+    ::selection { background: var(--copper); color: var(--bg); }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-pad { padding: 100px 0; }
+
+    /* ---------- SECTION HEADER ---------- */
+    .sec-label {
+        font-family: var(--font-body);
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--copper);
+        margin-bottom: 12px;
+        display: block;
+    }
+    .sec-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.4rem, 5vw, 3.8rem);
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: 2px;
+    }
+    .sec-subtitle {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 1.1rem;
+        color: var(--text-2);
+        margin-top: 12px;
+    }
+    .copper-line {
+        width: 60px;
+        height: 2px;
+        background: var(--copper);
+        margin: 20px 0;
+    }
+    .copper-line-center { margin-left: auto; margin-right: auto; }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-family: var(--font-body);
+        font-weight: 600;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 14px 36px;
+        border-radius: var(--radius);
+        transition: all 0.3s var(--ease);
+    }
+    .btn-primary {
+        background: var(--copper);
+        color: var(--white);
+    }
+    .btn-primary:hover { background: var(--copper-light); transform: translateY(-2px); }
+    .btn-outline {
+        border: 1.5px solid var(--copper);
+        color: var(--copper);
+    }
+    .btn-outline:hover { background: var(--copper); color: var(--white); transform: translateY(-2px); }
+    .btn-sm { padding: 10px 24px; font-size: 0.78rem; }
+
+    /* ---------- REVEAL ANIMATIONS ---------- */
+    .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal-left { transform: translateX(-40px); }
+    .reveal-right { transform: translateX(40px); }
+    .reveal-scale { transform: scale(0.95); }
+    .reveal.visible {
+        opacity: 1;
+        transform: translate(0) scale(1);
+    }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    .reveal-d4 { transition-delay: 0.4s; }
+    .reveal-d5 { transition-delay: 0.5s; }
+    .reveal-d6 { transition-delay: 0.6s; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .reveal, .reveal-left, .reveal-right, .reveal-scale {
+            opacity: 1 !important;
+            transform: none !important;
+            transition: none !important;
+        }
+    }
+
+    /* ============================================================
+       PRELOADER
+       ============================================================ */
+    #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 28px;
+        transition: transform 0.8s var(--ease-out);
+    }
+    #preloader.done { transform: translateY(-100%); }
+    .pl-text {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 4rem);
+        letter-spacing: 8px;
+        color: var(--white);
+    }
+    .pl-bar {
+        width: 140px;
+        height: 2px;
+        background: rgba(255,255,255,0.12);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .pl-fill {
+        height: 100%;
+        background: var(--copper);
+        animation: plFill 1.8s var(--ease) forwards;
+    }
+    @keyframes plFill { from { width: 0 } to { width: 100% } }
+
+    /* ============================================================
+       NAVIGATION
+       ============================================================ */
+    #mainNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: var(--nav-h);
+        z-index: 1000;
+        transition: background 0.4s, box-shadow 0.4s, backdrop-filter 0.4s;
+    }
+    #mainNav.scrolled {
+        background: rgba(10,10,10,0.92);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 28px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .nav-logo img {
+        height: 56px;
+        width: auto;
+        object-fit: contain;
+    }
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+    .nav-links a {
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--text-2);
+        transition: color 0.3s;
+        position: relative;
+    }
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1.5px;
+        background: var(--copper);
+        transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--white); }
+    .nav-links a.active::after { width: 100%; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-book {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 10px 24px;
+        border: 1.5px solid var(--copper);
+        color: var(--copper);
+        border-radius: var(--radius);
+        transition: all 0.3s var(--ease);
+    }
+    .nav-book:hover { background: var(--copper); color: var(--white); }
+    .hamburger {
+        display: none;
+        width: 28px;
+        height: 20px;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--white);
+        transition: all 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* ---------- FULL-SCREEN OVERLAY MENU ---------- */
+    #menuOverlay {
+        position: fixed;
+        inset: 0;
+        z-index: 999;
+        background: rgba(0,0,0,0.96);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s;
+    }
+    #menuOverlay.open { opacity: 1; pointer-events: auto; }
+    .overlay-nav { text-align: center; }
+    .overlay-nav a {
+        display: block;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.8rem);
+        letter-spacing: 4px;
+        color: var(--text-2);
+        padding: 10px 0;
+        transition: color 0.3s, transform 0.3s;
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    #menuOverlay.open .overlay-nav a {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    .overlay-nav a:nth-child(1) { transition-delay: 0.05s; }
+    .overlay-nav a:nth-child(2) { transition-delay: 0.1s; }
+    .overlay-nav a:nth-child(3) { transition-delay: 0.15s; }
+    .overlay-nav a:nth-child(4) { transition-delay: 0.2s; }
+    .overlay-nav a:nth-child(5) { transition-delay: 0.25s; }
+    .overlay-nav a:nth-child(6) { transition-delay: 0.3s; }
+    .overlay-nav a:nth-child(7) { transition-delay: 0.35s; }
+    .overlay-nav a:hover { color: var(--copper); }
+    .overlay-social {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        gap: 28px;
+    }
+    .overlay-social a {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        transition: color 0.3s;
+    }
+    .overlay-social a:hover { color: var(--copper); }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    #hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        background: #000;
+    }
+    .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.1) 0%, transparent 60%),
+            radial-gradient(ellipse at 70% 40%, rgba(196,30,58,0.06) 0%, transparent 50%),
+            #000;
+    }
+    /* Subtle diagonal stripes — athletic feel */
+    .hero-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+            -55deg,
+            transparent,
+            transparent 40px,
+            rgba(196,30,58,0.025) 40px,
+            rgba(196,30,58,0.025) 41px
+        );
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 20px;
+    }
+    .hero-label {
+        font-family: var(--font-body);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 6px;
+        text-transform: uppercase;
+        color: var(--copper);
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.2s var(--ease-out) forwards;
+    }
+    .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(4.5rem, 14vw, 12rem);
+        line-height: 0.9;
+        letter-spacing: 6px;
+        color: var(--white);
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.4s var(--ease-out) forwards;
+    }
+    .hero-divider {
+        width: 80px;
+        height: 2px;
+        background: var(--copper);
+        margin: 28px auto;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.6s var(--ease-out) forwards;
+    }
+    .hero-sub {
+        font-family: var(--font-display);
+        font-size: clamp(1.2rem, 3vw, 2rem);
+        letter-spacing: 10px;
+        color: var(--copper);
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.7s var(--ease-out) forwards;
+    }
+    .hero-tagline {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(0.95rem, 2vw, 1.15rem);
+        color: var(--text-2);
+        margin-top: 16px;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 2.9s var(--ease-out) forwards;
+    }
+    .hero-btns {
+        margin-top: 40px;
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 3.1s var(--ease-out) forwards;
+    }
+    .hero-scroll {
+        position: absolute;
+        bottom: 36px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-muted);
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        opacity: 0;
+        animation: heroFadeUp 0.8s 3.4s var(--ease-out) forwards;
+    }
+    .scroll-line {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--copper), transparent);
+        animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+        0%, 100% { opacity: 0.4; transform: scaleY(1); }
+        50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    @keyframes heroFadeUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       MARQUEE STRIP
+       ============================================================ */
+    .marquee-strip {
+        background: var(--bg-2);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        padding: 18px 0;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .marquee-track {
+        display: inline-flex;
+        animation: marquee 32s linear infinite;
+    }
+    .marquee-track span {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 4px;
+        color: var(--copper);
+        padding: 0 20px;
+    }
+    .marquee-dot {
+        color: var(--text-muted);
+        padding: 0 10px;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       ABOUT SECTION — SPLIT LAYOUT
+       ============================================================ */
+    #about { background: var(--bg); }
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+    .about-text p {
+        color: var(--text-2);
+        margin-top: 16px;
+        font-size: 0.95rem;
+    }
+    .about-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 36px;
+    }
+    .about-stat {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px 16px;
+        text-align: center;
+    }
+    .about-stat-num {
+        font-family: var(--font-display);
+        font-size: 1.8rem;
+        color: var(--copper);
+        letter-spacing: 2px;
+    }
+    .about-stat-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        margin-top: 4px;
+    }
+    .about-img-wrap {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    .about-img-wrap img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: center top;
+        filter: grayscale(20%);
+        transition: filter 0.5s, transform 0.5s;
+    }
+    .about-img-wrap:hover img { filter: grayscale(0%); transform: scale(1.03); }
+    .about-img-border {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        right: -16px;
+        bottom: -16px;
+        border: 1.5px solid var(--copper);
+        border-radius: var(--radius);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    /* ============================================================
+       MVP PACKAGE — SIGNATURE SECTION ★
+       ============================================================ */
+    #mvp {
+        position: relative;
+        background:
+            radial-gradient(ellipse at 50% 30%, rgba(196,30,58,0.07) 0%, transparent 60%),
+            var(--bg-2);
+        overflow: hidden;
+    }
+    .ht-glow {
+        position: absolute;
+        top: -100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(196,30,58,0.06) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .ht-header { text-align: center; position: relative; z-index: 1; }
+    .ht-header .sec-title { font-size: clamp(2.8rem, 6vw, 4.5rem); }
+    .ht-header p {
+        max-width: 600px;
+        margin: 16px auto 0;
+        color: var(--text-2);
+        font-size: 1rem;
+    }
+
+    /* Timeline */
+    .ht-timeline {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin-top: 64px;
+        position: relative;
+        z-index: 1;
+    }
+    .ht-timeline::before {
+        content: '';
+        position: absolute;
+        top: 40px;
+        left: 12.5%;
+        right: 12.5%;
+        height: 1.5px;
+        background: linear-gradient(to right, transparent, var(--copper), var(--copper), transparent);
+    }
+    .ht-step {
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+    }
+    .ht-step-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 1.5px solid var(--copper);
+        background: var(--bg-2);
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        color: var(--copper);
+        letter-spacing: 2px;
+        position: relative;
+        z-index: 2;
+        transition: all 0.4s var(--ease);
+    }
+    .ht-step:hover .ht-step-num {
+        background: var(--copper);
+        color: var(--white);
+        transform: scale(1.08);
+    }
+    .ht-step-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        letter-spacing: 3px;
+        color: var(--white);
+        margin-top: 24px;
+    }
+    .ht-step-desc {
+        font-size: 0.85rem;
+        color: var(--text-2);
+        line-height: 1.6;
+        margin-top: 12px;
+    }
+    .ht-bottom {
+        text-align: center;
+        margin-top: 56px;
+        position: relative;
+        z-index: 1;
+    }
+    .ht-price {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        color: var(--text-2);
+        margin-top: 16px;
+    }
+    .ht-price strong { color: var(--copper); font-style: normal; }
+    .ht-quote {
+        max-width: 560px;
+        margin: 40px auto 0;
+        padding: 24px 32px;
+        background: var(--bg-card);
+        border-left: 3px solid var(--copper);
+        border-radius: var(--radius);
+        text-align: left;
+    }
+    .ht-quote p {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: 0.95rem;
+        color: var(--text);
+        line-height: 1.7;
+    }
+    .ht-quote cite {
+        display: block;
+        font-style: normal;
+        font-size: 0.8rem;
+        color: var(--copper);
+        margin-top: 12px;
+        font-weight: 600;
+    }
+
+    /* ============================================================
+       SERVICES
+       ============================================================ */
+    #services { background: var(--bg); }
+    .services-head { text-align: center; margin-bottom: 56px; }
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .svc-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 32px 28px;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+    .svc-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 3px;
+        height: 0;
+        background: var(--copper);
+        transition: height 0.4s var(--ease);
+    }
+    .svc-card:hover { border-color: var(--border-copper); transform: translateY(-4px); }
+    .svc-card:hover::before { height: 100%; }
+    .svc-card.featured {
+        border-color: var(--border-copper);
+        background: linear-gradient(135deg, var(--bg-card), rgba(196,30,58,0.07));
+    }
+    .svc-badge {
+        display: inline-block;
+        font-size: 0.6rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        background: var(--copper);
+        color: var(--white);
+        padding: 4px 12px;
+        border-radius: 2px;
+        margin-bottom: 16px;
+    }
+    .svc-icon {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+        display: block;
+    }
+    .svc-name {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: var(--white);
+    }
+    .svc-price {
+        font-family: var(--font-serif);
+        font-size: 1.05rem;
+        color: var(--copper);
+        margin-top: 8px;
+    }
+    .svc-desc {
+        font-size: 0.85rem;
+        color: var(--text-2);
+        margin-top: 12px;
+        line-height: 1.6;
+    }
+
+    /* ============================================================
+       STATS BAR
+       ============================================================ */
+    .stats-bar {
+        background: linear-gradient(135deg, var(--copper-dark), var(--copper), var(--copper-dark));
+        padding: 56px 0;
+    }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        text-align: center;
+    }
+    .stat-num {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 4vw, 3.2rem);
+        color: var(--white);
+        letter-spacing: 2px;
+    }
+    .stat-label {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: rgba(255,255,255,0.6);
+        margin-top: 4px;
+    }
+
+    /* ============================================================
+       TEAM
+       ============================================================ */
+    #team { background: var(--bg-2); }
+    .team-head { text-align: center; margin-bottom: 56px; }
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+    .team-card {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        cursor: pointer;
+    }
+    .team-card img {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        object-position: top center;
+        filter: grayscale(60%);
+        transition: filter 0.5s, transform 0.5s;
+    }
+    .team-card:hover img { filter: grayscale(0%); transform: scale(1.05); }
+    .team-card-info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 16px 16px;
+        background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, transparent 100%);
+        transform: translateY(10px);
+        opacity: 0;
+        transition: all 0.4s var(--ease);
+    }
+    .team-card:hover .team-card-info { transform: translateY(0); opacity: 1; }
+    .team-card-name {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        color: var(--white);
+    }
+    .team-card-role {
+        font-size: 0.75rem;
+        color: var(--copper);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-weight: 600;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+       ============================================================ */
+    #testimonials { background: var(--bg); }
+    .testi-wrap { text-align: center; max-width: 700px; margin: 0 auto; }
+    .testi-icon {
+        font-family: var(--font-serif);
+        font-size: 4rem;
+        color: var(--copper);
+        line-height: 1;
+        opacity: 0.4;
+    }
+    .testi-stars {
+        color: var(--copper);
+        font-size: 1.1rem;
+        margin-top: 12px;
+        letter-spacing: 4px;
+    }
+    .testi-text {
+        font-family: var(--font-serif);
+        font-style: italic;
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        color: var(--text);
+        line-height: 1.8;
+        margin-top: 16px;
+        min-height: 120px;
+        transition: opacity 0.4s;
+    }
+    .testi-author {
+        font-family: var(--font-body);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--copper);
+        margin-top: 24px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .testi-source {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        margin-top: 4px;
+        letter-spacing: 1px;
+    }
+    .testi-dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 32px;
+    }
+    .testi-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .testi-dot.active { background: var(--copper); transform: scale(1.3); }
+
+    /* ============================================================
+       LOCATIONS
+       ============================================================ */
+    #locations { background: var(--bg-2); }
+    .locations-head { text-align: center; margin-bottom: 56px; }
+    .locations-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+    .loc-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    .loc-map {
+        width: 100%;
+        height: 220px;
+        border: 0;
+        filter: grayscale(80%) invert(92%) contrast(90%);
+    }
+    .loc-body { padding: 28px 24px; }
+    .loc-branch {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        letter-spacing: 3px;
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .loc-branch-badge {
+        font-family: var(--font-body);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        background: var(--copper);
+        color: var(--white);
+        padding: 3px 8px;
+        border-radius: 2px;
+    }
+    .loc-details { margin-top: 16px; }
+    .loc-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 6px 0;
+        font-size: 0.85rem;
+        color: var(--text-2);
+    }
+    .loc-row svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+        color: var(--copper);
+        margin-top: 3px;
+    }
+    .loc-btns {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       GALLERY
+       ============================================================ */
+    #gallery { background: var(--bg); }
+    .gallery-head { text-align: center; margin-bottom: 56px; }
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+        gap: 12px;
+    }
+    .gal-item {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+    }
+    .gal-item.large {
+        grid-row: span 2;
+        grid-column: span 1;
+    }
+    .gal-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        min-height: 200px;
+        filter: grayscale(30%);
+        transition: filter 0.5s, transform 0.6s;
+        display: block;
+    }
+    .gal-item:hover img { filter: grayscale(0%); transform: scale(1.04); }
+    .gal-item-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0);
+        transition: background 0.4s;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+    }
+    .gal-item:hover .gal-item-overlay { background: rgba(0,0,0,0.3); }
+    .gal-ig-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--white);
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.3s, transform 0.3s;
+    }
+    .gal-item:hover .gal-ig-btn { opacity: 1; transform: translateY(0); }
+    .gallery-cta {
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    /* ============================================================
+       SOCIAL / INSTAGRAM
+       ============================================================ */
+    #social { background: var(--bg-2); }
+    .social-head { text-align: center; margin-bottom: 56px; }
+    .social-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .social-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 36px 28px;
+        text-align: center;
+        transition: border-color 0.3s, transform 0.3s;
+    }
+    .social-card:hover { border-color: var(--border-copper); transform: translateY(-4px); }
+    .social-card svg {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+    }
+    .social-handle {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+        color: var(--white);
+        margin-top: 16px;
+    }
+    .social-branch {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        margin-top: 4px;
+    }
+    .social-card-desc {
+        font-size: 0.82rem;
+        color: var(--text-2);
+        margin-top: 12px;
+        line-height: 1.6;
+    }
+
+    /* ============================================================
+       FINAL CTA
+       ============================================================ */
+    .final-cta {
+        position: relative;
+        padding: 100px 0;
+        text-align: center;
+        background:
+            radial-gradient(ellipse at 50% 50%, rgba(196,30,58,0.1) 0%, transparent 60%),
+            var(--bg);
+    }
+    .final-cta .sec-title {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+    }
+    .final-cta p {
+        color: var(--text-2);
+        font-size: 1.05rem;
+        margin-top: 12px;
+    }
+    .final-cta-btns {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin-top: 36px;
+        flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    footer {
+        background: #050505;
+        border-top: 1px solid var(--border);
+        padding: 60px 0 0;
+    }
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+    }
+    .footer-brand p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-top: 12px;
+        line-height: 1.7;
+    }
+    .footer-brand img {
+        height: 56px;
+        object-fit: contain;
+        opacity: 0.9;
+    }
+    .footer-col-title {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        letter-spacing: 2px;
+        color: var(--white);
+        margin-bottom: 16px;
+    }
+    .footer-col a, .footer-col span {
+        display: block;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        padding: 4px 0;
+        transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--copper); }
+    .footer-bottom {
+        border-top: 1px solid var(--border);
+        margin-top: 40px;
+        padding: 20px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+    .footer-socials {
+        display: flex;
+        gap: 16px;
+    }
+    .footer-socials a { transition: color 0.3s; }
+    .footer-socials a:hover { color: var(--copper); }
+
+    /* ============================================================
+       WHATSAPP CHAT
+       ============================================================ */
+    #waFloat {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: #25D366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 900;
+        box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    #waFloat:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(37,211,102,0.4); }
+    #waFloat svg { width: 28px; height: 28px; color: #fff; }
+
+    #waChat {
+        position: fixed;
+        bottom: 96px;
+        right: 28px;
+        width: 360px;
+        max-height: 520px;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        z-index: 901;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+    }
+    #waChat.open { display: flex; }
+    .wa-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 20px;
+        background: var(--bg-elevated);
+        border-bottom: 1px solid var(--border);
+    }
+    .wa-head-info { display: flex; align-items: center; gap: 12px; }
+    .wa-head-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--copper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        color: var(--white);
+        font-weight: 700;
+    }
+    .wa-head-name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--white);
+    }
+    .wa-head-status {
+        font-size: 0.7rem;
+        color: #25D366;
+    }
+    .wa-close {
+        font-size: 1.2rem;
+        color: var(--text-muted);
+        cursor: pointer;
+        padding: 4px;
+        transition: color 0.3s;
+    }
+    .wa-close:hover { color: var(--white); }
+    .wa-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-height: 360px;
+        background: #0F0F0F;
+    }
+    .wa-body::-webkit-scrollbar { width: 4px; }
+    .wa-body::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+    .wa-msg {
+        max-width: 85%;
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+    .wa-msg.bot {
+        align-self: flex-start;
+        background: var(--bg-elevated);
+        color: var(--text);
+        border-bottom-left-radius: 2px;
+    }
+    .wa-msg.user {
+        align-self: flex-end;
+        background: var(--copper-dark);
+        color: var(--white);
+        border-bottom-right-radius: 2px;
+    }
+    .wa-typing {
+        align-self: flex-start;
+        display: flex;
+        gap: 5px;
+        padding: 12px 16px;
+        background: var(--bg-elevated);
+        border-radius: 10px;
+    }
+    .wa-typing span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--text-muted);
+        animation: typDot 1.2s ease infinite;
+    }
+    .wa-typing span:nth-child(2) { animation-delay: 0.15s; }
+    .wa-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes typDot {
+        0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+        30% { opacity: 1; transform: translateY(-4px); }
+    }
+    .wa-opts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 4px;
+    }
+    .wa-opt-btn {
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 8px 14px;
+        border: 1px solid var(--border-copper);
+        border-radius: 20px;
+        color: var(--copper);
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .wa-opt-btn:hover { background: var(--copper); color: var(--white); }
+
+    /* ============================================================
+       BACK TO TOP
+       ============================================================ */
+    #backTop {
+        position: fixed;
+        bottom: 28px;
+        left: 28px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 1.5px solid var(--copper);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--copper);
+        z-index: 800;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+    }
+    #backTop.show { opacity: 1; pointer-events: auto; }
+    #backTop:hover { background: var(--copper); color: var(--white); }
+    #backTop svg { width: 18px; height: 18px; }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 1024px) {
+        .team-grid { grid-template-columns: repeat(2, 1fr); }
+        .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        .social-grid { grid-template-columns: repeat(2, 1fr); }
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+        .gal-item.large { grid-row: span 1; }
+    }
+    @media (max-width: 768px) {
+        .nav-links, .nav-book { display: none; }
+        .hamburger { display: flex; }
+        .about-grid { grid-template-columns: 1fr; gap: 40px; }
+        .about-img-wrap { order: -1; }
+        .about-img-wrap img { height: 350px; }
+        .about-img-border { display: none; }
+        .ht-timeline {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .ht-timeline::before {
+            top: 0;
+            bottom: 0;
+            left: 40px;
+            right: auto;
+            width: 1.5px;
+            height: auto;
+        }
+        .ht-step { text-align: left; padding-left: 90px; }
+        .ht-step .ht-step-num {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            font-size: 1.3rem;
+        }
+        .services-grid { grid-template-columns: 1fr 1fr; }
+        .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .team-grid { grid-template-columns: repeat(2, 1fr); }
+        .locations-grid { grid-template-columns: 1fr; }
+        .gallery-grid { grid-template-columns: 1fr 1fr; }
+        .gal-item.large { grid-row: span 1; grid-column: span 2; }
+        .social-grid { grid-template-columns: 1fr; }
+        .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+        .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+        .section-pad { padding: 72px 0; }
+        #waChat { width: calc(100vw - 24px); right: 12px; bottom: 88px; }
+        #waFloat { bottom: 20px; right: 20px; width: 50px; height: 50px; }
+        #backTop { bottom: 20px; left: 20px; width: 38px; height: 38px; }
+    }
+    @media (max-width: 480px) {
+        .about-stats { grid-template-columns: 1fr; }
+        .services-grid { grid-template-columns: 1fr; }
+        .hero-btns { flex-direction: column; align-items: center; }
+        .hero-btns .btn { width: 100%; max-width: 260px; }
+        .loc-btns { flex-direction: column; }
+        .loc-btns .btn { width: 100%; text-align: center; }
+        .final-cta-btns { flex-direction: column; align-items: center; }
+        .final-cta-btns .btn { width: 100%; max-width: 280px; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .gal-item.large { grid-column: span 1; }
+        .social-grid { grid-template-columns: 1fr; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     PRELOADER
+     ============================================================ -->
+<div id="preloader">
+    <div class="pl-text">BALRCUTZ</div>
+    <div class="pl-bar"><div class="pl-fill"></div></div>
+</div>
+
+<!-- ============================================================
+     FULL-SCREEN OVERLAY MENU
+     ============================================================ -->
+<div id="menuOverlay">
+    <div class="overlay-nav">
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#mvp" onclick="closeMenu()">MVP Package</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#team" onclick="closeMenu()">The Barbers</a>
+        <a href="#locations" onclick="closeMenu()">Locations</a>
+        <a href="#gallery" onclick="closeMenu()">Gallery</a>
+        <a href="#social" onclick="closeMenu()">Follow Us</a>
+    </div>
+    <div class="overlay-social">
+        <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://www.facebook.com/people/BalrCutz-Barbershop/61573765353855/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    </div>
+</div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="mainNav">
+    <div class="nav-inner">
+        <a href="#hero" class="nav-logo">
+            <img src="BalerCutz Image/BalerCutz_logo.jpg" alt="BalrCutz Barbershop" width="140" height="42">
+        </a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#mvp">MVP Package</a>
+            <a href="#services">Services</a>
+            <a href="#team">Barbers</a>
+            <a href="#locations">Locations</a>
+            <a href="#gallery">Gallery</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer" class="nav-book">Book Now</a>
+            <button class="hamburger" id="menuToggle" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-label">Premium Barbershop — Petaling Jaya &amp; Kuala Lumpur</div>
+        <h1 class="hero-title">BALRCUTZ</h1>
+        <div class="hero-divider"></div>
+        <div class="hero-sub">BARBERSHOP</div>
+        <p class="hero-tagline">Step In. Level Up. Stay Sharp. — Where Style Meets Sport.</p>
+        <div class="hero-btns">
+            <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Now</a>
+            <a href="#mvp" class="btn btn-outline">The MVP Package</a>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE STRIP
+     ============================================================ -->
+<div class="marquee-strip">
+    <div class="marquee-track">
+        <span>HAIRCUTS</span><span class="marquee-dot">✦</span>
+        <span>PRECISION FADES</span><span class="marquee-dot">✦</span>
+        <span>BEARD DESIGN</span><span class="marquee-dot">✦</span>
+        <span>HAIR COLOURING</span><span class="marquee-dot">✦</span>
+        <span>SCALP CARE</span><span class="marquee-dot">✦</span>
+        <span>PETALING JAYA</span><span class="marquee-dot">✦</span>
+        <span>KUALA LUMPUR</span><span class="marquee-dot">✦</span>
+        <span>HAIRCUTS</span><span class="marquee-dot">✦</span>
+        <span>PRECISION FADES</span><span class="marquee-dot">✦</span>
+        <span>BEARD DESIGN</span><span class="marquee-dot">✦</span>
+        <span>HAIR COLOURING</span><span class="marquee-dot">✦</span>
+        <span>SCALP CARE</span><span class="marquee-dot">✦</span>
+        <span>PETALING JAYA</span><span class="marquee-dot">✦</span>
+        <span>KUALA LUMPUR</span><span class="marquee-dot">✦</span>
+    </div>
+</div>
+
+<!-- ============================================================
+     ABOUT — SPLIT LAYOUT
+     ============================================================ -->
+<section id="about" class="section-pad">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-text">
+                <span class="sec-label reveal">Our Story</span>
+                <h2 class="sec-title reveal reveal-d1">MORE THAN A BARBERSHOP —<br>A CHAMPION&rsquo;S ARENA</h2>
+                <div class="copper-line reveal reveal-d2"></div>
+                <p class="reveal reveal-d3">BalrCutz is where style meets sport. Inspired by the energy of the locker room and the precision of the greatest athletes, we deliver top-tier grooming in a space designed for winners.</p>
+                <p class="reveal reveal-d4">From <strong style="color:var(--copper)">sharp precision fades</strong> to premium treatments, every service is executed with the same focus and discipline that defines a champion. Walk in looking good — walk out looking unbeatable.</p>
+                <div class="about-stats reveal reveal-d5">
+                    <div class="about-stat">
+                        <div class="about-stat-num">976+</div>
+                        <div class="about-stat-label">Reviews</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-num">4.95★</div>
+                        <div class="about-stat-label">Avg Rating</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-num">2</div>
+                        <div class="about-stat-label">Locations</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-img-wrap reveal reveal-right reveal-d2">
+                <img src="BalerCutz Image/BalerCutz_4.jpg" alt="BalrCutz Barber in action" loading="lazy">
+                <div class="about-img-border"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     MVP PACKAGE — SIGNATURE SECTION ★
+     ============================================================ -->
+<section id="mvp" class="section-pad">
+    <div class="ht-glow"></div>
+    <div class="container">
+        <div class="ht-header">
+            <span class="sec-label reveal">★ Signature Service</span>
+            <h2 class="sec-title reveal reveal-d1">THE MVP PACKAGE<br>EXPERIENCE</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+            <p class="reveal reveal-d3">Our most celebrated service — a complete grooming ritual engineered for the modern man who demands nothing less than perfection. Every detail, every line, every fade executed with championship-level precision.</p>
+        </div>
+
+        <div class="ht-timeline">
+            <div class="ht-step reveal reveal-d1">
+                <div class="ht-step-num">01</div>
+                <h3 class="ht-step-title">CONSULTATION</h3>
+                <p class="ht-step-desc">Your barber maps your face shape, hair type, and style goals to craft a look that's uniquely yours.</p>
+            </div>
+            <div class="ht-step reveal reveal-d2">
+                <div class="ht-step-num">02</div>
+                <h3 class="ht-step-title">PRECISION CUT</h3>
+                <p class="ht-step-desc">Clean, confident technique — every snip intentional, every line deliberate. Championship-level cutting from start to finish.</p>
+            </div>
+            <div class="ht-step reveal reveal-d3">
+                <div class="ht-step-num">03</div>
+                <h3 class="ht-step-title">FADE MASTERY</h3>
+                <p class="ht-step-desc">Seamless zero-to-skin gradients with unmatched precision. The fade that turns heads — and starts conversations.</p>
+            </div>
+            <div class="ht-step reveal reveal-d4">
+                <div class="ht-step-num">04</div>
+                <h3 class="ht-step-title">FINISH &amp; DETAIL</h3>
+                <p class="ht-step-desc">Premium product applied for the perfect hold and shine. Clean-up, final detailing, and you&rsquo;re ready to dominate.</p>
+            </div>
+        </div>
+
+        <div class="ht-bottom reveal">
+            <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Your MVP Package</a>
+            <div class="ht-quote">
+                <p>&ldquo;The sharpest fade I&rsquo;ve ever had. BalrCutz is in another league — every barber here is a true professional. Clean cuts, great vibes, and the fade was immaculate.&rdquo;</p>
+                <cite>— Loghan K., via Google Reviews</cite>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SERVICES
+     ============================================================ -->
+<section id="services" class="section-pad">
+    <div class="container">
+        <div class="services-head">
+            <span class="sec-label reveal">What We Offer</span>
+            <h2 class="sec-title reveal reveal-d1">OUR SERVICES</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="svc-card reveal reveal-d1">
+                <span class="svc-icon">✂️</span>
+                <div class="svc-name">HAIRCUT</div>
+                <div class="svc-price">From RM 35</div>
+                <p class="svc-desc">Expert cuts tailored to your face shape and personal style. Includes consultation, wash, cut, and styling.</p>
+            </div>
+            <!-- Card 2 — FEATURED -->
+            <div class="svc-card featured reveal reveal-d2">
+                <span class="svc-badge">★ Signature</span>
+                <div class="svc-name">MVP PACKAGE</div>
+                <div class="svc-price">From RM 65</div>
+                <p class="svc-desc">The complete experience — precision haircut, zero fade, premium styling, and full detail. Walk out a champion.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="svc-card reveal reveal-d3">
+                <span class="svc-icon">🧔</span>
+                <div class="svc-name">BEARD DESIGN</div>
+                <div class="svc-price">From RM 25</div>
+                <p class="svc-desc">Precision trimming and sculpting to keep your beard sharp, defined, and perfectly proportioned to your face.</p>
+            </div>
+            <!-- Card 4 -->
+            <div class="svc-card reveal reveal-d4">
+                <span class="svc-icon">🎨</span>
+                <div class="svc-name">HAIR COLOURING</div>
+                <div class="svc-price">From RM 80</div>
+                <p class="svc-desc">Professional colour services from subtle highlights to bold transformations. Refresh your look with expert application.</p>
+            </div>
+            <!-- Card 5 -->
+            <div class="svc-card reveal reveal-d5">
+                <span class="svc-icon">🌿</span>
+                <div class="svc-name">SCALP CARE</div>
+                <div class="svc-price">From RM 55</div>
+                <p class="svc-desc">Targeted scalp treatments to nourish, cleanse, and revitalise — because great hair starts at the root.</p>
+            </div>
+            <!-- Card 6 -->
+            <div class="svc-card reveal reveal-d6">
+                <span class="svc-badge">Best Value</span>
+                <div class="svc-name">FACE CARE</div>
+                <div class="svc-price">From RM 45</div>
+                <p class="svc-desc">Premium facial treatment to clean, hydrate, and refresh your skin. Look sharp from the cut to the complexion.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     STATS BAR
+     ============================================================ -->
+<section class="stats-bar">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-num" data-target="976" data-suffix="+">0</div>
+                <div class="stat-label">5-Star Reviews</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="5" data-suffix="">0</div>
+                <div class="stat-label">Expert Barbers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="2" data-suffix="">0</div>
+                <div class="stat-label">Premium Locations</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num" data-target="100" data-suffix="%">0</div>
+                <div class="stat-label">Satisfaction Guaranteed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TEAM
+     ============================================================ -->
+<section id="team" class="section-pad">
+    <div class="container">
+        <div class="team-head">
+            <span class="sec-label reveal">The Crew</span>
+            <h2 class="sec-title reveal reveal-d1">MEET THE BARBERS</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+            <p class="sec-subtitle reveal reveal-d3">Hand-picked professionals who treat every cut like game day.</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card reveal reveal-d1">
+                <img src="BalerCutz Image/Micheal Barber.png" alt="Micheal Barber" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Master Barber · 13 Yrs Exp</div>
+                    <div class="team-card-name">MICHEAL</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d2">
+                <img src="BalerCutz Image/Laith Mahfoud.webp" alt="Laith Mahfoud" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Zero Fade Specialist · 6 Yrs</div>
+                    <div class="team-card-name">LAITH</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d3">
+                <img src="BalerCutz Image/BalerCutz_2.jpg" alt="Issa Hdad" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Skin Fade &amp; Colour Expert · 12 Yrs</div>
+                    <div class="team-card-name">ISSA</div>
+                </div>
+            </div>
+            <div class="team-card reveal reveal-d4">
+                <img src="BalerCutz Image/BalerCutz_1.jpg" alt="Ammar" loading="lazy">
+                <div class="team-card-info">
+                    <div class="team-card-role">Precision Stylist</div>
+                    <div class="team-card-name">AMMAR</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section id="testimonials" class="section-pad">
+    <div class="container">
+        <div class="testi-wrap">
+            <div class="testi-icon reveal">&ldquo;</div>
+            <div class="testi-stars reveal reveal-d1">★ ★ ★ ★ ★</div>
+            <p class="testi-text reveal reveal-d2" id="testiText">Clean haircut especially the fades. For a first timer I would definitely recommend the boys to get their desired haircut at BalrCutz!</p>
+            <div class="testi-author reveal reveal-d3" id="testiAuthor">— LOGHAN K.</div>
+            <div class="testi-source reveal reveal-d4" id="testiSource">via Google Reviews · BalrCutz Jaya One</div>
+            <div class="testi-dots reveal reveal-d5" id="testiDots"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     LOCATIONS
+     ============================================================ -->
+<section id="locations" class="section-pad">
+    <div class="container">
+        <div class="locations-head">
+            <span class="sec-label reveal">Find Us</span>
+            <h2 class="sec-title reveal reveal-d1">OUR LOCATIONS</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="locations-grid">
+            <!-- Jaya One — PJ -->
+            <div class="loc-card reveal reveal-d1">
+                <iframe class="loc-map"
+                    src="https://maps.google.com/maps?q=Balr+Cutz+Jaya+One+Petaling+Jaya&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="BalrCutz Jaya One Petaling Jaya"></iframe>
+                <div class="loc-body">
+                    <div class="loc-branch">
+                        JAYA ONE
+                        <span class="loc-branch-badge">Flagship</span>
+                    </div>
+                    <div class="loc-details">
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>D-55-P2, Block D, Jaya One, Jln Professor Diraja Ungku Aziz, 46200 Petaling Jaya, Selangor</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>Wed – Mon: 10:00 AM – 9:00 PM &nbsp;|&nbsp; Tue: Closed</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            <a href="https://wa.me/60126061715" target="_blank" rel="noopener noreferrer" style="color:var(--copper)">+60 12-606 1715</a>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <span style="color:var(--copper)">⭐ 4.96 &nbsp;(761 Reviews)</span>
+                        </div>
+                    </div>
+                    <div class="loc-btns">
+                        <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Book Jaya One</a>
+                        <a href="https://www.google.com/maps/place/Balr+Cutz+@+Jaya+One/@3.1174942,101.6360544,17z" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hartamas — KL -->
+            <div class="loc-card reveal reveal-d2">
+                <iframe class="loc-map"
+                    src="https://maps.google.com/maps?q=BalrCutz+Hartamas+Kuala+Lumpur&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="BalrCutz Hartamas Kuala Lumpur"></iframe>
+                <div class="loc-body">
+                    <div class="loc-branch">
+                        HARTAMAS
+                        <span class="loc-branch-badge">KL</span>
+                    </div>
+                    <div class="loc-details">
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>No. 1, 2nd Floor, Jalan 26A/70A, Sri Hartamas, 50480 Kuala Lumpur</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                            <span>Wed – Mon: 10:00 AM – 9:00 PM &nbsp;|&nbsp; Tue: Closed</span>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                            <a href="https://wa.me/60126061715" target="_blank" rel="noopener noreferrer" style="color:var(--copper)">+60 12-606 1715</a>
+                        </div>
+                        <div class="loc-row">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <span style="color:var(--copper)">⭐ 4.93 &nbsp;(215 Reviews)</span>
+                        </div>
+                    </div>
+                    <div class="loc-btns">
+                        <a href="https://balrcutzhartamas.setmore.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">Book Hartamas</a>
+                        <a href="https://www.google.com/maps/search/?api=1&query=No.+1%2C+2nd+Floor+Jalan+26a%2F70a%2C+Kuala+Lumpur" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">Get Directions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     GALLERY
+     ============================================================ -->
+<section id="gallery" class="section-pad">
+    <div class="container">
+        <div class="gallery-head">
+            <span class="sec-label reveal">The Culture</span>
+            <h2 class="sec-title reveal reveal-d1">IN THE ARENA</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="gallery-grid">
+            <div class="gal-item large reveal reveal-d1">
+                <img src="BalerCutz Image/BalerCutz_7.jpg" alt="BalrCutz team" loading="lazy">
+                <div class="gal-item-overlay">
+                    <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" class="gal-ig-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        View on Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="gal-item reveal reveal-d2">
+                <img src="BalerCutz Image/BalerCutz_5.jpg" alt="BalrCutz crew" loading="lazy">
+                <div class="gal-item-overlay">
+                    <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" class="gal-ig-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        View on Instagram
+                    </a>
+                </div>
+            </div>
+            <div class="gal-item reveal reveal-d3">
+                <img src="BalerCutz Image/BalerCutz_4.jpg" alt="BalrCutz barber at work" loading="lazy">
+                <div class="gal-item-overlay">
+                    <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" class="gal-ig-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                        View on Instagram
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-cta reveal">
+            <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Follow @balrcutz for More</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     SOCIAL
+     ============================================================ -->
+<section id="social" class="section-pad">
+    <div class="container">
+        <div class="social-head">
+            <span class="sec-label reveal">Stay Connected</span>
+            <h2 class="sec-title reveal reveal-d1">FOLLOW THE CULTURE</h2>
+            <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        </div>
+
+        <div class="social-grid">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" class="social-card reveal reveal-d1">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <defs><linearGradient id="ig1" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#feda75"/><stop offset="25%" stop-color="#fa7e1e"/>
+                        <stop offset="50%" stop-color="#d62976"/><stop offset="75%" stop-color="#962fbf"/>
+                        <stop offset="100%" stop-color="#4f5bd5"/>
+                    </linearGradient></defs>
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="url(#ig1)" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="5" stroke="url(#ig1)" stroke-width="2"/>
+                    <circle cx="17.5" cy="6.5" r="1.5" fill="url(#ig1)"/>
+                </svg>
+                <div class="social-handle">@BALRCUTZ</div>
+                <div class="social-branch">Instagram</div>
+                <p class="social-card-desc">Follow us for fresh cuts, behind-the-scenes, and the latest from the arena.</p>
+            </a>
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/people/BalrCutz-Barbershop/61573765353855/" target="_blank" rel="noopener noreferrer" class="social-card reveal reveal-d2">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="2" width="20" height="20" rx="5" stroke="#1877F2" stroke-width="2"/>
+                    <path d="M15 8h-2a1 1 0 00-1 1v2h3l-.5 3H12v6H9v-6H7v-3h2V9a4 4 0 014-4h2v3z" fill="#1877F2"/>
+                </svg>
+                <div class="social-handle">BALRCUTZ BARBERSHOP</div>
+                <div class="social-branch">Facebook — Petaling Jaya</div>
+                <p class="social-card-desc">Stay updated with promos, events, and announcements from BalrCutz.</p>
+            </a>
+            <!-- Booking -->
+            <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer" class="social-card reveal reveal-d3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--copper)" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <div class="social-handle">BOOK ONLINE</div>
+                <div class="social-branch">Setmore — 24/7 Booking</div>
+                <p class="social-card-desc">Skip the queue. Book your appointment online anytime at either location.</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+     ============================================================ -->
+<section class="final-cta" id="final-cta">
+    <div class="container">
+        <span class="sec-label reveal">Ready to Level Up?</span>
+        <h2 class="sec-title reveal reveal-d1">BOOK YOUR<br>APPOINTMENT TODAY</h2>
+        <div class="copper-line copper-line-center reveal reveal-d2"></div>
+        <p class="reveal reveal-d3">Choose your branch. Walk in sharp. Walk out sharper.</p>
+        <div class="final-cta-btns reveal reveal-d4">
+            <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Book Jaya One</a>
+            <a href="https://balrcutzhartamas.setmore.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Book Hartamas</a>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="BalerCutz Image/BalerCutz_logo.jpg" alt="BalrCutz Barbershop" width="140" height="40">
+                <p>Where style meets sport. Two premium locations in Petaling Jaya &amp; Kuala Lumpur. Step In. Level Up. Stay Sharp.</p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">NAVIGATE</div>
+                <a href="#about">About</a>
+                <a href="#mvp">MVP Package</a>
+                <a href="#services">Services</a>
+                <a href="#team">The Barbers</a>
+                <a href="#locations">Locations</a>
+                <a href="#gallery">Gallery</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">HOURS</div>
+                <span>Wednesday – Monday</span>
+                <span>10:00 AM – 9:00 PM</span>
+                <span style="margin-top:8px;color:var(--copper)">Tuesday: Closed</span>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">CONTACT</div>
+                <a href="https://wa.me/60126061715" target="_blank" rel="noopener noreferrer">+60 12-606 1715</a>
+                <a href="mailto:balrcutz@gmail.com">balrcutz@gmail.com</a>
+                <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" style="margin-top:8px">@balrcutz</a>
+                <a href="https://balrcutz.setmore.com/" target="_blank" rel="noopener noreferrer">Book Jaya One</a>
+                <a href="https://balrcutzhartamas.setmore.com/" target="_blank" rel="noopener noreferrer">Book Hartamas</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2025 BalrCutz Barbershop. All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/balrcutz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="https://www.facebook.com/people/BalrCutz-Barbershop/61573765353855/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                </a>
+                <a href="https://wa.me/60126061715" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================================================
+     WHATSAPP CHAT
+     ============================================================ -->
+<div id="waChat">
+    <div class="wa-head">
+        <div class="wa-head-info">
+            <div class="wa-head-avatar">BC</div>
+            <div>
+                <div class="wa-head-name">BalrCutz Barbershop</div>
+                <div class="wa-head-status">● Online</div>
+            </div>
+        </div>
+        <button class="wa-close" id="waClose" aria-label="Close chat">&times;</button>
+    </div>
+    <div class="wa-body" id="waBody"></div>
+</div>
+
+<button id="waFloat" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
+<!-- Back to Top -->
+<button id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+</button>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+(function(){
+'use strict';
+
+/* ========================================
+   PRELOADER
+   ======================================== */
+const preloader = document.getElementById('preloader');
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        preloader.classList.add('done');
+        setTimeout(() => { preloader.style.display = 'none'; }, 800);
+    }, 2000);
+});
+
+/* ========================================
+   NAVIGATION — SCROLL STATE + ACTIVE LINK
+   ======================================== */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+const sections = Array.from(navLinks)
+    .map(a => document.querySelector(a.getAttribute('href')))
+    .filter(Boolean);
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+            });
+        }
+    });
+}, { threshold: 0, rootMargin: '-40% 0px -55% 0px' });
+sections.forEach(sec => sectionObserver.observe(sec));
+
+/* ========================================
+   HAMBURGER + OVERLAY MENU
+   ======================================== */
+const menuBtn = document.getElementById('menuToggle');
+const overlay = document.getElementById('menuOverlay');
+let menuOpen = false;
+
+function toggleMenu() {
+    menuOpen = !menuOpen;
+    menuBtn.classList.toggle('active', menuOpen);
+    overlay.classList.toggle('open', menuOpen);
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+}
+function closeMenu() {
+    if (menuOpen) toggleMenu();
+}
+menuBtn.addEventListener('click', toggleMenu);
+overlay.addEventListener('click', e => { if (e.target === overlay) closeMenu(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ========================================
+   SCROLL REVEAL
+   ======================================== */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ========================================
+   STATS COUNTER
+   ======================================== */
+let statsAnimated = false;
+const statsSection = document.querySelector('.stats-bar');
+
+function animateCounter(el, target, suffix, duration) {
+    let start = null;
+    const step = (ts) => {
+        if (!start) start = ts;
+        const progress = Math.min((ts - start) / duration, 1);
+        const val = Math.floor(progress * target);
+        el.textContent = target >= 1000 ? val.toLocaleString() + suffix : val + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = target >= 1000 ? target.toLocaleString() + suffix : target + suffix;
+    };
+    requestAnimationFrame(step);
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+            statsAnimated = true;
+            document.querySelectorAll('.stat-num').forEach(el => {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                animateCounter(el, target, suffix, target > 100 ? 2000 : 1200);
+            });
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+if (statsSection) statsObserver.observe(statsSection);
+
+/* ========================================
+   TESTIMONIALS ROTATION
+   ======================================== */
+const testimonials = [
+    {
+        text: 'Clean haircut especially the fades. For a first timer I would definitely recommend the boys to get their desired haircut at BalrCutz!',
+        author: '— LOGHAN K.',
+        source: 'via Google Reviews · BalrCutz Jaya One'
+    },
+    {
+        text: 'I had a great experience. I booked my session with Issa Hdad, and he did an amazing job. Very professional and really takes his time to make sure everything is perfect.',
+        author: '— KARIM D.',
+        source: 'via Google Reviews · BalrCutz Hartamas'
+    },
+    {
+        text: 'Super amazing place to go. It was my first time, but the place is really clean and modern. I loved the interior design. It is spacious and super chill. Issa knows his game.',
+        author: '— MOHAMAD N.',
+        source: 'via Google Reviews · BalrCutz Hartamas'
+    },
+    {
+        text: 'Great environment, and the haircut was good. Bored with your normal hairstyle? They can advise you on a new style.',
+        author: '— MUWIN',
+        source: 'via Google Reviews · BalrCutz Hartamas'
+    },
+    {
+        text: 'Fantastic haircut and friendly staff! The atmosphere is clean, modern and welcoming. Ammar was very good.',
+        author: '— AZHAR H.',
+        source: 'via Google Reviews · BalrCutz Jaya One'
+    }
+];
+
+const testiText = document.getElementById('testiText');
+const testiAuthor = document.getElementById('testiAuthor');
+const testiSource = document.getElementById('testiSource');
+const testiDots = document.getElementById('testiDots');
+let currentTesti = 0;
+
+testimonials.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goToTesti(i));
+    testiDots.appendChild(dot);
+});
+
+function goToTesti(idx) {
+    currentTesti = idx;
+    testiText.style.opacity = '0';
+    setTimeout(() => {
+        testiText.textContent = testimonials[idx].text;
+        testiAuthor.textContent = testimonials[idx].author;
+        testiSource.textContent = testimonials[idx].source;
+        testiText.style.opacity = '1';
+        testiDots.querySelectorAll('.testi-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, 300);
+}
+
+setInterval(() => {
+    goToTesti((currentTesti + 1) % testimonials.length);
+}, 5500);
+
+/* ========================================
+   SMOOTH SCROLL FOR ANCHOR LINKS
+   ======================================== */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            e.preventDefault();
+            const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
+            window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+    });
+});
+
+/* ========================================
+   BACK TO TOP
+   ======================================== */
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+    backTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+/* ========================================
+   WHATSAPP CHATBOT
+   ======================================== */
+const waFloat = document.getElementById('waFloat');
+const waChat = document.getElementById('waChat');
+const waClose = document.getElementById('waClose');
+const waBody = document.getElementById('waBody');
+let chatStarted = false;
+
+waFloat.addEventListener('click', e => { e.stopPropagation(); waChat.classList.toggle('open'); if (!chatStarted) startChat(); });
+waClose.addEventListener('click', e => { e.stopPropagation(); waChat.classList.remove('open'); });
+document.addEventListener('click', e => { if (waChat.classList.contains('open') && !waChat.contains(e.target) && e.target !== waFloat) waChat.classList.remove('open'); });
+
+const FLOWS = {
+    start: {
+        msg: 'Yo! 👋 Welcome to BalrCutz Barbershop.\n\nWhere style meets sport. How can we help you today?',
+        opts: [
+            { label: '✂️ Book Appointment', next: 'pickBranch' },
+            { label: '🏆 MVP Package Info', next: 'mvpInfo' },
+            { label: '📋 View Services', next: 'services' },
+            { label: '📍 Our Locations', next: 'locations' },
+            { label: '❓ FAQ', next: 'faq' },
+            { label: '💬 Talk to Team', next: 'talkDirect' }
+        ]
+    },
+    pickBranch: {
+        msg: 'Which branch would you like to book at?',
+        opts: [
+            { label: '🏢 Jaya One (Petaling Jaya)', next: 'pickService', data: 'jayaone' },
+            { label: '🏙️ Hartamas (Kuala Lumpur)', next: 'pickService', data: 'hartamas' }
+        ]
+    },
+    pickService: {
+        msg: 'What service are you interested in?',
+        opts: [
+            { label: '✂️ Haircut', next: 'confirmBook' },
+            { label: '🏆 MVP Package ★', next: 'confirmBook' },
+            { label: '🧔 Beard Design', next: 'confirmBook' },
+            { label: '🎨 Hair Colouring', next: 'confirmBook' },
+            { label: '🌿 Scalp Care', next: 'confirmBook' },
+            { label: '✨ Face Care', next: 'confirmBook' }
+        ]
+    },
+    confirmBook: {
+        msg: 'Champion choice! Tap below to lock in your slot:',
+        action: 'showBookingLink'
+    },
+    mvpInfo: {
+        msg: '🏆 The MVP Package — Our Signature Experience:\n\n01. Consultation — Your barber maps your style\n02. Precision Cut — Clean, confident technique\n03. Fade Mastery — Zero-to-skin gradient perfection\n04. Finish & Detail — Premium product, final touch\n\nBecause winners don\'t settle for average.',
+        opts: [
+            { label: '✂️ Book MVP Package', next: 'pickBranch' },
+            { label: '📋 See All Services', next: 'services' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    services: {
+        msg: '📋 Our Services & Starting Prices:\n\n✂️ Haircut — RM 35+\n🏆 MVP Package — RM 65+ ★\n🧔 Beard Design — RM 25+\n🎨 Hair Colouring — RM 80+\n🌿 Scalp Care — RM 55+\n✨ Face Care — RM 45+\n\nFirst-timer? Ask about our special rate!',
+        opts: [
+            { label: '✂️ Book Now', next: 'pickBranch' },
+            { label: '🏆 MVP Package Info', next: 'mvpInfo' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    locations: {
+        msg: '📍 Our Locations:\n\n🏢 JAYA ONE (Flagship)\nD-55-P2, Block D, Jaya One\nPetaling Jaya, Selangor 46200\nWed–Mon: 10AM–9PM | Tue: Closed\n⭐ 4.96 (761 Reviews)\n\n🏙️ HARTAMAS (KL)\nNo.1, 2nd Floor, Jalan 26A/70A\nSri Hartamas, KL 50480\nWed–Mon: 10AM–9PM | Tue: Closed\n⭐ 4.93 (215 Reviews)',
+        opts: [
+            { label: '✂️ Book Jaya One', next: 'confirmBook', data: 'jayaone' },
+            { label: '✂️ Book Hartamas', next: 'confirmBook', data: 'hartamas' },
+            { label: '💬 WhatsApp Us', next: 'openDirect' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faq: {
+        msg: '❓ Got questions? We\'ve got answers:',
+        opts: [
+            { label: '💰 Pricing', next: 'faqPrice' },
+            { label: '🚶 Walk-ins OK?', next: 'faqWalkin' },
+            { label: '🏆 What\'s MVP Package?', next: 'mvpInfo' },
+            { label: '🅿️ Parking?', next: 'faqParking' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faqPrice: {
+        msg: '💰 Starting prices:\n• Haircut: RM 35+\n• MVP Package: RM 65+ ★\n• Beard Design: RM 25+\n• Hair Colouring: RM 80+\n• Scalp Care: RM 55+\n• Face Care: RM 45+\n\nFirst-timer? Ask about our special rate at the counter!',
+        opts: [
+            { label: '✂️ Book Now', next: 'pickBranch' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faqWalkin: {
+        msg: '🚶 Walk-ins are welcome! But we highly recommend booking online to secure your preferred time — especially on weekends and evenings when we get packed.',
+        opts: [
+            { label: '✂️ Book Online', next: 'pickBranch' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    faqParking: {
+        msg: '🅿️ Jaya One has covered parking available at the mall. Hartamas has street parking and nearby lots. Easy access at both locations!',
+        opts: [
+            { label: '📍 View Locations', next: 'locations' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    talkDirect: {
+        msg: '💬 Reach us directly on WhatsApp — our team is ready!',
+        opts: [
+            { label: '🏢 WhatsApp Jaya One', next: 'openDirect', data: 'jayaone' },
+            { label: '🏙️ WhatsApp Hartamas', next: 'openDirect', data: 'hartamas' },
+            { label: '🏠 Main Menu', next: 'start' }
+        ]
+    },
+    openDirect: { msg: 'Opening WhatsApp...', action: 'openWa' }
+};
+
+let selectedBranch = '';
+
+function startChat() {
+    chatStarted = true;
+    showFlow('start');
+}
+
+function showFlow(key) {
+    const flow = FLOWS[key];
+    if (!flow) return;
+    showTyping(() => {
+        botMsg(flow.msg);
+        if (flow.action === 'showBookingLink') {
+            showBookingButtons();
+        } else if (flow.action === 'openWa') {
+            showWaOpen();
+        } else if (flow.opts) {
+            showOpts(flow.opts, key);
+        }
+    });
+}
+
+function botMsg(text) {
+    const d = document.createElement('div');
+    d.className = 'wa-msg bot';
+    d.textContent = text;
+    d.style.whiteSpace = 'pre-wrap';
+    waBody.appendChild(d);
+    scrollChat();
+}
+
+function userMsg(text) {
+    const d = document.createElement('div');
+    d.className = 'wa-msg user';
+    d.textContent = text;
+    waBody.appendChild(d);
+    scrollChat();
+}
+
+function showTyping(cb) {
+    const t = document.createElement('div');
+    t.className = 'wa-typing';
+    t.innerHTML = '<span></span><span></span><span></span>';
+    waBody.appendChild(t);
+    scrollChat();
+    setTimeout(() => { t.remove(); cb(); }, 800 + Math.random() * 400);
+}
+
+function showOpts(opts, parentKey) {
+    const wrap = document.createElement('div');
+    wrap.className = 'wa-opts';
+    opts.forEach(opt => {
+        const b = document.createElement('button');
+        b.className = 'wa-opt-btn';
+        b.textContent = opt.label;
+        b.addEventListener('click', e => {
+            e.stopPropagation();
+            pick(opt, parentKey);
+        });
+        wrap.appendChild(b);
+    });
+    waBody.appendChild(wrap);
+    scrollChat();
+}
+
+function pick(opt, parentKey) {
+    waBody.querySelectorAll('.wa-opts').forEach(el => el.remove());
+    userMsg(opt.label);
+    if (opt.data) {
+        if (parentKey === 'pickBranch' || opt.next === 'openDirect') {
+            selectedBranch = opt.data;
+        }
+    }
+    setTimeout(() => showFlow(opt.next), 300);
+}
+
+function showBookingButtons() {
+    const url = selectedBranch === 'hartamas'
+        ? 'https://balrcutzhartamas.setmore.com/'
+        : 'https://balrcutz.setmore.com/';
+    const wrap = document.createElement('div');
+    wrap.className = 'wa-opts';
+    const b = document.createElement('button');
+    b.className = 'wa-opt-btn';
+    b.textContent = '🔗 Open Booking Page';
+    b.addEventListener('click', e => { e.stopPropagation(); window.open(url, '_blank'); });
+    wrap.appendChild(b);
+    const bm = document.createElement('button');
+    bm.className = 'wa-opt-btn';
+    bm.textContent = '🏠 Main Menu';
+    bm.addEventListener('click', e => { e.stopPropagation(); wrap.remove(); showFlow('start'); });
+    wrap.appendChild(bm);
+    waBody.appendChild(wrap);
+    scrollChat();
+}
+
+function showWaOpen() {
+    const msg = encodeURIComponent('Hi BalrCutz! I\'d like to know more about your services and book an appointment.');
+    const wrap = document.createElement('div');
+    wrap.className = 'wa-opts';
+    const b = document.createElement('button');
+    b.className = 'wa-opt-btn';
+    b.textContent = '💬 Open WhatsApp';
+    b.addEventListener('click', e => {
+        e.stopPropagation();
+        window.open('https://wa.me/60126061715?text=' + msg, '_blank');
+    });
+    wrap.appendChild(b);
+    const bm = document.createElement('button');
+    bm.className = 'wa-opt-btn';
+    bm.textContent = '🏠 Main Menu';
+    bm.addEventListener('click', e => { e.stopPropagation(); wrap.remove(); showFlow('start'); });
+    wrap.appendChild(bm);
+    waBody.appendChild(wrap);
+    scrollChat();
+}
+
+function scrollChat() {
+    requestAnimationFrame(() => { waBody.scrollTop = waBody.scrollHeight; });
+}
+
+})();
+</script>
+</body>
+</html>
