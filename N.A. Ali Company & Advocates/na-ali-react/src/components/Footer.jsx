@@ -149,7 +149,7 @@ export default function Footer() {
               {[
                 { icon: <Phone size={15} />, text: '+254 700 000 000', href: 'tel:+254700000000' },
                 { icon: <Mail size={15} />, text: 'info@naali.co.ke', href: 'mailto:info@naali.co.ke' },
-                { icon: <MapPin size={15} />, text: 'Nairobi, Kenya', href: '#' },
+                { icon: <MapPin size={15} />, text: 'Mombasa, Kenya', href: '#' },
               ].map((item) => (
                 <a
                   key={item.text}
@@ -189,7 +189,7 @@ export default function Footer() {
             © 2026 N.A. Ali Company & Advocates. All rights reserved.
           </p>
           <p style={{ color: 'rgba(248,250,252,0.3)', fontFamily: 'Manrope', fontSize: '0.8rem' }}>
-            Trusted Legal Counsel • Nairobi, Kenya
+            Trusted Legal Counsel • Mombasa, Kenya
           </p>
         </div>
       </div>
