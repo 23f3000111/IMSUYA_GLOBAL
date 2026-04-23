@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Manrope:wght@300;400;500;600;700;800&display=swap');
+
+@import "tailwindcss";
+
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+  --navy: #0F172A;
+  --royal: #1D4ED8;
+  --gold: #C9A227;
+  --soft-gold: #E8D9A8;
+  --white: #FFFFFF;
+  --light-gray: #F8FAFC;
+  --dark-text: #111827;
+  --gray-text: #6B7280;
+  --navy-800: #1e293b;
+  --navy-700: #334155;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+  background-color: var(--white);
+  color: var(--dark-text);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* ===== CUSTOM SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+/* ===== GOLD LINE DECORATORS ===== */
+.gold-line {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--soft-gold));
+  border-radius: 2px;
+}
+
+.gold-line-center {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--soft-gold));
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* ===== SECTION LABEL ===== */
+.section-label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ===== BUTTON STYLES ===== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, var(--gold) 0%, #b8911e 100%);
+  color: var(--navy);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(201, 162, 39, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201, 162, 39, 0.45);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  padding: 13px 27px;
+  border-radius: 4px;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.btn-navy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--navy);
+  color: var(--white);
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  padding: 14px 28px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-navy:hover {
+  background: var(--navy-800);
+  transform: translateY(-2px);
+}
+
+/* ===== GLASS CARD ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+}
+
+/* ===== CARD HOVER LIFT ===== */
+.card-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+
+/* ===== GRADIENT BACKGROUNDS ===== */
+.bg-navy-gradient {
+  background: linear-gradient(135deg, #0F172A 0%, #1e293b 100%);
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, var(--gold) 0%, #b8911e 100%);
+}
+
+/* ===== SECTION PADDING ===== */
+.section-pad {
+  padding: 96px 0;
+}
+
+/* ===== ANNOUNCEMENT MARQUEE ===== */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 20s linear infinite;
+  display: flex;
+  white-space: nowrap;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ===== COUNTER ===== */
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--gold), var(--soft-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+/* ===== TESTIMONIAL ===== */
+.testimonial-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.testimonial-dot.active {
+  background: var(--gold);
+  width: 28px;
+  border-radius: 4px;
+}
+
+/* ===== PROCESS LINE ===== */
+.process-connector {
+  position: absolute;
+  top: 28px;
+  left: calc(50% + 28px);
+  width: calc(100% - 56px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* ===== NAVBAR ===== */
+.navbar-blur {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ===== HERO IMAGE OVERLAY ===== */
+.hero-image-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,23,42,0.3) 0%, transparent 60%);
+  border-radius: inherit;
+  z-index: 1;
+}
+
+/* ===== SECTION WRAPPER — used on all page containers for consistent spacing ===== */
+.section-wrap {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1.25rem, 5vw, 2.5rem);
+  padding-right: clamp(1.25rem, 5vw, 2.5rem);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 64px 0;
+  }
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== IMAGE ZOOM (card hover effect) ===== */
+.img-zoom {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1), filter 0.65s ease;
+}
+.card-lift:hover .img-zoom,
+.img-zoom-wrap:hover .img-zoom {
+  transform: scale(1.07);
+  filter: brightness(1.06);
+}
+
+/* ===== PING KEYFRAME (used by WhatsApp FAB) ===== */
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+
+/* ===== FLOATING ANIMATION ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.float-anim {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ===== GOLD SHIMMER ===== */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-gold {
+  background: linear-gradient(90deg, #C9A227 0%, #E8D9A8 40%, #C9A227 60%, #b8911e 100%);
+  background-size: 200% auto;
+  animation: goldShimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== SECTION REVEAL ===== */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== GRADIENT TEXT ===== */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C9A227, #E8D9A8, #C9A227);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== GLOW EFFECTS ===== */
+.gold-glow {
+  box-shadow: 0 0 20px rgba(201,162,39,0.3), 0 0 40px rgba(201,162,39,0.1);
+}
+.gold-glow-text {
+  text-shadow: 0 0 20px rgba(201,162,39,0.4);
+}
+
+/* ===== ANIMATED BORDER ===== */
+@keyframes borderPulse {
+  0%, 100% { border-color: rgba(201,162,39,0.3); }
+  50% { border-color: rgba(201,162,39,0.7); }
+}
+.border-pulse {
+  animation: borderPulse 2.5s ease-in-out infinite;
+}
+
+/* ===== PRELOADER BODY LOCK ===== */
+body.preloading {
+  overflow: hidden;
+}
+

@@ -1,0 +1,144 @@
+/* ===== N.A. Ali Mockup 2 — Light Editorial Theme ===== */
+
+/* ===== RESET & BASE ===== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --white: #FFFFFF;
+  --off-white: #F7F7F5;
+  --cream: #F0EDE8;
+  --black: #1A1A1A;
+  --black-soft: #2D2D2D;
+  --gray: #6B6B6B;
+  --gray-light: #9A9A9A;
+  --border: rgba(0,0,0,0.08);
+  --border-dark: rgba(0,0,0,0.12);
+  --emerald: #0D7C5F;
+  --emerald-light: #10B981;
+  --emerald-soft: rgba(13,124,95,0.06);
+  --emerald-border: rgba(13,124,95,0.15);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Outfit', system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--emerald); border-radius: 2px; }
+
+/* ===== LAYOUT ===== */
+.container {
+  max-width: 1340px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  width: 100%;
+}
+
+/* ===== UTILITIES ===== */
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--emerald);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--emerald);
+}
+
+/* ===== GRID LINE OVERLAY ===== */
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  max-width: 1340px;
+  margin: 0 auto;
+}
+
+.grid-overlay span {
+  width: 1px;
+  height: 100%;
+  background: rgba(255,255,255,0.025);
+}
+
+/* ===== SECTION SPACING ===== */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SUBTLE NOISE TEXTURE ===== */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* ===== WHATSAPP FAB ===== */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .resp-grid-1 {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .resp-grid-2 {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
