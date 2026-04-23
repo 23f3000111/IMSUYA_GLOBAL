@@ -36,7 +36,7 @@ export default function Contact() {
             {[
               { icon: <Phone size={18} />, label: 'Phone', value: '+92 300 123 4567', href: 'tel:+923001234567' },
               { icon: <Mail size={18} />, label: 'Email', value: 'info@naalilaw.com', href: 'mailto:info@naalilaw.com' },
-              { icon: <MapPin size={18} />, label: 'Office', value: 'Islamabad, Pakistan' },
+              { icon: <MapPin size={18} />, label: 'Office', value: 'Mombasa, Kenya' },
               { icon: <Clock size={18} />, label: 'Hours', value: 'Mon — Fri  9:00 AM — 6:00 PM' },
             ].map((item, i) => (
               <motion.div
