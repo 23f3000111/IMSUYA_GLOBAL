@@ -154,7 +154,7 @@ export default function ContactCTA() {
                   Office Location
                 </div>
                 <div style={{ color: 'rgba(248,250,252,0.55)', fontFamily: 'Manrope', fontSize: '0.9rem', lineHeight: 1.7 }}>
-                  Nairobi, Kenya<br />
+                  Mombasa, Kenya<br />
                   Available Mon–Fri, 8:00am – 6:00pm
                 </div>
               </div>
