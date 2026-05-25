@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact — Mohd Shah Dolah · Property in Kuala Lumpur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,30..100&family=Inter+Tight:wght@300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#F7F2E9;
+  --paper:#FBF8F1;
+  --white:#FFFFFF;
+  --ink:#1B2420;
+  --ink-soft:#475048;
+  --mute:#8C8B85;
+  --line:#E6DFD2;
+  --line-soft:#EFE9DC;
+  --jade:#2E5F4A;
+  --jade-dk:#23493A;
+  --jade-soft:#E4EDE7;
+  --brass:#B08643;
+  --brass-soft:#E9D9B8;
+  --clay:#C97D5A;
+  --shadow-sm: 0 1px 2px rgba(27,36,32,.05), 0 6px 14px -8px rgba(27,36,32,.08);
+  --shadow-md: 0 4px 8px -4px rgba(27,36,32,.06), 0 24px 40px -22px rgba(27,36,32,.18);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Inter Tight', system-ui, sans-serif;
+  font-weight:400;
+  letter-spacing:-.005em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
+}
+::selection{background:var(--jade);color:var(--cream)}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+.serif{font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 30;letter-spacing:-.022em;line-height:1}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:.06em}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--jade);font-weight:500}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:18px clamp(20px,3.5vw,48px);
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+  background:rgba(247,242,233,0.84);backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid transparent;transition:border-color .4s,background .4s;
+}
+nav.stuck{border-bottom-color:var(--line)}
+.brand{justify-self:start;display:flex;align-items:center;gap:12px;color:var(--ink)}
+.brand-mark{width:34px;height:34px;border-radius:6px;background:var(--ink);color:var(--cream);display:grid;place-items:center;font-family:'Fraunces',serif;font-style:italic;font-size:18px}
+.brand-name{font-family:'Fraunces',serif;font-weight:500;font-size:18px;letter-spacing:-.01em}
+.brand-name small{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--mute);margin-top:2px;font-weight:400}
+.navlinks{justify-self:center;display:flex;gap:6px}
+.navlinks a{padding:8px 16px;border-radius:999px;font-size:13px;letter-spacing:.01em;color:var(--ink-soft);transition:background .3s,color .3s}
+.navlinks a:hover{background:var(--paper);color:var(--ink)}
+.navlinks a.active{background:var(--ink);color:var(--cream)}
+.navcta{justify-self:end;display:flex;align-items:center;gap:14px}
+.navcta .open{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.dot{width:7px;height:7px;border-radius:50%;background:#54B36A;box-shadow:0 0 0 0 rgba(84,179,106,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(84,179,106,.5)}70%{box-shadow:0 0 0 8px rgba(84,179,106,0)}100%{box-shadow:0 0 0 0 rgba(84,179,106,0)}}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 22px;border-radius:999px;
+  font-family:'Inter Tight',sans-serif;font-weight:500;font-size:13px;letter-spacing:.01em;
+  cursor:pointer;border:none;position:relative;overflow:hidden;
+  transition:transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s, background .35s;
+  white-space:nowrap;
+}
+.btn .arrow{display:inline-block;width:14px;height:1px;background:currentColor;position:relative;transition:transform .35s}
+.btn .arrow::after{content:'';position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg) translate(-1px,1px)}
+.btn:hover .arrow{transform:translateX(4px)}
+.btn--primary{background:var(--ink);color:var(--cream)}
+.btn--primary:hover{background:var(--jade-dk);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--jade{background:var(--jade);color:var(--cream)}
+.btn--jade:hover{background:var(--jade-dk);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn--ghost:hover{background:var(--white);border-color:var(--ink)}
+.btn--brass{background:var(--brass);color:var(--cream)}
+.btn--brass:hover{background:#9C7637;transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn--cream{background:var(--cream);color:var(--ink)}
+.btn--cream:hover{background:var(--brass-soft);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+
+/* wrap */
+.maxw{max-width:1400px;margin:0 auto}
+
+/* breadcrumb */
+.breadcrumb{padding:96px clamp(20px,3.5vw,48px) 0;background:var(--cream)}
+.breadcrumb__inner{
+  display:flex;align-items:center;gap:10px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);
+  padding-bottom:20px;border-bottom:1px solid var(--line-soft);
+}
+.breadcrumb__inner a{color:var(--ink-soft);transition:color .3s}
+.breadcrumb__inner a:hover{color:var(--jade)}
+.breadcrumb__inner .sep{opacity:.5}
+
+/* ════════════════════════════════════════
+   HERO BANNER
+════════════════════════════════════════ */
+.contact-hero{
+  position:relative;overflow:hidden;
+  background:var(--jade-dk);
+  padding:80px clamp(20px,3.5vw,48px);
+}
+.contact-hero::before{
+  content:'';position:absolute;inset:0;
+  background:url('Mohd Shah Dolah Images/Mohd Shah Dolah Real Estate3 image1.jpg') center/cover no-repeat;
+  opacity:.18;
+}
+.contact-hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(35,73,58,.92) 0%, rgba(27,36,32,.88) 100%);
+}
+.contact-hero__inner{
+  position:relative;z-index:2;
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+}
+.contact-hero__l .eyebrow{color:var(--brass-soft)}
+.contact-hero__l h1{
+  margin-top:18px;
+  font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 30;
+  font-size:clamp(44px,5.4vw,80px);line-height:.97;letter-spacing:-.028em;color:var(--cream);
+}
+.contact-hero__l h1 em{font-style:italic;color:var(--brass-soft)}
+.contact-hero__l .sub{margin-top:22px;font-size:16px;line-height:1.6;color:rgba(247,242,233,.78);max-width:48ch}
+.contact-hero__l .hero-cta{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+
+.contact-hero__r{display:flex;flex-direction:column;gap:18px}
+.hero-info-card{
+  background:rgba(255,255,255,.07);border:1px solid rgba(247,242,233,.16);
+  border-radius:16px;padding:22px 26px;display:flex;align-items:flex-start;gap:18px;
+  backdrop-filter:blur(10px);transition:background .3s,border-color .3s;
+}
+.hero-info-card:hover{background:rgba(255,255,255,.11);border-color:rgba(247,242,233,.28)}
+.hero-info-card .ico{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  background:var(--brass);color:var(--cream);
+  display:grid;place-items:center;font-size:18px;
+}
+.hero-info-card .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,242,233,.6);margin-bottom:6px}
+.hero-info-card .v{font-family:'Fraunces',serif;font-weight:400;font-size:17px;letter-spacing:-.01em;color:var(--cream);line-height:1.3}
+.hero-info-card .v a{color:var(--cream);transition:color .3s}
+.hero-info-card .v a:hover{color:var(--brass-soft)}
+
+/* ════════════════════════════════════════
+   FAQ
+════════════════════════════════════════ */
+.faq{padding:100px clamp(20px,3.5vw,48px);background:var(--cream)}
+.sec-head{
+  display:grid;grid-template-columns:auto 1fr auto;gap:30px;align-items:end;
+  margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--line);
+}
+.sec-head .num{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.22em;color:var(--jade);font-weight:500;padding-bottom:6px}
+.sec-head h2{font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 30;font-size:clamp(34px,4.6vw,58px);line-height:1;letter-spacing:-.025em}
+.sec-head h2 em{font-style:italic;color:var(--jade)}
+.sec-head .end{text-align:right;color:var(--ink-soft);font-size:13px;line-height:1.5;max-width:280px;padding-bottom:6px}
+
+.faq__grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px}
+
+.faq-item{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.faq-item[open]{border-color:var(--jade);box-shadow:var(--shadow-sm)}
+.faq-item summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .q{font-family:'Fraunces',serif;font-weight:500;font-size:15px;line-height:1.3;letter-spacing:-.01em;color:var(--ink);flex:1}
+.faq-item summary .num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:var(--jade);flex-shrink:0}
+.faq-item summary .icn{width:28px;height:28px;border-radius:50%;background:var(--jade-soft);color:var(--jade-dk);display:grid;place-items:center;flex-shrink:0;font-size:18px;line-height:1;transition:background .3s,color .3s,transform .4s}
+.faq-item[open] summary .icn{background:var(--jade);color:var(--cream);transform:rotate(45deg)}
+.faq-item .ans{padding:0 24px 22px;font-size:14px;line-height:1.7;color:var(--ink-soft)}
+.faq-item .ans strong{color:var(--ink);font-weight:500}
+.faq-item .ans a{color:var(--jade);border-bottom:1px solid var(--jade-soft);transition:border-color .3s}
+.faq-item .ans a:hover{border-color:var(--jade)}
+
+/* ════════════════════════════════════════
+   CONTACT FORM SECTION
+════════════════════════════════════════ */
+.contact-form-sec{padding:100px clamp(20px,3.5vw,48px);background:var(--paper);border-top:1px solid var(--line-soft)}
+.contact-form-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+
+.contact-aside h3{font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 30;font-size:clamp(26px,3vw,38px);line-height:1.05;letter-spacing:-.02em}
+.contact-aside h3 em{font-style:italic;color:var(--jade)}
+.contact-aside .sub{margin-top:18px;font-size:15px;line-height:1.65;color:var(--ink-soft);max-width:42ch}
+
+.contact-aside .direct{margin-top:32px;display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.contact-aside .direct .ttl{padding:18px 24px;border-bottom:1px solid var(--line-soft);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--jade);display:flex;align-items:center;gap:10px}
+.contact-aside .direct .ttl::before{content:'';width:18px;height:1px;background:var(--jade)}
+.contact-aside .drow{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 24px;border-bottom:1px solid var(--line-soft)}
+.contact-aside .drow:last-child{border-bottom:none}
+.contact-aside .drow .k{font-size:12px;color:var(--mute);letter-spacing:.04em}
+.contact-aside .drow .v{font-family:'Fraunces',serif;font-weight:500;font-size:15px;color:var(--ink);text-align:right}
+.contact-aside .drow .v.mono{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:400;letter-spacing:.05em}
+.contact-aside .drow a.v{transition:color .3s}
+.contact-aside .drow a.v:hover{color:var(--jade)}
+
+.contact-aside .map-chip{margin-top:18px;background:var(--jade-soft);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.contact-aside .map-chip .pin{width:32px;height:32px;border-radius:50%;background:var(--jade);color:var(--cream);display:grid;place-items:center;font-family:'Fraunces',serif;font-style:italic;font-size:16px}
+.contact-aside .map-chip .lab{margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--jade-dk)}
+.contact-aside .map-chip .addr{margin-top:4px;font-family:'Fraunces',serif;font-weight:500;font-size:18px;color:var(--ink)}
+.contact-aside .map-chip::before{content:'';position:absolute;right:-40px;bottom:-40px;width:130px;height:130px;border:1px solid rgba(46,95,74,.2);border-radius:50%}
+.contact-aside .map-chip::after{content:'';position:absolute;right:-20px;bottom:-20px;width:80px;height:80px;border:1px solid rgba(46,95,74,.3);border-radius:50%}
+
+/* form */
+.cform{background:var(--white);border:1px solid var(--line);border-radius:24px;padding:40px;box-shadow:var(--shadow-sm)}
+.cform .form-ttl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--jade);display:flex;align-items:center;gap:10px;margin-bottom:28px}
+.cform .form-ttl::before{content:'';width:20px;height:1px;background:var(--jade)}
+.fields-row{display:grid;gap:14px;margin-bottom:14px}
+.fields-row.cols-3{grid-template-columns:1fr 1fr 1fr}
+.fields-row.cols-1{grid-template-columns:1fr}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+.field input,
+.field textarea,
+.field select{
+  padding:13px 16px;border-radius:10px;
+  background:var(--paper);border:1px solid var(--line);
+  font-family:'Inter Tight',sans-serif;font-size:14px;color:var(--ink);outline:none;
+  transition:border-color .25s,background .25s,box-shadow .25s;
+  width:100%;
+}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--jade);background:var(--white);box-shadow:0 0 0 3px rgba(46,95,74,.08)}
+.field input::placeholder,.field textarea::placeholder{color:var(--mute);font-size:13px}
+.field textarea{resize:vertical;min-height:140px;line-height:1.6}
+.cform .note{font-size:12px;color:var(--mute);line-height:1.5;margin-bottom:24px}
+.cform .note a{color:var(--jade);border-bottom:1px solid var(--jade-soft)}
+.cform .submit-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.cform .form-note{font-size:12px;color:var(--mute);display:flex;align-items:center;gap:6px}
+.cform .form-note::before{content:'';width:7px;height:7px;background:#54B36A;border-radius:50%}
+
+/* send button state management via data attr */
+#sendBtn[data-state="sending"] .btn-label{display:none}
+#sendBtn[data-state="sending"] .btn-sending{display:inline}
+#sendBtn[data-state="done"] .btn-label{display:none}
+#sendBtn[data-state="done"] .btn-done{display:inline}
+#sendBtn .btn-sending,#sendBtn .btn-done{display:none}
+
+.toast{display:none;align-items:center;gap:12px;padding:16px 22px;background:var(--jade-soft);border:1px solid var(--jade);border-radius:12px;margin-top:18px}
+.toast.show{display:flex}
+.toast .ico{width:30px;height:30px;background:var(--jade);color:var(--cream);border-radius:50%;display:grid;place-items:center;flex-shrink:0;font-size:14px}
+.toast p{font-size:13px;color:var(--jade-dk);line-height:1.5}
+.toast p strong{color:var(--ink)}
+
+/* ════════════════════════════════════════
+   MAP SECTION
+════════════════════════════════════════ */
+.map-sec{height:420px;position:relative;overflow:hidden;border-top:1px solid var(--line)}
+.map-sec iframe{width:100%;height:100%;border:0;display:block;filter:grayscale(.15) contrast(1.05)}
+.map-overlay{
+  position:absolute;top:24px;left:24px;z-index:10;
+  background:var(--white);border:1px solid var(--line-soft);border-radius:16px;
+  padding:18px 22px;box-shadow:var(--shadow-md);max-width:260px;
+}
+.map-overlay .mo-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--jade);margin-bottom:8px}
+.map-overlay .mo-name{font-family:'Fraunces',serif;font-weight:500;font-size:17px;color:var(--ink);line-height:1.2;margin-bottom:4px}
+.map-overlay .mo-addr{font-size:12px;color:var(--ink-soft);line-height:1.5}
+.map-overlay .mo-actions{display:flex;gap:8px;margin-top:14px}
+.map-overlay .mo-actions a{flex:1;padding:8px 12px;border-radius:8px;font-size:11px;font-weight:500;letter-spacing:.02em;text-align:center;transition:background .25s,color .25s}
+.mo-actions .mo-dir{background:var(--jade);color:var(--cream)}
+.mo-actions .mo-dir:hover{background:var(--jade-dk)}
+.mo-actions .mo-wa{background:var(--jade-soft);color:var(--jade-dk)}
+.mo-actions .mo-wa:hover{background:var(--jade);color:var(--cream)}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{background:var(--ink);color:var(--cream);padding:80px clamp(20px,3.5vw,48px) 30px}
+.foot__top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;padding-bottom:50px;border-bottom:1px solid rgba(247,242,233,.12)}
+.foot__brand{font-family:'Fraunces',serif;font-weight:400;font-variation-settings:"opsz" 144;font-size:32px;line-height:1.05;letter-spacing:-.02em;color:var(--cream)}
+.foot__brand em{font-style:italic;color:var(--brass-soft)}
+.foot__brand small{display:block;font-family:'JetBrains Mono',monospace;font-style:normal;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(247,242,233,.6);margin-top:14px;font-weight:400}
+.foot__top p.about{font-size:13px;line-height:1.7;color:rgba(247,242,233,.7);max-width:34ch;margin-top:18px}
+.foot__top h5{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-soft);margin-bottom:16px;font-weight:500}
+.foot__top ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.foot__top ul a{font-size:14px;color:rgba(247,242,233,.85);transition:color .3s,padding-left .3s}
+.foot__top ul a:hover{color:var(--brass-soft);padding-left:4px}
+.foot__bot{padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(247,242,233,.55)}
+.foot__bot .socials{display:flex;gap:8px}
+.foot__bot .socials a{width:34px;height:34px;border-radius:50%;border:1px solid rgba(247,242,233,.18);display:grid;place-items:center;color:rgba(247,242,233,.8);font-size:10px;letter-spacing:0;transition:background .3s,color .3s,border-color .3s}
+.foot__bot .socials a:hover{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+
+/* ════════════════════════════════════════
+   REVEAL
+════════════════════════════════════════ */
+.r{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,0,.2,1),transform .9s cubic-bezier(.2,0,.2,1)}
+.r.in{opacity:1;transform:none}
+.r-d1{transition-delay:.08s}.r-d2{transition-delay:.16s}.r-d3{transition-delay:.24s}.r-d4{transition-delay:.32s}.r-d5{transition-delay:.4s}
+
+/* ════════════════════════════════════════
+   CHATBOT
+════════════════════════════════════════ */
+.cbot{position:fixed;bottom:20px;right:20px;z-index:300;font-family:'Inter Tight',sans-serif;user-select:none}
+.cbot__fab{width:60px;height:60px;border-radius:18px;border:none;cursor:pointer;background:linear-gradient(145deg,var(--jade) 0%,var(--jade-dk) 100%);color:var(--cream);display:grid;place-items:center;box-shadow:0 10px 28px rgba(46,95,74,.42),0 2px 6px rgba(46,95,74,.2);transition:transform .25s ease,box-shadow .25s ease;position:relative}
+.cbot__fab:hover{transform:scale(1.06)}
+.cbot__fab:active{transform:scale(.96)}
+.cbot__fab svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cbot__fab .ico-x{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg) scale(.5);opacity:0;transition:transform .3s,opacity .3s}
+.cbot__fab .ico-msg{transition:transform .3s,opacity .3s}
+.cbot.open .cbot__fab .ico-x{transform:translate(-50%,-50%) rotate(0) scale(1);opacity:1;position:static}
+.cbot.open .cbot__fab .ico-msg{transform:rotate(90deg) scale(.5);opacity:0;position:absolute}
+.cbot__fab::before{content:'';position:absolute;inset:0;border-radius:18px;background:var(--jade);z-index:-1;animation:cbotPulse 2.4s ease-out infinite}
+.cbot.open .cbot__fab::before{display:none}
+@keyframes cbotPulse{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.45);opacity:0}}
+.cbot__badge{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border-radius:50%;background:var(--clay);color:var(--cream);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:500;display:grid;place-items:center;border:2px solid var(--cream);transition:transform .25s ease,opacity .25s ease}
+.cbot.open .cbot__badge,.cbot.read .cbot__badge{transform:scale(0);opacity:0;pointer-events:none}
+.cbot__win{position:absolute;bottom:80px;right:0;width:min(360px,calc(100vw - 32px));max-height:560px;background:var(--white);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(27,36,32,.22),0 4px 16px rgba(27,36,32,.08);transform-origin:bottom right;transform:scale(.82) translateY(20px);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.34,1.22,.64,1),opacity .35s ease}
+.cbot.open .cbot__win{transform:scale(1) translateY(0);opacity:1;pointer-events:auto}
+.cbot__hd{padding:16px 18px;display:flex;align-items:center;gap:12px;flex-shrink:0;background:linear-gradient(135deg,var(--jade) 0%,var(--jade-dk) 100%);color:var(--cream)}
+.cbot__hd .av{width:38px;height:38px;border-radius:50%;background:var(--brass);color:var(--ink);display:grid;place-items:center;font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:18px;flex-shrink:0;position:relative;border:2px solid rgba(255,255,255,.2)}
+.cbot__hd .av::after{content:'';position:absolute;bottom:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:#54B36A;border:2px solid var(--jade-dk)}
+.cbot__hd .who{flex:1;min-width:0}
+.cbot__hd .who h4{font-family:'Fraunces',serif;font-weight:500;font-size:15px;line-height:1.1;letter-spacing:-.01em}
+.cbot__hd .who p{font-size:11px;opacity:.78;margin-top:2px;letter-spacing:.01em}
+.cbot__hd button{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.16);border:none;cursor:pointer;color:var(--cream);display:grid;place-items:center;transition:background .25s}
+.cbot__hd button:hover{background:rgba(255,255,255,.28)}
+.cbot__hd button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cbot__msgs{flex:1;overflow-y:auto;padding:18px 16px;display:flex;flex-direction:column;gap:10px;background:var(--paper);min-height:200px;max-height:300px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.cbot__msgs::-webkit-scrollbar{width:6px}
+.cbot__msgs::-webkit-scrollbar-track{background:transparent}
+.cbot__msgs::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+.cbot__bub{max-width:84%;padding:11px 15px;border-radius:14px;font-size:13px;line-height:1.55;white-space:pre-line;word-break:break-word;animation:cbotBubIn .3s cubic-bezier(.34,1.56,.64,1)}
+@keyframes cbotBubIn{from{opacity:0;transform:scale(.85) translateY(6px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.cbot__bub--bot{align-self:flex-start;background:var(--white);color:var(--ink);border:1px solid var(--line-soft);border-top-left-radius:4px}
+.cbot__bub--user{align-self:flex-end;background:var(--jade);color:var(--cream);border-top-right-radius:4px}
+.cbot__typing{align-self:flex-start;background:var(--white);border:1px solid var(--line-soft);border-radius:14px;border-top-left-radius:4px;padding:13px 16px;display:flex;gap:5px;align-items:center}
+.cbot__typing span{width:6px;height:6px;border-radius:50%;background:var(--jade);display:inline-block;animation:cbotBlink 1.2s ease-in-out infinite}
+.cbot__typing span:nth-child(2){animation-delay:.18s}
+.cbot__typing span:nth-child(3){animation-delay:.36s}
+@keyframes cbotBlink{0%,80%,100%{opacity:.25;transform:scale(.85)}40%{opacity:1;transform:scale(1)}}
+.cbot__chips{padding:0 14px 10px;display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;background:var(--paper)}
+.cbot__chips.empty{display:none}
+.cbot__chip{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:11.5px;padding:7px 13px;border-radius:999px;background:var(--jade-soft);color:var(--jade-dk);border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:background .25s,color .25s,transform .15s}
+.cbot__chip:hover{background:var(--jade);color:var(--cream)}
+.cbot__chip:active{transform:scale(.96)}
+.cbot__inp{display:flex;align-items:center;gap:8px;padding:11px 12px;border-top:1px solid var(--line-soft);background:var(--white);flex-shrink:0}
+.cbot__inp input{flex:1;padding:10px 14px;border-radius:999px;background:var(--paper);border:1px solid var(--line);font-family:'Inter Tight',sans-serif;font-size:13px;color:var(--ink);outline:none;transition:border-color .25s,background .25s}
+.cbot__inp input:focus{border-color:var(--jade);background:var(--white)}
+.cbot__inp input::placeholder{color:var(--mute)}
+.cbot__inp button{width:36px;height:36px;border-radius:50%;background:var(--jade);color:var(--cream);border:none;cursor:pointer;display:grid;place-items:center;transition:transform .25s,background .25s}
+.cbot__inp button:hover:not(:disabled){background:var(--jade-dk);transform:scale(1.08)}
+.cbot__inp button:disabled{opacity:.4;cursor:not-allowed}
+.cbot__inp button svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.cbot__foot{display:flex;align-items:center;gap:8px;padding:9px 16px;font-size:10.5px;color:var(--mute);background:var(--paper);border-top:1px solid var(--line-soft);flex-shrink:0}
+.cbot__foot svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cbot__foot a{color:var(--jade);transition:color .3s}
+.cbot__foot a:hover{color:var(--jade-dk)}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media (max-width:1100px){
+  .contact-hero__inner{grid-template-columns:1fr;gap:36px}
+  .contact-form-inner{grid-template-columns:1fr;gap:36px}
+  .foot__top{grid-template-columns:1fr 1fr;gap:36px 24px}
+  .sec-head{grid-template-columns:1fr;gap:14px}
+  .sec-head .end{text-align:left;max-width:none}
+}
+@media (max-width:860px){
+  .faq__grid{grid-template-columns:1fr}
+  .fields-row.cols-3{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  nav{padding:14px 18px}
+  .brand-name{font-size:15px}
+  .brand-name small{display:none}
+  .navcta .open{display:none}
+  .navlinks{display:none}
+  .cform{padding:24px 20px}
+  .fields-row.cols-3{grid-template-columns:1fr}
+  .contact-hero{padding:60px clamp(20px,3.5vw,48px)}
+  .foot__top{grid-template-columns:1fr;gap:30px}
+  .foot__bot{flex-direction:column;align-items:flex-start;gap:18px}
+  .cbot{bottom:14px;right:14px}
+  .cbot__fab{width:54px;height:54px}
+  .cbot__win{bottom:72px;width:calc(100vw - 28px);max-height:70vh}
+  .map-overlay{max-width:200px;padding:14px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="mock1.html" class="brand">
+    <div class="brand-mark">M</div>
+    <div class="brand-name">Mohd Shah Dolah<small>Property · Kuala Lumpur</small></div>
+  </a>
+  <div class="navlinks">
+    <a href="mock1.html#listings">Listings</a>
+    <a href="mock1.html#meet">About</a>
+    <a href="mock1.html#trust">Why Shah</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+  <div class="navcta">
+    <span class="open"><span class="dot"></span> Open today · 9am – 9pm</span>
+    <a href="https://wa.me/60127120366" class="btn btn--jade"><span>WhatsApp</span><span class="arrow"></span></a>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <div class="breadcrumb__inner maxw">
+    <a href="mock1.html">Home</a>
+    <span class="sep">/</span>
+    <span>Contact Us</span>
+  </div>
+</div>
+
+<!-- HERO BANNER -->
+<section class="contact-hero">
+  <div class="contact-hero__inner">
+    <div class="contact-hero__l">
+      <span class="eyebrow r">— Get in touch</span>
+      <h1 class="r r-d1">We would love<br>to <em>hear</em> from you.</h1>
+      <p class="sub r r-d2">Feel free to reach out using the details below — or fill in the form and Shah will get back to you within hours, not days.</p>
+      <div class="hero-cta r r-d3">
+        <a href="https://wa.me/60127120366" class="btn btn--brass"><span>WhatsApp Shah</span><span class="arrow"></span></a>
+        <a href="#contact-form" class="btn btn--cream"><span>Send a message</span><span class="arrow"></span></a>
+      </div>
+    </div>
+    <div class="contact-hero__r r r-d2">
+      <div class="hero-info-card">
+        <div class="ico">&#9679;</div>
+        <div>
+          <div class="k">Address</div>
+          <div class="v">Landsworth Properties Sdn Bhd<br>Jalan 1/48A, Kuala Lumpur</div>
+        </div>
+      </div>
+      <div class="hero-info-card">
+        <div class="ico">&#9742;</div>
+        <div>
+          <div class="k">Phone · WhatsApp</div>
+          <div class="v"><a href="tel:+60127120366">+60 12-712 0366</a></div>
+        </div>
+      </div>
+      <div class="hero-info-card">
+        <div class="ico">&#9993;</div>
+        <div>
+          <div class="k">Email</div>
+          <div class="v"><a href="mailto:shah@msdproniaga.biz.my">shah@msdproniaga.biz.my</a></div>
+        </div>
+      </div>
+      <div class="hero-info-card">
+        <div class="ico">&#9200;</div>
+        <div>
+          <div class="k">Working Hours</div>
+          <div class="v">Monday – Sunday · 9am – 9pm · GMT+8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="maxw">
+    <div class="sec-head">
+      <div class="num r">01 · FAQ</div>
+      <h2 class="r r-d1">Frequently <em>asked.</em></h2>
+      <div class="end r r-d2">Questions clients ask most before they pick up the phone.</div>
+    </div>
+
+    <div class="faq__grid">
+      <details class="faq-item r">
+        <summary><span class="num">01</span><span class="q">What is the duration of the listing agreement?</span><span class="icn">+</span></summary>
+        <div class="ans">A listing agreement in Malaysia is typically valid for <strong>three to six months</strong>, depending on the property and the agreed terms. Shah will discuss the most appropriate duration based on your property type, current market conditions, and your timeline goals.</div>
+      </details>
+
+      <details class="faq-item r r-d1">
+        <summary><span class="num">02</span><span class="q">How do you figure out how much my house is worth?</span><span class="icn">+</span></summary>
+        <div class="ans">Shah performs a <strong>Comparative Market Analysis (CMA)</strong> — reviewing recent transactions of similar properties in the same area, considering size, condition, tenure, facing, and proximity to amenities. The goal is a fair price that attracts serious buyers without leaving money on the table.</div>
+      </details>
+
+      <details class="faq-item r">
+        <summary><span class="num">03</span><span class="q">How do you intend to market my house?</span><span class="icn">+</span></summary>
+        <div class="ans">Marketing includes <strong>professional photography</strong>, listings on major portals (PropertyGuru, iProperty, Mudah), social media posts across Instagram and Facebook, WhatsApp broadcast to a qualified buyer database, and direct outreach to known active buyers. Every listing stays current — no stale photos, no outdated prices.</div>
+      </details>
+
+      <details class="faq-item r r-d1">
+        <summary><span class="num">04</span><span class="q">What are the taxes I need to pay before buying a property?</span><span class="icn">+</span></summary>
+        <div class="ans">When purchasing property in Malaysia, buyers pay <strong>Stamp Duty on the Sale & Purchase Agreement (SPA)</strong> and loan documents. First-time buyers may qualify for exemptions on properties up to RM 500,000. <strong>Real Property Gains Tax (RPGT)</strong> applies to sellers, not buyers. Shah will walk you through the exact figures based on your specific purchase.</div>
+      </details>
+
+      <details class="faq-item r">
+        <summary><span class="num">05</span><span class="q">What should I do to get my house ready for showings?</span><span class="icn">+</span></summary>
+        <div class="ans">Key steps include <strong>decluttering, deep cleaning, minor touch-ups</strong> (paint, fixtures), ensuring good lighting and ventilation, and removing overly personal items. Shah will advise on property-specific improvements that offer the best return — and what not to spend on unnecessarily.</div>
+      </details>
+
+      <details class="faq-item r r-d1">
+        <summary><span class="num">06</span><span class="q">What should be the language of the registration document?</span><span class="icn">+</span></summary>
+        <div class="ans">In Malaysia, official property documents — including the <strong>Sale & Purchase Agreement (SPA)</strong> and title deeds — are issued in <strong>Bahasa Malaysia</strong>, which is legally binding. English translations are sometimes provided alongside. Shah handles negotiations and explanations in both Bahasa and English.</div>
+      </details>
+
+      <details class="faq-item r">
+        <summary><span class="num">07</span><span class="q">Will you have open houses?</span><span class="icn">+</span></summary>
+        <div class="ans">Open houses are arranged based on the property type and the seller's preference. For <strong>residential properties</strong>, a scheduled open day can attract multiple qualified buyers in a single session. For <strong>commercial listings</strong>, Shah typically arranges individual appointments. Both formats are discussed and agreed with the owner upfront.</div>
+      </details>
+
+      <details class="faq-item r r-d1">
+        <summary><span class="num">08</span><span class="q">What is property registration?</span><span class="icn">+</span></summary>
+        <div class="ans">Property registration is the <strong>formal process of transferring ownership</strong> from seller to buyer through the Land Registry (Pejabat Tanah). After the SPA is signed and the full purchase price is settled, the lawyer files a Memorandum of Transfer (MOT) stamped with Stamp Duty, officially recording the new owner. The process typically takes two to four months after SPA signing.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FORM -->
+<section class="contact-form-sec" id="contact-form">
+  <div class="maxw">
+    <div class="sec-head">
+      <div class="num r">02 · Contact</div>
+      <h2 class="r r-d1">Contact <em>now.</em></h2>
+      <div class="end r r-d2">Replies arrive in hours — not days.</div>
+    </div>
+
+    <div class="contact-form-inner">
+      <div class="contact-aside r">
+        <h3>Start a <em>conversation</em> with Shah.</h3>
+        <p class="sub">Whether you have a question about a listing, need a price opinion, or are ready to schedule a private viewing — fill in the form or reach out directly.</p>
+
+        <div class="direct">
+          <div class="ttl">Direct line</div>
+          <div class="drow">
+            <span class="k">Mobile</span>
+            <a class="v mono" href="tel:+60127120366">+60 12-712 0366</a>
+          </div>
+          <div class="drow">
+            <span class="k">WhatsApp</span>
+            <a class="v mono" href="https://wa.me/60127120366">wa.me/60127120366</a>
+          </div>
+          <div class="drow">
+            <span class="k">Email</span>
+            <a class="v mono" href="mailto:shah@msdproniaga.biz.my">shah@msdproniaga.biz.my</a>
+          </div>
+          <div class="drow">
+            <span class="k">Office</span>
+            <span class="v">Landsworth Properties</span>
+          </div>
+          <div class="drow">
+            <span class="k">Hours</span>
+            <span class="v">9am – 9pm · GMT+8</span>
+          </div>
+        </div>
+
+        <div class="map-chip">
+          <div class="pin">M</div>
+          <div class="lab">Studio · Kuala Lumpur</div>
+          <div class="addr">Jalan 1/48A, KL</div>
+        </div>
+      </div>
+
+      <div class="cform r r-d1">
+        <div class="form-ttl">Send a message</div>
+
+        <div class="fields-row cols-3">
+          <div class="field">
+            <label for="f-name">Your Name</label>
+            <input id="f-name" type="text" placeholder="Eg. Ahmad Razali" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="f-email">Your Email</label>
+            <input id="f-email" type="email" placeholder="you@email.com" autocomplete="email">
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone (Optional)</label>
+            <input id="f-phone" type="tel" placeholder="+60 12-xxx xxxx" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="fields-row cols-1">
+          <div class="field">
+            <label for="f-subject">Subject</label>
+            <input id="f-subject" type="text" placeholder="Eg. Enquiry about OL341 Bungalow">
+          </div>
+        </div>
+
+        <div class="fields-row cols-1">
+          <div class="field">
+            <label for="f-interest">I am interested in</label>
+            <select id="f-interest">
+              <option value="" disabled selected>Select an option</option>
+              <option value="buy">Buying a property</option>
+              <option value="sell">Selling / Listing a property</option>
+              <option value="rent">Renting a property</option>
+              <option value="viewing">Booking a viewing</option>
+              <option value="valuation">Property valuation</option>
+              <option value="other">General enquiry</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="fields-row cols-1">
+          <div class="field">
+            <label for="f-msg">Your Message <span style="font-family:'Inter Tight',sans-serif;text-transform:none;font-size:10px;color:var(--mute);letter-spacing:0">(Optional)</span></label>
+            <textarea id="f-msg" placeholder="Describe what you're looking for, the property reference, or anything else you'd like Shah to know…"></textarea>
+          </div>
+        </div>
+
+        <p class="note">By submitting this form, you consent to being contacted by Mohd Shah Dolah in connection with your enquiry. Your details will not be shared with third parties.</p>
+
+        <div class="submit-row">
+          <button class="btn btn--jade" id="sendBtn" type="button" data-state="idle">
+            <span class="btn-label">Send message</span>
+            <span class="btn-sending">Sending…</span>
+            <span class="btn-done">Message sent</span>
+            <span class="arrow"></span>
+          </button>
+          <span class="form-note">Replies typically within the same day</span>
+        </div>
+
+        <div class="toast" id="toast">
+          <div class="ico">&#10003;</div>
+          <p><strong>Message received.</strong> Shah will be in touch shortly — usually within a few hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-sec">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.7961012516017!2d101.69!3d3.155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc37d35e3a0001%3A0x1!2sJalan+1%2F48A%2C+Kuala+Lumpur!5e0!3m2!1sen!2smy!4v1716300000000!5m2!1sen!2smy"
+    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    title="Mohd Shah Dolah Office Location · Jalan 1/48A, KL">
+  </iframe>
+  <div class="map-overlay">
+    <div class="mo-label">Office Location</div>
+    <div class="mo-name">Mohd Shah Dolah</div>
+    <div class="mo-addr">Jalan 1/48A, Kuala Lumpur<br>Landsworth Properties Sdn Bhd</div>
+    <div class="mo-actions">
+      <a class="mo-dir" href="https://maps.google.com/?q=Jalan+1%2F48A+Kuala+Lumpur" target="_blank" rel="noopener">Directions</a>
+      <a class="mo-wa" href="https://wa.me/60127120366" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="maxw">
+    <div class="foot__top">
+      <div>
+        <div class="foot__brand">Mohd <em>Shah</em> Dolah<small>Property · Kuala Lumpur · 2026</small></div>
+        <p class="about">A small estate practice operating out of Landsworth Properties Sdn Bhd. Licensed, listed, and quietly devoted to one transaction at a time.</p>
+      </div>
+      <div>
+        <h5>Index</h5>
+        <ul>
+          <li><a href="mock1.html#listings">Listings</a></li>
+          <li><a href="mock1.html#meet">About Shah</a></li>
+          <li><a href="mock1.html#trust">Working with Shah</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Reach</h5>
+        <ul>
+          <li><a href="tel:+60127120366">012-712 0366</a></li>
+          <li><a href="https://wa.me/60127120366">WhatsApp</a></li>
+          <li><a href="mailto:shah@msdproniaga.biz.my">Email</a></li>
+          <li><a href="https://mdshah.com.my/">mdshah.com.my</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="https://www.instagram.com/mohdshahdolah/">Instagram</a></li>
+          <li><a href="https://www.facebook.com/mohdshahdolah">Facebook</a></li>
+          <li><a href="https://my.linkedin.com/in/mohdshahdolah">LinkedIn</a></li>
+          <li><a href="https://www.youtube.com/mohdshahdolah">YouTube</a></li>
+          <li><a href="https://x.com/mohdshahdolah">X / Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__bot">
+      <div>© 2026 · Mohd Shah Dolah · All rights reserved · PEA 3211 · E(1)1959</div>
+      <div class="socials">
+        <a href="https://www.instagram.com/mohdshahdolah/" title="Instagram">IG</a>
+        <a href="https://www.facebook.com/mohdshahdolah" title="Facebook">FB</a>
+        <a href="https://my.linkedin.com/in/mohdshahdolah" title="LinkedIn">LI</a>
+        <a href="https://www.youtube.com/mohdshahdolah" title="YouTube">YT</a>
+        <a href="https://x.com/mohdshahdolah" title="X">X</a>
+      </div>
+      <div>Designed in Kuala Lumpur</div>
+    </div>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<div class="cbot" id="cbot" aria-live="polite">
+  <div class="cbot__win" role="dialog" aria-label="Chat with Shah">
+    <div class="cbot__hd">
+      <div class="av">M</div>
+      <div class="who">
+        <h4>Shah · Property Assist</h4>
+        <p>Online · usually replies in minutes</p>
+      </div>
+      <button id="cbotClose" aria-label="Close chat">
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="cbot__msgs" id="cbotMsgs"></div>
+    <div class="cbot__chips empty" id="cbotChips"></div>
+    <div class="cbot__inp">
+      <input id="cbotInput" type="text" placeholder="Type a message…" autocomplete="off">
+      <button id="cbotSend" aria-label="Send" disabled>
+        <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg>
+      </button>
+    </div>
+    <a class="cbot__foot" href="https://wa.me/60127120366" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span>Kuala Lumpur · or chat on <a href="https://wa.me/60127120366" target="_blank">WhatsApp</a></span>
+    </a>
+  </div>
+  <button class="cbot__fab" id="cbotFab" aria-label="Open chat">
+    <svg class="ico-msg" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+    <svg class="ico-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    <span class="cbot__badge">1</span>
+  </button>
+</div>
+
+<script>
+/* reveal on scroll */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+/* sticky nav */
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  navEl.classList.toggle('stuck', window.scrollY > 30);
+}, { passive: true });
+
+/* contact form */
+(function () {
+  const btn       = document.getElementById('sendBtn');
+  const toast     = document.getElementById('toast');
+  const nameEl    = document.getElementById('f-name');
+  const emailEl   = document.getElementById('f-email');
+  const phoneEl   = document.getElementById('f-phone');
+  const subjectEl = document.getElementById('f-subject');
+  const interestEl= document.getElementById('f-interest');
+  const msgEl     = document.getElementById('f-msg');
+
+  btn.addEventListener('click', function () {
+    const name  = nameEl.value.trim();
+    const email = emailEl.value.trim();
+    if (!name || !email) {
+      const bad = !name ? nameEl : emailEl;
+      bad.focus();
+      bad.style.borderColor = 'var(--clay)';
+      setTimeout(() => { bad.style.borderColor = ''; }, 2000);
+      return;
+    }
+    btn.disabled = true;
+    btn.dataset.state = 'sending';
+    setTimeout(() => {
+      btn.dataset.state = 'done';
+      toast.classList.add('show');
+      nameEl.value    = '';
+      emailEl.value   = '';
+      phoneEl.value   = '';
+      subjectEl.value = '';
+      interestEl.selectedIndex = 0;
+      msgEl.value     = '';
+    }, 1200);
+  });
+}());
+
+/* chatbot */
+(function () {
+  const WA = '60127120366';
+  const KB = [
+    {
+      re: /^(hello|hi|hey|salam|hai|assalam|good (morning|afternoon|evening))/i,
+      msg: "Hello there!\nI'm Shah's virtual assistant — happy to help with listings, agent fees, viewings, or anything about buying or selling property in KL.\n\nWhat can I help you find?",
+      qr: ['View listings', 'Agent fees', 'Book a viewing', 'About Shah']
+    },
+    {
+      re: /(listing|propert|available|portfolio|on sale|on rent)/i,
+      msg: "Five listings are live right now:\n\nOL341 · Bungalow, Alam Damai Cheras — RM 3.5M\nOL357 · Office Setiawangsa — RM 7,500/mo rent\nOL351 · 3-storey Salak South — RM 1.5M\nOL369 · Office Setiawangsa — RM 800K\nOL361 · 1.5 storey Puchong terrace — RM 480K",
+      qr: ['Bungalow details', 'Office for rent', 'Cheaper homes', 'Book a viewing']
+    },
+    {
+      re: /(fee|commission|charge|cost|rate|3%|1\.25)/i,
+      msg: "Agent Fees in Malaysia:\n\n• Sale: max 3% of sale price\n• Rental: 1.25 month from rent\n• Both before 8% SST\n\nGazetted under the Estate Agents Act 1981, Rule 48.",
+      qr: ['Book a viewing', 'About Shah', 'View listings']
+    },
+    {
+      re: /(book|viewing|appointment|schedule|visit|tour)/i,
+      msg: "To schedule a viewing:\n\n1. WhatsApp: 012-712 0366\n2. Call directly\n3. Use the contact form on this page\n\nMost viewings are confirmed within the same day. Hours: 9am – 9pm GMT+8.",
+      qr: ['WhatsApp now', 'View listings']
+    },
+    {
+      re: /(loan|installment|salary|finance|mortgage|bank)/i,
+      msg: "Loan eligibility (typical estimates at ~4.25% over 30 yrs):\n\n• Bungalow RM3.5M → ~RM15.5K/mo\n• Salak RM1.5M → ~RM6.5K/mo\n• Setiawangsa RM800K → ~RM3.5K/mo\n• Puchong RM480K → ~RM2.1K/mo\n\nShah can run a tailored estimate.",
+      qr: ['WhatsApp now']
+    },
+    {
+      re: /(contact|phone|call|number|whatsapp|email|mobile)/i,
+      msg: "Direct line to Shah:\n\n• Mobile / WhatsApp: 012-712 0366\n• Email: shah@msdproniaga.biz.my\n• Studio: Jalan 1/48A, KL\n• Open: 9am – 9pm GMT+8",
+      qr: ['WhatsApp now', 'Book a viewing']
+    },
+    {
+      re: /(about|who.*you|shah|mohd|experience|background)/i,
+      msg: "About Mohd Shah Dolah:\n\n6+ years registered with BOVAEP as PEA 3211. Based in Kuala Lumpur, working across the Klang Valley and Cheras-Setiawangsa corridor.\n\nKeeps a small portfolio so every listing is handled by the same pair of hands.",
+      qr: ['View listings', 'Agent fees', 'Book a viewing']
+    },
+    {
+      re: /(thanks|thank you|terima kasih|ok|noted|got it|great|appreciate)/i,
+      msg: "You're welcome!\nAnything else I can help with?",
+      qr: ['View listings', 'Agent fees', 'Book a viewing']
+    },
+  ];
+
+  const FALLBACK = {
+    msg: "Not sure about that one.\n\nFor anything specific, WhatsApp Shah directly on 012-712 0366 — replies usually arrive within the hour.",
+    qr: ['WhatsApp now', 'View listings', 'Book a viewing', 'About Shah']
+  };
+
+  const GREETING = {
+    msg: "Hi! Welcome to the Contact page.\n\nAsk me about a listing, agent fees, viewings, or anything about buying or selling in Kuala Lumpur.",
+    qr: ['View listings', 'Agent fees', 'Book a viewing', 'About Shah']
+  };
+
+  const handleAction = (text) => {
+    const t = text.toLowerCase().trim();
+    if (/whatsapp now/.test(t)) {
+      const m = encodeURIComponent("Hi Shah, I'd like to enquire about a property.");
+      window.open('https://wa.me/' + WA + '?text=' + m, '_blank', 'noopener,noreferrer');
+      return true;
+    }
+    if (/call now/.test(t)) { window.location.href = 'tel:+' + WA; return true; }
+    return false;
+  };
+
+  const getReply = (text) => {
+    for (const r of KB) { if (r.re.test(text.toLowerCase().trim())) return r; }
+    return FALLBACK;
+  };
+
+  const cbot     = document.getElementById('cbot');
+  const fab      = document.getElementById('cbotFab');
+  const closeBtn = document.getElementById('cbotClose');
+  const msgsEl   = document.getElementById('cbotMsgs');
+  const chipsEl  = document.getElementById('cbotChips');
+  const input    = document.getElementById('cbotInput');
+  const sendBtn  = document.getElementById('cbotSend');
+  let hasOpened  = false;
+
+  const clearNode = (n) => { while (n.firstChild) n.removeChild(n.firstChild); };
+  const scrollBottom = () => requestAnimationFrame(() => { msgsEl.scrollTop = msgsEl.scrollHeight; });
+
+  const renderChips = (chips) => {
+    clearNode(chipsEl);
+    if (!chips || !chips.length) { chipsEl.classList.add('empty'); return; }
+    chipsEl.classList.remove('empty');
+    chips.forEach(c => {
+      const b = document.createElement('button');
+      b.className = 'cbot__chip';
+      b.textContent = c;
+      b.addEventListener('click', () => send(c));
+      chipsEl.appendChild(b);
+    });
+  };
+
+  const addBot = (text, qr) => {
+    const b = document.createElement('div');
+    b.className = 'cbot__bub cbot__bub--bot';
+    b.textContent = text;
+    msgsEl.appendChild(b);
+    renderChips(qr || []);
+    scrollBottom();
+  };
+
+  const addUser = (text) => {
+    const b = document.createElement('div');
+    b.className = 'cbot__bub cbot__bub--user';
+    b.textContent = text;
+    msgsEl.appendChild(b);
+    scrollBottom();
+  };
+
+  const showTyping = () => {
+    const t = document.createElement('div');
+    t.className = 'cbot__typing'; t.id = 'cbotTyping';
+    for (let i = 0; i < 3; i++) t.appendChild(document.createElement('span'));
+    msgsEl.appendChild(t);
+    scrollBottom();
+  };
+  const hideTyping = () => { const t = document.getElementById('cbotTyping'); if (t) t.remove(); };
+
+  const send = (raw) => {
+    const text = (raw || '').trim(); if (!text) return;
+    addUser(text);
+    input.value = ''; sendBtn.disabled = true;
+    chipsEl.classList.add('empty'); clearNode(chipsEl);
+    const wasAction = handleAction(text);
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      if (wasAction) { addBot("Done — opened in a new tab.\nAnything else you'd like to know?", ['View listings', 'Agent fees', 'About Shah']); }
+      else { const r = getReply(text); addBot(r.msg, r.qr); }
+    }, 850 + Math.random() * 450);
+  };
+
+  const openChat = () => {
+    cbot.classList.add('open', 'read');
+    if (!hasOpened) {
+      hasOpened = true;
+      showTyping();
+      setTimeout(() => {
+        hideTyping();
+        addBot(GREETING.msg, GREETING.qr);
+        setTimeout(() => input.focus(), 200);
+      }, 900);
+    } else { setTimeout(() => input.focus(), 200); }
+  };
+  const closeChat = () => cbot.classList.remove('open');
+
+  fab.addEventListener('click', () => { cbot.classList.contains('open') ? closeChat() : openChat(); });
+  closeBtn.addEventListener('click', closeChat);
+  input.addEventListener('input', () => { sendBtn.disabled = !input.value.trim(); });
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && input.value.trim()) send(input.value); });
+  sendBtn.addEventListener('click', () => send(input.value));
+}());
+</script>
+
+</body>
+</html>

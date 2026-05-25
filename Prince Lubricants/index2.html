@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prince Lubricants — Engineered For Champions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ════════════ RESET & TOKENS ════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --y:    #FFD500;
+      --y2:   #FFC200;
+      --y3:   #E6BC00;
+      --b:    #0A0A0A;
+      --b2:   #141414;
+      --b3:   #1F1F1F;
+      --w:    #FFFFFF;
+      --cream:#F4F1E8;
+      --ink:  #161616;
+      --mt:   #8A8A8A;
+      --line: rgba(0,0,0,.08);
+      --red:  #CC2200;
+      --fh: 'Bebas Neue', sans-serif;
+      --fs: 'Barlow Condensed', sans-serif;
+      --fb: 'DM Sans', sans-serif;
+      --fm: 'JetBrains Mono', monospace;
+      --ease:  cubic-bezier(.25,.46,.45,.94);
+      --ease2: cubic-bezier(.16,1,.3,1);
+      --ease3: cubic-bezier(.77,0,.175,1);
+      --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--fb); background:var(--cream); color:var(--ink); overflow-x:hidden; line-height:1.6; }
+    img { max-width:100%; display:block; }
+    a { text-decoration:none; color:inherit; }
+    ::selection { background:var(--y); color:#000; }
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--b); }
+    ::-webkit-scrollbar-thumb { background:var(--y); }
+
+    /* ════════════ TOP PROGRESS ════════════ */
+    #prog { position:fixed; top:0; left:0; height:3px; width:0%; background:var(--y); z-index:99999; transition:width .1s linear; box-shadow:0 0 12px rgba(255,213,0,.6); }
+
+    /* ════════════ UTILITIES ════════════ */
+    .container { max-width:1320px; margin:0 auto; padding:0 48px; }
+    @media(max-width:760px) { .container { padding:0 24px; } }
+
+    .eyebrow {
+      display:inline-flex; align-items:center; gap:10px;
+      font-family:var(--fm); font-size:11px; font-weight:500;
+      letter-spacing:3px; text-transform:uppercase; color:var(--red);
+      margin-bottom:14px;
+    }
+    .eyebrow::before { content:''; width:24px; height:1px; background:var(--red); }
+    .h1-mega { font-family:var(--fh); font-size:clamp(40px,5.6vw,72px); line-height:.96; letter-spacing:1px; text-transform:uppercase; }
+    .h1-mega em { font-style:normal; color:var(--y3); }
+    .rule { width:48px; height:3px; background:var(--y); margin:18px 0 32px; }
+
+    /* ════════════ REVEALS ════════════ */
+    .rv  { opacity:0; transform:translateY(26px); transition:opacity .8s var(--ease2), transform .8s var(--ease2); }
+    .rvl { opacity:0; transform:translateX(-40px); transition:opacity .8s var(--ease2), transform .8s var(--ease2); }
+    .rvr { opacity:0; transform:translateX(40px);  transition:opacity .8s var(--ease2), transform .8s var(--ease2); }
+    .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+    .d4{transition-delay:.32s}.d5{transition-delay:.40s}.d6{transition-delay:.48s}
+    .vis { opacity:1!important; transform:none!important; }
+
+    /* ════════════ NAVBAR ════════════ */
+    #nav {
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      transition:background .45s, box-shadow .45s, border-color .45s;
+      border-bottom:1px solid transparent;
+    }
+    #nav.scrolled {
+      background:rgba(244,241,232,.94);
+      backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+      box-shadow:0 1px 0 rgba(0,0,0,.05);
+      border-color:rgba(0,0,0,.06);
+    }
+    #nav.scrolled .nav-links a, #nav.scrolled .nav-logo-text, #nav.scrolled .nav-meta { color:var(--b); }
+    #nav.scrolled .burger span { background:var(--b); }
+
+    .nav-in {
+      display:flex; align-items:center; justify-content:space-between;
+      height:78px; max-width:1320px; margin:0 auto; padding:0 48px;
+    }
+    .nav-brand { display:flex; align-items:center; gap:12px; }
+    .nav-logo-img {
+      height:44px; width:auto; object-fit:contain;
+      transition:opacity .3s, transform .3s var(--ease2);
+      filter:drop-shadow(0 1px 6px rgba(0,0,0,.35));
+    }
+    .nav-brand:hover .nav-logo-img { opacity:.85; transform:scale(1.04); }
+    .nav-links { display:flex; align-items:center; gap:2px; list-style:none; }
+    .nav-links a {
+      font-family:var(--fs); font-size:13px; font-weight:700; letter-spacing:2.4px; text-transform:uppercase;
+      color:rgba(255,255,255,.88); padding:9px 16px; position:relative; transition:color .25s;
+    }
+    .nav-links a::after {
+      content:''; position:absolute; bottom:4px; left:16px; right:16px; height:2px; background:var(--y);
+      transform:scaleX(0); transform-origin:right; transition:transform .35s var(--ease2);
+    }
+    .nav-links a:hover { color:var(--y); }
+    .nav-links a:hover::after { transform:scaleX(1); transform-origin:left; }
+    .nav-cta {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:var(--fs); font-size:12px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      background:var(--y); color:var(--b); padding:13px 24px; border-radius:0;
+      position:relative; overflow:hidden;
+      transition:transform .3s var(--ease2);
+    }
+    .nav-cta::before { content:''; position:absolute; inset:0; background:var(--w); transform:translateY(101%); transition:transform .35s var(--ease2); }
+    .nav-cta:hover { transform:translateY(-2px); }
+    .nav-cta:hover::before { transform:translateY(0); }
+    .nav-cta > * { position:relative; z-index:1; }
+    .burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:8px; background:none; border:none; z-index:1001; }
+    .burger span { display:block; width:24px; height:2px; background:var(--w); transition:.3s; }
+    .burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2){ opacity:0; transform:scaleX(0); }
+    .burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+    #mob-menu {
+      display:none; position:fixed; inset:0; background:var(--b); z-index:999;
+      flex-direction:column; align-items:center; justify-content:center; gap:34px;
+    }
+    #mob-menu.open { display:flex; }
+    #mob-menu a { font-family:var(--fh); font-size:36px; letter-spacing:3px; color:var(--y); }
+    @media(max-width:880px) { .nav-links, .nav-cta { display:none; } .burger { display:flex; } }
+
+    /* ════════════ HERO (HERO MEGA REDESIGN) ════════════ */
+    #hero {
+      position:relative; min-height:100vh; min-height:100svh;
+      display:flex; align-items:center;
+      overflow:hidden; color:var(--w);
+      background:var(--b);
+    }
+    .h-bg {
+      position:absolute; inset:0;
+      background:url("Prince Lubricants Images/home_2.png") center/cover no-repeat;
+      transform:scale(1.08); will-change:transform;
+      filter:contrast(1.06) saturate(.78) brightness(.7);
+    }
+    .h-ov {
+      position:absolute; inset:0;
+      background:
+        radial-gradient(ellipse 60% 80% at 25% 50%, rgba(0,0,0,.5), rgba(0,0,0,.92) 90%),
+        linear-gradient(105deg, rgba(8,8,12,.85) 0%, rgba(8,8,12,.4) 55%, rgba(8,8,12,.9) 100%),
+        radial-gradient(circle at 75% 40%, rgba(255,213,0,.12), transparent 55%);
+    }
+    .h-grain {
+      position:absolute; inset:0;
+      background-image:var(--grain);
+      opacity:.35; mix-blend-mode:overlay; pointer-events:none;
+    }
+    /* corner mark / decorative numerals */
+    .h-corner {
+      position:absolute; top:104px; right:48px; z-index:4;
+      text-align:right; opacity:0; transform:translateY(-20px);
+      animation:hFade .9s var(--ease2) .3s forwards;
+    }
+    .h-corner-num {
+      font-family:var(--fh); font-size:clamp(120px,16vw,220px);
+      line-height:.8; color:rgba(255,255,255,.045); letter-spacing:-6px; display:block;
+    }
+    .h-corner-lbl {
+      font-family:var(--fm); font-size:10px; letter-spacing:3px; color:rgba(255,213,0,.55);
+      text-transform:uppercase; display:block; margin-top:-22px; padding-right:8px;
+    }
+    /* yellow chevron decoration top-right */
+    .h-chevron {
+      position:absolute; top:0; right:0;
+      width:280px; height:280px;
+      background:linear-gradient(135deg, transparent 45%, rgba(255,213,0,.08) 45%, rgba(255,213,0,.08) 55%, transparent 55%);
+      pointer-events:none; z-index:2;
+    }
+    .h-chevron::after {
+      content:''; position:absolute; top:0; right:0;
+      width:100%; height:100%;
+      background:linear-gradient(135deg, transparent 60%, rgba(255,213,0,.04) 60%, rgba(255,213,0,.04) 70%, transparent 70%);
+    }
+    /* vertical side label rotated */
+    .h-side {
+      position:absolute; top:50%; left:24px; transform:translateY(-50%) rotate(-90deg);
+      transform-origin:left center; z-index:4;
+      font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:4px;
+      color:rgba(255,255,255,.4); text-transform:uppercase; white-space:nowrap;
+      opacity:0; animation:hFade .9s var(--ease2) .5s forwards;
+    }
+    .h-side::before { content:''; display:inline-block; width:32px; height:1px; background:var(--y); vertical-align:middle; margin-right:14px; }
+    /* main content */
+    .h-content { position:relative; z-index:5; width:100%; padding:120px 0 200px; }
+    .h-eyebrow {
+      display:inline-flex; align-items:center; gap:12px;
+      font-family:var(--fm); font-size:11px; font-weight:500;
+      letter-spacing:3.5px; text-transform:uppercase; color:var(--y);
+      margin-bottom:28px; padding:6px 14px;
+      border:1px solid rgba(255,213,0,.28); border-radius:100px;
+      background:rgba(255,213,0,.04);
+      opacity:0; animation:hFade .8s var(--ease2) .2s forwards;
+    }
+    .h-eyedot {
+      width:7px; height:7px; background:var(--y); border-radius:50%;
+      animation:hPulse 1.6s ease-in-out infinite;
+      box-shadow:0 0 0 0 rgba(255,213,0,.5);
+    }
+    @keyframes hPulse {
+      0%,100% { box-shadow:0 0 0 0 rgba(255,213,0,.5); }
+      50%     { box-shadow:0 0 0 10px rgba(255,213,0,0); }
+    }
+    .h-title {
+      font-family:var(--fh);
+      font-size:clamp(64px,12.5vw,180px);
+      line-height:.86; letter-spacing:-1px; text-transform:uppercase;
+      color:var(--w); margin-bottom:34px;
+    }
+    .h-line { display:block; overflow:hidden; }
+    .h-line > span { display:inline-block; transform:translateY(110%); animation:hUp .9s var(--ease2) forwards; }
+    .h-line:nth-of-type(1) > span { animation-delay:.35s; }
+    .h-line:nth-of-type(2) > span { animation-delay:.5s; }
+    .h-line:nth-of-type(2) > span.h-y { animation-delay:.65s; color:var(--y); }
+    .h-line .h-y { margin-left:.22em; }
+    .h-line .h-dot { color:var(--y); }
+    @keyframes hUp { to { transform:translateY(0); } }
+    @keyframes hFade { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+
+    .h-sub {
+      font-size:17px; line-height:1.7; color:rgba(255,255,255,.72);
+      max-width:560px; margin-bottom:48px;
+      opacity:0; animation:hFade .8s var(--ease2) .85s forwards;
+    }
+
+    .h-btns { display:flex; gap:16px; flex-wrap:wrap; opacity:0; animation:hFade .8s var(--ease2) 1s forwards; }
+    .btn-y {
+      display:inline-flex; align-items:center; gap:12px;
+      background:var(--y); color:var(--b);
+      font-family:var(--fs); font-size:13px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      padding:18px 32px; border-radius:0;
+      position:relative; overflow:hidden;
+      transition:transform .3s var(--ease2), box-shadow .3s;
+      box-shadow:0 8px 24px rgba(255,213,0,.18);
+    }
+    .btn-y::before { content:''; position:absolute; inset:0; background:var(--w); transform:translateY(101%); transition:transform .35s var(--ease2); }
+    .btn-y:hover { transform:translateY(-3px); box-shadow:0 14px 36px rgba(255,213,0,.32); }
+    .btn-y:hover::before { transform:translateY(0); }
+    .btn-y > * { position:relative; z-index:1; }
+    .btn-y .arrow { width:18px; height:10px; transition:transform .35s var(--ease2); }
+    .btn-y:hover .arrow { transform:translateX(4px); }
+
+    .btn-ghost {
+      display:inline-flex; align-items:center; gap:12px;
+      border:1px solid rgba(255,255,255,.25); color:var(--w);
+      font-family:var(--fs); font-size:13px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      padding:17px 32px; border-radius:0;
+      position:relative; overflow:hidden;
+      transition:border-color .3s, color .3s;
+    }
+    .btn-ghost::before { content:''; position:absolute; inset:0; background:var(--y); transform:translateY(101%); transition:transform .4s var(--ease2); z-index:0; }
+    .btn-ghost:hover { color:var(--b); border-color:var(--y); }
+    .btn-ghost:hover::before { transform:translateY(0); }
+    .btn-ghost > * { position:relative; z-index:1; }
+
+    /* bottom hero strip */
+    .h-bottom {
+      position:absolute; left:0; right:0; bottom:0; z-index:5;
+      padding:24px 48px;
+      background:linear-gradient(180deg, transparent, rgba(0,0,0,.55));
+      display:flex; align-items:flex-end; gap:48px;
+      border-top:1px solid rgba(255,255,255,.06);
+      opacity:0; animation:hFade .9s var(--ease2) 1.2s forwards;
+    }
+    .h-bstat { display:flex; flex-direction:column; gap:3px; }
+    .h-bstat-n { font-family:var(--fh); font-size:38px; line-height:1; color:var(--y); letter-spacing:1px; }
+    .h-bstat-l { font-family:var(--fm); font-size:10px; letter-spacing:2px; color:rgba(255,255,255,.4); text-transform:uppercase; }
+    .h-bspace { flex:1; }
+    .h-scroll {
+      display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+      font-family:var(--fm); font-size:10px; letter-spacing:3px; color:rgba(255,255,255,.5); text-transform:uppercase;
+    }
+    .h-scroll-line { width:52px; height:1px; background:rgba(255,255,255,.25); position:relative; overflow:hidden; }
+    .h-scroll-line::after {
+      content:''; position:absolute; top:0; left:0; width:30%; height:100%;
+      background:var(--y); animation:hScrollA 1.8s var(--ease) infinite;
+    }
+    @keyframes hScrollA { 0%{transform:translateX(-110%)} 100%{transform:translateX(280%)} }
+
+    @media(max-width:880px) {
+      .h-corner { top:90px; right:24px; }
+      .h-corner-num { font-size:130px; }
+      .h-side { display:none; }
+      .h-content { padding:120px 0 220px; }
+      .h-bottom { padding:24px; gap:24px; flex-wrap:wrap; }
+      .h-bstat-n { font-size:30px; }
+      .h-scroll { display:none; }
+    }
+
+    /* ════════════ TICKER ════════════ */
+    #ticker { background:var(--b); padding:18px 0; overflow:hidden; position:relative; z-index:2; border-top:1px solid rgba(255,213,0,.1); border-bottom:1px solid rgba(255,213,0,.1); }
+    .ticker-wrap { display:flex; }
+    .ticker-track {
+      display:flex; white-space:nowrap; flex-shrink:0;
+      animation:tickScroll 40s linear infinite;
+    }
+    .ticker-track span {
+      font-family:var(--fs); font-size:14px; font-weight:700; letter-spacing:4px; text-transform:uppercase;
+      color:var(--w); padding:0 32px; display:inline-flex; align-items:center;
+    }
+    .ticker-track .sep { color:var(--y); font-size:14px; padding:0 4px; }
+    @keyframes tickScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    #ticker:hover .ticker-track { animation-play-state:paused; }
+
+    /* ════════════ STATS ════════════ */
+    #stats { background:var(--w); padding:104px 0; position:relative; overflow:hidden; }
+    #stats::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:4px; background:var(--y);
+    }
+    .stats-head { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:24px; margin-bottom:64px; }
+    .stats-head h2 { font-family:var(--fh); font-size:clamp(36px,4.5vw,58px); line-height:1; color:var(--b); }
+    .stats-head .stats-meta { font-family:var(--fm); font-size:11px; letter-spacing:2.5px; color:var(--mt); text-transform:uppercase; }
+    .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; }
+    .stat-blk { padding:14px 56px; border-right:1px solid var(--line); position:relative; }
+    .stat-blk:first-child { padding-left:0; }
+    .stat-blk:last-child { border-right:none; padding-right:0; }
+    .stat-blk::after {
+      content:''; position:absolute; bottom:-14px; left:0; width:0; height:3px; background:var(--y);
+      transition:width .8s var(--ease2);
+    }
+    .stat-blk:first-child::after { left:0; }
+    .stat-blk.vis::after { width:60%; }
+    .stat-sup { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--mt); margin-bottom:6px; }
+    .stat-row { display:flex; align-items:flex-start; }
+    .stat-num { font-family:var(--fh); font-size:clamp(72px,11vw,130px); line-height:.88; color:var(--b); letter-spacing:-1px; }
+    .stat-suf { font-family:var(--fh); font-size:clamp(32px,5vw,56px); color:var(--y); align-self:flex-start; padding-top:8px; letter-spacing:-1px; }
+    .stat-lbl { font-family:var(--fs); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--b); margin-top:14px; }
+    .stat-cap { font-size:13px; color:var(--mt); line-height:1.5; margin-top:6px; max-width:200px; }
+    @media(max-width:640px) {
+      .stats-grid { grid-template-columns:1fr; gap:32px; }
+      .stat-blk { border-right:none; border-bottom:1px solid var(--line); padding:24px 0; }
+      .stat-blk:last-child { border-bottom:none; }
+    }
+
+    /* ════════════ ABOUT ════════════ */
+    #about { background:var(--cream); padding:140px 0; position:relative; overflow:hidden; }
+    #about::after {
+      content:'EST.1998'; position:absolute; right:-2%; top:50%; transform:translateY(-50%);
+      font-family:var(--fh); font-size:min(280px,22vw); color:rgba(0,0,0,.025);
+      pointer-events:none; user-select:none; line-height:1; z-index:0; letter-spacing:-4px;
+    }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:88px; align-items:center; position:relative; z-index:1; }
+    .about-img-wrap { position:relative; padding:24px 0 0 24px; }
+    .about-img-wrap::before {
+      content:''; position:absolute; top:0; left:0; width:78%; height:72%;
+      background:var(--y); z-index:0;
+    }
+    .about-img-wrap::after {
+      content:'01'; position:absolute; top:14px; left:24px; z-index:3;
+      font-family:var(--fh); font-size:84px; color:var(--b); line-height:1; letter-spacing:-2px;
+    }
+    .about-img-wrap img { position:relative; z-index:1; width:100%; aspect-ratio:4/3; object-fit:cover; }
+    .about-cert {
+      position:absolute; right:-12px; bottom:24px; z-index:2;
+      background:var(--b); color:var(--y);
+      font-family:var(--fs); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      padding:12px 20px;
+      box-shadow:0 8px 24px rgba(0,0,0,.15);
+    }
+    .about-cert::before { content:'✦ '; color:var(--y); }
+    .about-content > p { font-size:16px; color:#444; line-height:1.85; margin-bottom:32px; }
+    .pillars { display:flex; flex-direction:column; }
+    .pillar {
+      display:flex; gap:24px; align-items:flex-start;
+      padding:22px 0; border-bottom:1px solid var(--line);
+      transition:padding-left .35s var(--ease2);
+      position:relative;
+    }
+    .pillar:first-child { border-top:1px solid var(--line); }
+    .pillar::before {
+      content:''; position:absolute; left:-12px; top:50%; transform:translateY(-50%) scaleY(0);
+      width:3px; height:50%; background:var(--y);
+      transition:transform .35s var(--ease2);
+    }
+    .pillar:hover { padding-left:14px; }
+    .pillar:hover::before { transform:translateY(-50%) scaleY(1); }
+    .p-num { font-family:var(--fh); font-size:42px; color:var(--y3); line-height:.95; flex-shrink:0; width:54px; letter-spacing:-1px; }
+    .p-body h4 { font-family:var(--fs); font-size:15px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--b); margin-bottom:4px; }
+    .p-body p { font-size:14px; color:#555; line-height:1.6; margin:0; }
+    @media(max-width:880px) { .about-grid { grid-template-columns:1fr; gap:64px; } }
+
+    /* ════════════ TECH ════════════ */
+    #tech {
+      background:var(--b); color:var(--w);
+      display:grid; grid-template-columns:1fr 1fr;
+      overflow:hidden; position:relative;
+    }
+    #tech::before {
+      content:''; position:absolute; inset:0;
+      background-image:var(--grain); opacity:.25; mix-blend-mode:overlay; pointer-events:none; z-index:0;
+    }
+    .tech-left { padding:120px 60px 120px 88px; display:flex; flex-direction:column; justify-content:center; position:relative; z-index:1; }
+    .tech-left .eyebrow { color:var(--y); }
+    .tech-left .eyebrow::before { background:var(--y); }
+    .tech-left .h1-mega { color:var(--w); }
+    .tech-left .h1-mega em { color:var(--y); }
+    .tech-left .rule { background:var(--y); }
+    .tech-left > p { color:rgba(255,255,255,.62); font-size:16px; line-height:1.8; margin-bottom:38px; max-width:540px; }
+    .tech-points { display:flex; flex-direction:column; gap:2px; max-width:540px; }
+    .tp {
+      display:flex; gap:18px; align-items:flex-start;
+      padding:22px 22px; border:1px solid rgba(255,213,0,.08);
+      transition:border-color .35s, background .35s, padding-left .35s var(--ease2);
+      position:relative;
+    }
+    .tp:hover { border-color:rgba(255,213,0,.4); background:rgba(255,213,0,.03); padding-left:30px; }
+    .tp-no { font-family:var(--fm); font-size:11px; color:var(--y); letter-spacing:2px; flex-shrink:0; padding-top:3px; }
+    .tp-body strong { display:block; font-family:var(--fs); font-size:14px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--y); margin-bottom:4px; }
+    .tp-body span { font-size:13.5px; color:rgba(255,255,255,.55); line-height:1.55; }
+    .tech-right { position:relative; min-height:520px; background:#06060A; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .tech-glow { position:absolute; inset:0; background:radial-gradient(circle at 50% 55%, rgba(255,213,0,.16), transparent 60%); pointer-events:none; animation:techPulse 3.5s ease-in-out infinite; }
+    @keyframes techPulse { 0%,100%{opacity:.7} 50%{opacity:1} }
+    .tech-ring {
+      position:absolute; width:480px; height:480px; border:1px solid rgba(255,213,0,.12); border-radius:50%;
+      animation:techRotate 30s linear infinite;
+    }
+    .tech-ring::before { content:''; position:absolute; top:-4px; left:50%; transform:translateX(-50%); width:8px; height:8px; background:var(--y); border-radius:50%; box-shadow:0 0 12px var(--y); }
+    .tech-ring.r2 { width:600px; height:600px; opacity:.5; animation-duration:40s; animation-direction:reverse; }
+    @keyframes techRotate { to { transform:rotate(360deg); } }
+    .tech-ring.r2 { animation-name:techRotate2; }
+    @keyframes techRotate2 { to { transform:rotate(-360deg); } }
+    .tech-right img { width:72%; max-width:340px; object-fit:contain; filter:drop-shadow(0 0 50px rgba(255,213,0,.35)); animation:techFloat 4s ease-in-out infinite; position:relative; z-index:1; }
+    @keyframes techFloat { 0%,100%{transform:translateY(0) rotate(-1.5deg)} 50%{transform:translateY(-20px) rotate(1.5deg)} }
+    .tech-corner-tag {
+      position:absolute; top:32px; right:32px; z-index:3;
+      font-family:var(--fm); font-size:10px; letter-spacing:3px; color:rgba(255,213,0,.6); text-transform:uppercase;
+    }
+    .tech-corner-tag::before { content:'◆ '; color:var(--y); }
+    @media(max-width:880px) { #tech { grid-template-columns:1fr; } .tech-left { padding:88px 32px; } .tech-right { min-height:380px; } .tech-ring, .tech-ring.r2 { width:380px; height:380px; } }
+
+    /* ════════════ PRODUCTS ════════════ */
+    #products { background:var(--cream); padding:140px 0; position:relative; }
+    .prod-hdr { display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:24px; margin-bottom:60px; }
+    .prod-meta { font-family:var(--fm); font-size:11px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:var(--mt); }
+    .prod-meta::before { content:'◆ '; color:var(--y3); }
+    .prod-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.08); }
+    .p-card { background:var(--w); position:relative; overflow:hidden; cursor:pointer; }
+    .p-card-inner { position:relative; z-index:2; }
+    .p-card-num {
+      position:absolute; top:18px; left:18px; z-index:3;
+      font-family:var(--fm); font-size:10px; font-weight:600; letter-spacing:2px; color:var(--b);
+      background:var(--y); padding:5px 9px; line-height:1;
+    }
+    .p-card-img { height:260px; overflow:hidden; background:#FFF6CC; display:flex; align-items:center; justify-content:center; position:relative; }
+    .p-card-img img { width:100%; height:100%; object-fit:contain; transition:transform .65s var(--ease2); padding:8px; }
+    .p-card:hover .p-card-img img { transform:scale(1.05); }
+    .p-card-body { padding:28px 30px 32px; }
+    .p-tag { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; color:var(--mt); transition:color .35s; }
+    .p-name { font-family:var(--fh); font-size:26px; letter-spacing:1px; text-transform:uppercase; margin:6px 0 8px; color:var(--b); transition:color .35s; }
+    .p-desc { font-size:13px; color:#666; line-height:1.65; margin-bottom:20px; transition:color .35s; }
+    .p-arrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:var(--fs); font-size:12px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      color:var(--b); padding-bottom:4px; border-bottom:2px solid var(--y);
+      transition:gap .3s var(--ease2), color .35s, border-color .35s;
+    }
+    .p-card:hover .p-arrow { gap:14px; }
+    .p-card::after {
+      content:''; position:absolute; inset:0; background:var(--y);
+      transform:translateY(100%); transition:transform .5s var(--ease2); z-index:1;
+    }
+    .p-card:hover::after { transform:translateY(0); }
+    .p-card:hover .p-name { color:var(--b); }
+    .p-card:hover .p-desc { color:rgba(0,0,0,.7); }
+    .p-card:hover .p-arrow { color:var(--b); border-color:var(--b); }
+    .p-card:hover .p-tag { color:rgba(0,0,0,.55); }
+    .p-card:hover .p-card-num { background:var(--b); color:var(--y); }
+    @media(max-width:760px) { .prod-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:480px) { .prod-grid { grid-template-columns:1fr; } }
+
+    /* ════════════ RACING ════════════ */
+    #racing { position:relative; overflow:hidden; padding:120px 0; display:flex; align-items:center; min-height:640px; }
+    #racingBg { position:absolute; inset:-6%; background:url("Prince Lubricants Images/home_1.png") center/cover no-repeat; filter:contrast(1.05) saturate(.85); }
+    .r-ov { position:absolute; inset:0; background:linear-gradient(105deg, rgba(8,8,12,.92) 48%, rgba(8,8,12,.45) 100%); }
+    .r-grain { position:absolute; inset:0; background-image:var(--grain); opacity:.25; mix-blend-mode:overlay; pointer-events:none; }
+    .r-content { position:relative; z-index:2; max-width:760px; color:var(--w); }
+    .r-tag-top {
+      display:inline-flex; align-items:center; gap:10px;
+      font-family:var(--fm); font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--y);
+      margin-bottom:20px; padding:6px 14px;
+      border:1px solid rgba(255,213,0,.3); background:rgba(255,213,0,.06);
+    }
+    .r-big {
+      font-family:var(--fh);
+      font-size:clamp(64px,11vw,160px);
+      line-height:.86; text-transform:uppercase; letter-spacing:-1px;
+      color:transparent; -webkit-text-stroke:1.5px rgba(255,213,0,.5);
+      margin-bottom:30px; transition:-webkit-text-stroke .5s;
+    }
+    #racing:hover .r-big { -webkit-text-stroke-color:var(--y); }
+    .r-big .r-fill { -webkit-text-stroke:none; color:var(--y); display:block; }
+    .r-body { color:rgba(255,255,255,.65); font-size:16px; line-height:1.8; max-width:560px; margin-bottom:28px; }
+    .r-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:40px; }
+    .r-tag {
+      font-family:var(--fs); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      border:1px solid rgba(255,213,0,.3); color:rgba(255,213,0,.78);
+      padding:7px 14px; transition:all .25s;
+    }
+    .r-tag:hover { border-color:var(--y); color:var(--b); background:var(--y); }
+    .r-counter-row { display:flex; gap:48px; padding-top:32px; border-top:1px solid rgba(255,255,255,.1); }
+    .r-counter-blk { }
+    .r-counter-n { font-family:var(--fh); font-size:42px; color:var(--y); line-height:1; }
+    .r-counter-l { font-family:var(--fm); font-size:10px; letter-spacing:2.5px; color:rgba(255,255,255,.5); text-transform:uppercase; margin-top:6px; }
+    @media(max-width:640px) {
+      .r-counter-row { gap:24px; flex-wrap:wrap; }
+      .r-counter-n { font-size:32px; }
+    }
+
+    /* ════════════ WHY ════════════ */
+    #why { padding:140px 0; background:var(--w); }
+    .why-head { margin-bottom:64px; display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+    .why-meta { font-family:var(--fm); font-size:11px; letter-spacing:2.5px; color:var(--mt); text-transform:uppercase; }
+    .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(0,0,0,.08); border:1px solid rgba(0,0,0,.08); }
+    .why-card { padding:44px 32px; position:relative; overflow:hidden; transition:background .4s; min-height:280px; display:flex; flex-direction:column; }
+    .why-card:nth-child(odd)  { background:var(--w); }
+    .why-card:nth-child(even) { background:var(--b); }
+    .why-card:nth-child(odd):hover  { background:var(--y); }
+    .why-card:nth-child(even):hover { background:var(--b2); }
+    .w-no {
+      font-family:var(--fm); font-size:11px; letter-spacing:2.5px; text-transform:uppercase;
+      margin-bottom:22px; transition:color .35s;
+    }
+    .why-card:nth-child(odd)  .w-no { color:var(--y3); }
+    .why-card:nth-child(even) .w-no { color:var(--y); }
+    .w-ico { font-size:34px; margin-bottom:24px; display:inline-block; transition:transform .35s var(--ease2); }
+    .why-card:hover .w-ico { transform:scale(1.2) rotate(-8deg); }
+    .w-title { font-family:var(--fh); font-size:26px; letter-spacing:.5px; text-transform:uppercase; margin-bottom:12px; transition:color .35s; line-height:1; }
+    .w-body  { font-size:13.5px; line-height:1.65; transition:color .35s; margin-top:auto; }
+    .why-card:nth-child(odd)  .w-title { color:var(--b); }
+    .why-card:nth-child(odd)  .w-body  { color:#666; }
+    .why-card:nth-child(even) .w-title { color:var(--w); }
+    .why-card:nth-child(even) .w-body  { color:rgba(255,255,255,.55); }
+    .why-card:nth-child(odd):hover  .w-title { color:var(--b); }
+    .why-card:nth-child(odd):hover  .w-body  { color:rgba(0,0,0,.65); }
+    .why-card:nth-child(odd):hover  .w-no    { color:var(--b); }
+    @media(max-width:880px) { .why-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:480px) { .why-grid { grid-template-columns:1fr; } }
+
+    /* ════════════ PARTNER ════════════ */
+    #partner { background:var(--y); padding:140px 0; overflow:hidden; position:relative; }
+    #partner::before {
+      content:'PARTNER'; position:absolute; right:-2%; top:50%; transform:translateY(-50%);
+      font-family:var(--fh); font-size:min(240px,18vw);
+      color:rgba(0,0,0,.06); pointer-events:none; user-select:none; z-index:0; letter-spacing:-4px;
+    }
+    .partner-grid { display:grid; grid-template-columns:1fr 1fr; gap:88px; align-items:center; position:relative; z-index:1; }
+    .partner-content .eyebrow { color:rgba(0,0,0,.55); }
+    .partner-content .eyebrow::before { background:rgba(0,0,0,.4); }
+    .partner-content .h1-mega { color:var(--b); }
+    .partner-content .h1-mega em { color:var(--w); -webkit-text-stroke:1px var(--b); }
+    .partner-content .rule { background:var(--b); }
+    .partner-content > p { font-size:16px; color:rgba(0,0,0,.7); line-height:1.85; margin-bottom:34px; max-width:480px; }
+    .perks { display:flex; flex-direction:column; gap:10px; margin-bottom:40px; }
+    .perk {
+      display:flex; gap:14px; align-items:center;
+      padding:16px 18px; background:rgba(0,0,0,.07);
+      transition:background .25s, transform .25s var(--ease2);
+    }
+    .perk:hover { background:rgba(0,0,0,.13); transform:translateX(6px); }
+    .perk-no { font-family:var(--fm); font-size:11px; color:var(--b); letter-spacing:2px; min-width:24px; }
+    .perk span { font-family:var(--fs); font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--b); }
+    .btn-blk-p {
+      display:inline-flex; align-items:center; gap:12px;
+      background:var(--b); color:var(--y);
+      font-family:var(--fs); font-size:13px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      padding:18px 32px; position:relative; overflow:hidden; transition:transform .3s var(--ease2);
+    }
+    .btn-blk-p::before { content:''; position:absolute; inset:0; background:var(--w); transform:translateY(101%); transition:transform .35s var(--ease2); }
+    .btn-blk-p:hover { transform:translateY(-3px); color:var(--b); }
+    .btn-blk-p:hover::before { transform:translateY(0); }
+    .btn-blk-p > * { position:relative; z-index:1; }
+    .partner-img { position:relative; }
+    .partner-img img { width:100%; aspect-ratio:3/4; object-fit:cover; }
+    .partner-img-badge {
+      position:absolute; top:24px; left:-14px;
+      background:var(--b); color:var(--y);
+      font-family:var(--fs); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+      padding:11px 20px; z-index:2;
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+    }
+    .partner-img-stamp {
+      position:absolute; bottom:24px; right:24px;
+      width:84px; height:84px; border-radius:50%;
+      background:var(--y); color:var(--b);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      font-family:var(--fh); font-size:13px; line-height:1; text-align:center;
+      border:2px solid var(--b);
+      animation:stampRotate 12s linear infinite;
+      z-index:2;
+    }
+    .partner-img-stamp span:first-child { font-size:24px; }
+    @keyframes stampRotate { to { transform:rotate(360deg); } }
+    @media(max-width:880px) { .partner-grid { grid-template-columns:1fr; gap:64px; } }
+
+    /* ════════════ CONTACT ════════════ */
+    #contact { background:var(--w); padding:140px 0; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:88px; margin-top:56px; }
+    .contact-info h3 { font-family:var(--fh); font-size:22px; letter-spacing:1px; text-transform:uppercase; margin-bottom:24px; }
+    .ci { display:flex; gap:18px; margin-bottom:22px; align-items:flex-start; }
+    .ci-lbl { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--mt); min-width:54px; padding-top:3px; }
+    .ci-val { font-size:14px; color:var(--b); line-height:1.65; }
+    .ci-val a { border-bottom:1px solid transparent; transition:border-color .2s; }
+    .ci-val a:hover { border-color:var(--y); }
+    .socials { display:flex; gap:10px; margin-top:28px; }
+    .soc {
+      width:42px; height:42px; background:var(--b); color:var(--y);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--fs); font-size:10px; font-weight:700; letter-spacing:1px;
+      transition:background .25s, color .25s, transform .25s var(--ease2);
+    }
+    .soc:hover { background:var(--y); color:var(--b); transform:translateY(-3px); }
+    .map-wrap { width:100%; height:240px; overflow:hidden; margin-top:28px; border:1px solid var(--line); position:relative; }
+    .map-wrap iframe { width:100%; height:100%; border:0; filter:grayscale(15%); }
+    .cform { display:flex; flex-direction:column; gap:18px; padding:40px; background:var(--cream); border:1px solid var(--line); }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .fg { display:flex; flex-direction:column; gap:6px; }
+    .fl { font-family:var(--fm); font-size:10px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--mt); }
+    .fi, .ft, .fs-el {
+      font-family:var(--fb); font-size:14px; color:var(--b);
+      background:var(--w); border:1px solid var(--line); border-radius:0;
+      padding:14px 16px; outline:none; transition:border-color .25s, box-shadow .25s;
+    }
+    .fi:focus, .ft:focus, .fs-el:focus { border-color:var(--y); box-shadow:0 0 0 3px rgba(255,213,0,.15); }
+    .ft { resize:vertical; min-height:120px; font-family:var(--fb); }
+    .btn-submit {
+      font-family:var(--fs); font-size:13px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase;
+      background:var(--b); color:var(--y); border:none; padding:18px 40px;
+      cursor:pointer; align-self:flex-start; position:relative; overflow:hidden; transition:transform .3s var(--ease2);
+    }
+    .btn-submit::before { content:''; position:absolute; inset:0; background:var(--y); transform:translateY(101%); transition:transform .35s var(--ease2); }
+    .btn-submit:hover { transform:translateY(-3px); color:var(--b); }
+    .btn-submit:hover::before { transform:translateY(0); }
+    .btn-submit span { position:relative; z-index:1; display:inline-flex; align-items:center; gap:10px; }
+    @media(max-width:880px) { .contact-grid { grid-template-columns:1fr; gap:48px; } .form-row { grid-template-columns:1fr; } .cform { padding:28px; } }
+
+    /* ════════════ FOOTER ════════════ */
+    .foot-cta {
+      background:var(--b); padding:80px 0; position:relative; overflow:hidden;
+      border-top:4px solid var(--y);
+    }
+    .foot-cta::before {
+      content:''; position:absolute; inset:0; background-image:var(--grain); opacity:.2; mix-blend-mode:overlay; pointer-events:none;
+    }
+    .foot-cta-in { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:32px; position:relative; }
+    .foot-cta h2 { font-family:var(--fh); font-size:clamp(36px,5vw,68px); line-height:.95; color:var(--w); text-transform:uppercase; letter-spacing:1px; }
+    .foot-cta h2 em { font-style:normal; color:var(--y); }
+    .foot-cta-meta { font-family:var(--fm); font-size:11px; letter-spacing:2.5px; color:rgba(255,255,255,.5); text-transform:uppercase; margin-top:14px; }
+    footer { background:var(--b2); color:rgba(255,255,255,.5); padding:36px 0; border-top:1px solid rgba(255,255,255,.06); }
+    .foot-in { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+    .foot-brand { display:flex; align-items:center; gap:12px; }
+    .foot-logo-img { height:36px; width:auto; object-fit:contain; opacity:.9; transition:opacity .2s; }
+    .foot-brand:hover .foot-logo-img { opacity:1; }
+    .foot-copy { font-family:var(--fm); font-size:11px; letter-spacing:1.5px; }
+    .foot-links { display:flex; gap:22px; list-style:none; }
+    .foot-links a { font-family:var(--fs); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.5); transition:color .2s; }
+    .foot-links a:hover { color:var(--y); }
+
+    /* ════════════ BACK TO TOP ════════════ */
+    #btt {
+      position:fixed; bottom:32px; right:32px;
+      width:50px; height:50px; background:var(--b); color:var(--y);
+      border:none; cursor:pointer; z-index:700;
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--fh); font-size:22px; opacity:0; transform:translateY(16px);
+      transition:all .4s var(--ease2);
+      box-shadow:0 6px 24px rgba(0,0,0,.3);
+    }
+    #btt.show { opacity:1; transform:none; }
+    #btt:hover { background:var(--y); color:var(--b); transform:translateY(-4px); }
+  </style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ═════ NAVBAR ═════ -->
+<nav id="nav">
+  <div class="nav-in">
+    <a class="nav-brand" href="#hero">
+      <img src="Prince Lubricants Images/logo.png" alt="Prince Lubricants" class="nav-logo-img">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#tech">Technology</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#racing">Racing</a></li>
+      <li><a href="#partner">Partner</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta"><span>Get In Touch</span></a>
+    <button class="burger" id="burger" onclick="toggleMob()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mob-menu">
+  <a href="#about"    onclick="closeMob()">About</a>
+  <a href="#tech"     onclick="closeMob()">Technology</a>
+  <a href="#products" onclick="closeMob()">Products</a>
+  <a href="#racing"   onclick="closeMob()">Racing</a>
+  <a href="#partner"  onclick="closeMob()">Partner</a>
+  <a href="#contact"  onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ═════ HERO (FULL REDESIGN) ═════ -->
+<section id="hero">
+  <div class="h-bg" id="heroBg"></div>
+  <div class="h-ov"></div>
+  <div class="h-grain"></div>
+  <div class="h-chevron"></div>
+
+  <div class="h-corner">
+    <span class="h-corner-num">01</span>
+    <span class="h-corner-lbl">Vol. 1 · The Champion's Issue</span>
+  </div>
+
+  <div class="h-side">Est. MCMXCVIII · Singapore HQ · ISO 9001:2015</div>
+
+  <div class="container">
+    <div class="h-content">
+      <div class="h-eyebrow">
+        <span class="h-eyedot"></span>
+        <span>The Champion's Choice · Vision Since 1998</span>
+      </div>
+
+      <h1 class="h-title">
+        <span class="h-line"><span>Engineered</span></span>
+        <span class="h-line"><span>For</span><span class="h-y">Champions<span class="h-dot">.</span></span></span>
+      </h1>
+
+      <p class="h-sub">Championship-proven liquid engineering powering the world's most demanding racing teams. From FIA Formula to Le Mans, from your daily drive to industrial fleets — Prince delivers protection that doesn't quit.</p>
+
+      <div class="h-btns">
+        <a href="#products" class="btn-y">
+          <span>Explore Products</span>
+          <svg class="arrow" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 5 H18 M14 1 L18 5 L14 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/>
+          </svg>
+        </a>
+        <a href="#partner" class="btn-ghost">
+          <span>Partner With Us</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="h-bottom">
+    <div class="h-bstat"><div class="h-bstat-n">500+</div><div class="h-bstat-l">Products</div></div>
+    <div class="h-bstat"><div class="h-bstat-n">25+</div><div class="h-bstat-l">Countries</div></div>
+    <div class="h-bstat"><div class="h-bstat-n">1500+</div><div class="h-bstat-l">Dealers</div></div>
+    <div class="h-bstat"><div class="h-bstat-n">100+</div><div class="h-bstat-l">Race Events</div></div>
+    <div class="h-bspace"></div>
+    <div class="h-scroll">
+      <span>Scroll to Explore</span>
+      <div class="h-scroll-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ TICKER ═════ -->
+<div id="ticker">
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <span>FIA Formula Series</span><span class="sep">✦</span>
+      <span>ISO 9001:2015 Certified</span><span class="sep">✦</span>
+      <span>API Certified</span><span class="sep">✦</span>
+      <span>Le Mans Endurance</span><span class="sep">✦</span>
+      <span>GT World Challenge</span><span class="sep">✦</span>
+      <span>Nürburgring</span><span class="sep">✦</span>
+      <span>P-9 Ester Technology</span><span class="sep">✦</span>
+      <span>King of Europe Drifting</span><span class="sep">✦</span>
+      <span>Singapore HQ</span><span class="sep">✦</span>
+      <span>Champions' Choice</span><span class="sep">✦</span>
+      <span>FIA Formula Series</span><span class="sep">✦</span>
+      <span>ISO 9001:2015 Certified</span><span class="sep">✦</span>
+      <span>API Certified</span><span class="sep">✦</span>
+      <span>Le Mans Endurance</span><span class="sep">✦</span>
+      <span>GT World Challenge</span><span class="sep">✦</span>
+      <span>Nürburgring</span><span class="sep">✦</span>
+      <span>P-9 Ester Technology</span><span class="sep">✦</span>
+      <span>King of Europe Drifting</span><span class="sep">✦</span>
+      <span>Singapore HQ</span><span class="sep">✦</span>
+      <span>Champions' Choice</span><span class="sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═════ STATS ═════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-head">
+      <h2>Numbers That Speak.</h2>
+      <div class="stats-meta">◆ Performance Indicators · Updated 2024</div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-blk rv">
+        <div class="stat-sup">01 · Over</div>
+        <div class="stat-row"><span class="stat-num ctr" data-t="500">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Premium Products</div>
+        <p class="stat-cap">From racing fluids to marine-grade lubricants across every application.</p>
+      </div>
+      <div class="stat-blk rv d2">
+        <div class="stat-sup">02 · Reaching</div>
+        <div class="stat-row"><span class="stat-num ctr" data-t="25">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Countries Worldwide</div>
+        <p class="stat-cap">An expanding global footprint across five continents and counting.</p>
+      </div>
+      <div class="stat-blk rv d4">
+        <div class="stat-sup">03 · Trusted By</div>
+        <div class="stat-row"><span class="stat-num ctr" data-t="1500">0</span><span class="stat-suf">+</span></div>
+        <div class="stat-lbl">Authorized Dealers</div>
+        <p class="stat-cap">A network of partners delivering Prince products to drivers worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ ABOUT ═════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap rvl">
+        <img src="Prince Lubricants Images/prince_4.jpg" alt="Prince Lubricants R&amp;D">
+        <div class="about-cert">ISO 9001:2015 · API Certified</div>
+      </div>
+      <div class="about-content">
+        <span class="eyebrow rv">Our Story</span>
+        <h2 class="h1-mega rv d1">Crafting Liquid<br>Engineering Since <em>'98</em></h2>
+        <div class="rule rv d2"></div>
+        <p class="rv d2">Prince Lubricants was founded with a singular vision: to deliver world-class lubricant solutions that perform under the most demanding conditions. Headquartered in Singapore, we combine cutting-edge research with proven P-9 Ester Technology to engineer products that protect, perform, and outlast.</p>
+        <div class="pillars rv d3">
+          <div class="pillar">
+            <div class="p-num">01</div>
+            <div class="p-body"><h4>Innovative</h4><p>State-of-the-art R&amp;D with breakthrough P-9 Ester molecular bonding technology</p></div>
+          </div>
+          <div class="pillar">
+            <div class="p-num">02</div>
+            <div class="p-body"><h4>Product Solution</h4><p>Industry-leading product scale from motorsport to marine, covering every application</p></div>
+          </div>
+          <div class="pillar">
+            <div class="p-num">03</div>
+            <div class="p-body"><h4>Progressive</h4><p>A global marketing powerhouse expanding into new territories every year</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ TECH ═════ -->
+<section id="tech">
+  <div class="tech-left">
+    <span class="eyebrow rv">Proprietary Formula</span>
+    <h2 class="h1-mega rv d1"><em>P-9</em> Ester<br>Technology.</h2>
+    <div class="rule rv d2"></div>
+    <p class="rv d2">The breakthrough formula engineered through years of motorsport research. P-9 Ester Technology creates formidable molecular bonds that magnetize to all metal surfaces — delivering unmatched protection under extreme thermal and mechanical stress.</p>
+    <div class="tech-points">
+      <div class="tp rv d3">
+        <div class="tp-no">01</div>
+        <div class="tp-body"><strong>Molecular Bonding</strong><span>P-9 molecules bond to every metal surface for maximum film adhesion and durability</span></div>
+      </div>
+      <div class="tp rv d4">
+        <div class="tp-no">02</div>
+        <div class="tp-body"><strong>Thermal Resistance</strong><span>Repulses thermal stresses without breaking down — even under sustained racing conditions</span></div>
+      </div>
+      <div class="tp rv d5">
+        <div class="tp-no">03</div>
+        <div class="tp-body"><strong>Surface Magnetism</strong><span>Protective film remains magnetized on metal surfaces even after the engine stops</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tech-right">
+    <div class="tech-corner-tag">Patent Pending · P-9</div>
+    <div class="tech-glow"></div>
+    <div class="tech-ring"></div>
+    <div class="tech-ring r2"></div>
+    <img src="Prince Lubricants Images/info2.png" alt="P-9 Ester Technology">
+  </div>
+</section>
+
+<!-- ═════ PRODUCTS ═════ -->
+<section id="products">
+  <div class="container">
+    <div class="prod-hdr">
+      <div>
+        <span class="eyebrow rv">What We Offer</span>
+        <h2 class="h1-mega rv d1">Our Product <em>Lines</em></h2>
+      </div>
+      <div class="prod-meta rv d2">500+ SKUs · Six Categories</div>
+    </div>
+    <div class="prod-grid">
+      <div class="p-card rv d1">
+        <div class="p-card-num">N°01</div>
+        <div class="p-card-inner">
+          <div class="p-card-img"><img src="Prince Lubricants Images/home_3.png" alt="Racing Lubricants"></div>
+          <div class="p-card-body">
+            <div class="p-tag">Performance</div>
+            <div class="p-name">Racing Lubricants</div>
+            <div class="p-desc">Championship-proven formulations tested across FIA Formula, Le Mans, GT World Challenge, and King of Europe Drifting.</div>
+            <span class="p-arrow">Discover →</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card rv d2">
+        <div class="p-card-num">N°02</div>
+        <div class="p-card-inner">
+          <div class="p-card-img"><img src="Prince Lubricants Images/home_4.png" alt="Motor Oil"></div>
+          <div class="p-card-body">
+            <div class="p-tag">Flagship</div>
+            <div class="p-name">Motor Oil</div>
+            <div class="p-desc">Zenith of ester-based PCMO. P-9 Technology delivers maximum cleanliness, protection, and fuel economy for passenger vehicles.</div>
+            <span class="p-arrow">Discover →</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card rv d3">
+        <div class="p-card-num">N°03</div>
+        <div class="p-card-inner">
+          <div class="p-card-img"><img src="Prince Lubricants Images/3bottle.jpg" alt="Gear Oil"></div>
+          <div class="p-card-body">
+            <div class="p-tag">Drivetrain</div>
+            <div class="p-name">Gear Oil</div>
+            <div class="p-desc">High-performance gear lubricants for manual transmissions, differentials, and transfer cases operating under extreme load.</div>
+            <span class="p-arrow">Discover →</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card rv d1">
+        <div class="p-card-num">N°04</div>
+        <div class="p-card-inner">
+          <div class="p-card-img"><img src="Prince Lubricants Images/p9.png" alt="ATF"></div>
+          <div class="p-card-body">
+            <div class="p-tag">Transmission</div>
+            <div class="p-name">ATF</div>
+            <div class="p-desc">Automatic Transmission Fluid for smooth, responsive shifting. Euro 6 compatible with reduced SAPS low-viscosity technology.</div>
+            <span class="p-arrow">Discover →</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card rv d2">
+        <div class="p-card-num">N°05</div>
+        <div class="p-card-inner">
+          <div class="p-card-img"><img src="Prince Lubricants Images/home_6.png" alt="Industrial Oil"></div>
+          <div class="p-card-body">
+            <div class="p-tag">Industrial</div>
+            <div class="p-name">Industrial Oil</div>
+            <div class="p-desc">Heavy-duty solutions for trucks, machinery, and commercial fleets satisfying current long-drain criteria for maximum uptime.</div>
+            <span class="p-arrow">Discover →</span>
+          </div>
+        </div>
+      </div>
+      <div class="p-card rv d3">
+        <div class="p-card-num">N°06</div>
+        <div class="p-card-inner">
+          <div class="p-card-img"><img src="Prince Lubricants Images/home_7.png" alt="Marine"></div>
+          <div class="p-card-body">
+            <div class="p-tag">Marine</div>
+            <div class="p-name">Marine Solution</div>
+            <div class="p-desc">Engineered for harsh marine environments — saltwater corrosion, temperature extremes, and continuous load cycles on open water.</div>
+            <span class="p-arrow">Discover →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ RACING ═════ -->
+<section id="racing">
+  <div id="racingBg"></div>
+  <div class="r-ov"></div>
+  <div class="r-grain"></div>
+  <div class="container">
+    <div class="r-content">
+      <div class="r-tag-top">◆ Motorsport Heritage</div>
+      <div class="r-big rv">
+        <span class="r-fill">Race</span>
+        Proven.
+      </div>
+      <p class="r-body rv d2">For over a decade, Prince Lubricants has actively participated in the world's most prestigious motorsport events — using the racetrack as our proving ground. Performance derived on track translates directly to protection on your road.</p>
+      <div class="r-tags rv d3">
+        <span class="r-tag">FIA Formula Series</span>
+        <span class="r-tag">GP3</span>
+        <span class="r-tag">GT World Challenge</span>
+        <span class="r-tag">GT Asia Challenge</span>
+        <span class="r-tag">Le Mans Endurance</span>
+        <span class="r-tag">Nürburgring</span>
+        <span class="r-tag">King of Europe Drifting</span>
+        <span class="r-tag">African East Safari Rally</span>
+        <span class="r-tag">100+ TCR Events</span>
+      </div>
+      <div class="r-counter-row rv d4">
+        <div class="r-counter-blk">
+          <div class="r-counter-n">100+</div>
+          <div class="r-counter-l">Race Events</div>
+        </div>
+        <div class="r-counter-blk">
+          <div class="r-counter-n">12</div>
+          <div class="r-counter-l">Series Sponsored</div>
+        </div>
+        <div class="r-counter-blk">
+          <div class="r-counter-n">15+</div>
+          <div class="r-counter-l">Years On Track</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ WHY ═════ -->
+<section id="why">
+  <div class="container">
+    <div class="why-head">
+      <div>
+        <span class="eyebrow rv">Our Edge</span>
+        <h2 class="h1-mega rv d1">Why Choose <em>Prince?</em></h2>
+      </div>
+      <div class="why-meta rv d2">◆ Four Pillars · One Standard</div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card rv d1">
+        <div class="w-no">01 / Edge</div>
+        <span class="w-ico">⚗️</span>
+        <div class="w-title">Technology</div>
+        <div class="w-body">Revolutionary P-9 Ester molecular additives and state-of-the-art R&amp;D push the boundaries of lubricant science.</div>
+      </div>
+      <div class="why-card rv d2">
+        <div class="w-no">02 / Edge</div>
+        <span class="w-ico">✓</span>
+        <div class="w-title">Assurance</div>
+        <div class="w-body">Seamless quality control from raw material to finished product. ISO 9001:2015 and API certified for every batch.</div>
+      </div>
+      <div class="why-card rv d3">
+        <div class="w-no">03 / Edge</div>
+        <span class="w-ico">🏁</span>
+        <div class="w-title">Recognition</div>
+        <div class="w-body">Lab and racetrack proven across 100+ global motorsport events. Champions' choice at FIA Formula and Le Mans.</div>
+      </div>
+      <div class="why-card rv d4">
+        <div class="w-no">04 / Edge</div>
+        <span class="w-ico">⌖</span>
+        <div class="w-title">Upscaling</div>
+        <div class="w-body">Full distribution partner support, marketing lead pass-through, and exclusive per-country rights to grow your business.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ PARTNER ═════ -->
+<section id="partner">
+  <div class="container">
+    <div class="partner-grid">
+      <div class="partner-content">
+        <span class="eyebrow rv">Join Our Network</span>
+        <h2 class="h1-mega rv d1">Partner<br>With <em>Prince.</em></h2>
+        <div class="rule rv d2"></div>
+        <p class="rv d2">Become an exclusive distributor and join our expanding global network. We provide comprehensive support to help you build and grow your Prince Lubricants business in your territory.</p>
+        <div class="perks rv d3">
+          <div class="perk"><div class="perk-no">01</div><span>Exclusive Distribution — Per Country Basis</span></div>
+          <div class="perk"><div class="perk-no">02</div><span>Full Marketing &amp; Promotional Support</span></div>
+          <div class="perk"><div class="perk-no">03</div><span>Qualified Leads Passed Directly To You</span></div>
+          <div class="perk"><div class="perk-no">04</div><span>Co-Branded Materials &amp; Retail Support</span></div>
+        </div>
+        <a href="#contact" class="btn-blk-p"><span>Become a Distributor</span><span>→</span></a>
+      </div>
+      <div class="partner-img rvr">
+        <div class="partner-img-badge">◆ Global Network</div>
+        <img src="Prince Lubricants Images/prince_1.jpg" alt="Prince Lubricants Partnership">
+        <div class="partner-img-stamp">
+          <span>25+</span>
+          <span style="font-size:9px;letter-spacing:2px;margin-top:2px;">COUNTRIES</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ CONTACT ═════ -->
+<section id="contact">
+  <div class="container">
+    <span class="eyebrow rv">Reach Out</span>
+    <h2 class="h1-mega rv d1">Get In <em>Touch.</em></h2>
+    <div class="rule rv d2"></div>
+    <div class="contact-grid">
+      <div class="contact-info rv">
+        <h3>Contact Information</h3>
+        <div class="ci">
+          <div class="ci-lbl">HQ</div>
+          <div class="ci-val">UOB Plaza 1, 80 Raffles Place,<br>Singapore 048624</div>
+        </div>
+        <div class="ci">
+          <div class="ci-lbl">Web</div>
+          <div class="ci-val"><a href="https://www.princelubricants.com">www.princelubricants.com</a></div>
+        </div>
+        <div class="ci">
+          <div class="ci-lbl">Hours</div>
+          <div class="ci-val">Monday — Friday, 09:00 — 18:00 SGT</div>
+        </div>
+        <div class="ci">
+          <div class="ci-lbl">Social</div>
+          <div class="ci-val">
+            <div class="socials">
+              <a class="soc" href="https://www.facebook.com/Princelubricantsglobal" target="_blank">FB</a>
+              <a class="soc" href="https://www.instagram.com/prince_lubricants" target="_blank">IG</a>
+              <a class="soc" href="https://www.youtube.com/@princelubricants" target="_blank">YT</a>
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8182!2d103.85125!3d1.28469!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19045c0cf747%3A0x5234a5b48e641fb6!2sUOB%20Plaza%201!5e0!3m2!1sen!2ssg!4v1" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="cform rv d2">
+        <div class="form-row">
+          <div class="fg"><label class="fl" for="fn">First Name</label><input class="fi" id="fn" type="text" placeholder="John"></div>
+          <div class="fg"><label class="fl" for="ln">Last Name</label><input class="fi" id="ln" type="text" placeholder="Smith"></div>
+        </div>
+        <div class="fg"><label class="fl" for="em">Email Address</label><input class="fi" id="em" type="email" placeholder="john@company.com"></div>
+        <div class="fg"><label class="fl" for="co">Company</label><input class="fi" id="co" type="text" placeholder="Your Company Name"></div>
+        <div class="fg">
+          <label class="fl" for="iq">Inquiry Type</label>
+          <select class="fs-el" id="iq">
+            <option>Distribution Partnership</option>
+            <option>Product Inquiry</option>
+            <option>Racing / Sponsorship</option>
+            <option>General Enquiry</option>
+          </select>
+        </div>
+        <div class="fg"><label class="fl" for="mg">Message</label><textarea class="ft" id="mg" placeholder="Tell us how we can help you..."></textarea></div>
+        <button class="btn-submit" type="submit"><span>Send Message →</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ FOOT CTA ═════ -->
+<section class="foot-cta">
+  <div class="container">
+    <div class="foot-cta-in">
+      <div>
+        <h2 class="rv">Ready to engineer for <em>champions?</em></h2>
+        <div class="foot-cta-meta">◆ Join 1500+ dealers across 25+ countries</div>
+      </div>
+      <a href="#contact" class="btn-y rv d2">
+        <span>Start the Conversation</span>
+        <svg class="arrow" viewBox="0 0 20 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 5 H18 M14 1 L18 5 L14 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="square"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═════ FOOTER ═════ -->
+<footer>
+  <div class="container">
+    <div class="foot-in">
+      <a class="foot-brand" href="#hero">
+        <img src="Prince Lubricants Images/logo.png" alt="Prince Lubricants" class="foot-logo-img">
+      </a>
+      <p class="foot-copy">© 2024 Prince Lubricants. Engineered For Champions.</p>
+      <ul class="foot-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#partner">Partner</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<button id="btt" title="Back to top">↑</button>
+
+<script>
+/* NAV + PROGRESS + BTT */
+const nav=document.getElementById('nav'),prog=document.getElementById('prog'),btt=document.getElementById('btt');
+window.addEventListener('scroll',()=>{const s=window.scrollY;nav.classList.toggle('scrolled',s>50);btt.classList.toggle('show',s>420);prog.style.width=(s/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* MOBILE MENU */
+function toggleMob(){const m=document.getElementById('mob-menu'),b=document.getElementById('burger');m.classList.toggle('open');b.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
+function closeMob(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('burger').classList.remove('open');document.body.style.overflow='';}
+
+/* REVEAL */
+const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>ro.observe(el));
+
+/* STAT BAR */
+const sObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');sObs.unobserve(e.target);}});},{threshold:.45});
+document.querySelectorAll('.stat-blk').forEach(el=>sObs.observe(el));
+
+/* COUNTERS */
+function runCtr(el){const t=+el.dataset.t,dur=2100,s=performance.now();(function tick(now){const p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*t);if(p<1)requestAnimationFrame(tick);else el.textContent=t;})(s);}
+const cObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.ctr').forEach(runCtr);cObs.unobserve(e.target);}});},{threshold:.5});
+const statsEl=document.getElementById('stats');if(statsEl)cObs.observe(statsEl);
+
+/* PARALLAX */
+const heroBg=document.getElementById('heroBg'),racingBg=document.getElementById('racingBg');
+window.addEventListener('scroll',()=>{const s=window.scrollY;if(heroBg)heroBg.style.transform=`scale(1.08) translateY(${s*.22}px)`;if(racingBg){const r=racingBg.parentElement.getBoundingClientRect();if(r.top<window.innerHeight&&r.bottom>0)racingBg.style.transform=`translateY(${r.top*-.12}px)`;}},{passive:true});
+</script>
+</body>
+</html>

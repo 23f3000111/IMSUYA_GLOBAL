@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prince Lubricants — Your Ultimate Oil Solutions Powerhouse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── RESET & VARIABLES ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --d1: #060611; --d2: #0a0a14; --d3: #10101c; --d4: #1a1a2e;
+      --gold: #FFD700; --gold2: #FFC200; --gold3: #E6B800;
+      --w: #fff; --ow: #f8f9fa;
+      --td: #111; --tg: #555;
+      --tl: rgba(255,255,255,.86); --tm: rgba(255,255,255,.42);
+      --fh: 'Oswald','Arial Black',sans-serif;
+      --fb: 'Inter','Arial',sans-serif;
+      --ease: cubic-bezier(.25,.46,.45,.94);
+      --ease2: cubic-bezier(.16,1,.3,1);
+    }
+
+    /* ── PREMIUM GLOBALS ── */
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--fb); background: var(--d1); color: var(--w); overflow-x: hidden; line-height: 1.6; cursor: none; }
+    img { max-width: 100%; display: block; }
+    a   { text-decoration: none; color: inherit; }
+    ::selection { background: rgba(255,215,0,.28); color: #fff; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--d1); }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--gold), var(--gold2)); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    /* ── LOADER ── */
+    #loader {
+      position: fixed; inset: 0; z-index: 99999;
+      background: var(--d1);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 24px;
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    #loader.out { opacity: 0; transform: scale(1.04); pointer-events: none; }
+    .ld-logo { height: 60px; filter: drop-shadow(0 0 20px rgba(255,215,0,.5)); animation: ldPulse 1.2s ease-in-out infinite alternate; }
+    @keyframes ldPulse { from{filter:drop-shadow(0 0 10px rgba(255,215,0,.3))} to{filter:drop-shadow(0 0 28px rgba(255,215,0,.7))} }
+    .ld-bar-track { width: 180px; height: 2px; background: rgba(255,215,0,.15); border-radius: 2px; overflow: hidden; }
+    .ld-bar-fill  { height: 100%; width: 0; background: linear-gradient(90deg,var(--gold),var(--gold2)); border-radius: 2px; animation: ldFill 1.4s var(--ease2) forwards; }
+    @keyframes ldFill { to { width: 100%; } }
+
+    /* ── SCROLL PROGRESS BAR ── */
+    #prog {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--gold), #FF8C00, var(--gold));
+      background-size: 200% 100%;
+      z-index: 99998; border-radius: 0 2px 2px 0;
+      box-shadow: 0 0 10px rgba(255,215,0,.6), 0 0 20px rgba(255,215,0,.2);
+      animation: progShimmer 2.5s linear infinite;
+      transition: width .12s linear;
+    }
+    @keyframes progShimmer { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
+
+    /* ── CUSTOM CURSOR ── */
+    #cur-ring {
+      position: fixed; z-index: 99997; pointer-events: none;
+      width: 40px; height: 40px;
+      border: 1.5px solid rgba(255,215,0,.55);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: width .35s var(--ease), height .35s var(--ease),
+                  border-color .35s, background .35s, opacity .3s;
+      mix-blend-mode: normal;
+    }
+    #cur-dot {
+      position: fixed; z-index: 99998; pointer-events: none;
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      box-shadow: 0 0 8px rgba(255,215,0,.8);
+    }
+    #cur-ring.big { width: 60px; height: 60px; border-color: var(--gold); background: rgba(255,215,0,.04); }
+    #cur-ring.click { width: 30px; height: 30px; }
+    @media (hover:none) { #cur-ring, #cur-dot { display: none; } body { cursor: auto; } }
+
+    /* ── SIDE NAV DOTS ── */
+    #sidenav {
+      position: fixed; right: 22px; top: 50%;
+      transform: translateY(-50%);
+      z-index: 800;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .snd {
+      width: 8px; height: 8px;
+      border: 1.5px solid rgba(255,215,0,.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all .35s var(--ease);
+      position: relative;
+    }
+    .snd::before {
+      content: attr(data-label);
+      position: absolute; right: 18px; top: 50%;
+      transform: translateY(-50%);
+      background: rgba(6,6,17,.92);
+      backdrop-filter: blur(8px);
+      color: var(--gold);
+      font-family: var(--fh); font-size: 10px; letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s, transform .2s;
+      transform: translateY(-50%) translateX(4px);
+      border: 1px solid rgba(255,215,0,.15);
+    }
+    .snd:hover::before { opacity: 1; transform: translateY(-50%) translateX(0); }
+    .snd.on {
+      background: var(--gold); border-color: var(--gold);
+      transform: scale(1.5);
+      box-shadow: 0 0 10px rgba(255,215,0,.6), 0 0 20px rgba(255,215,0,.2);
+    }
+    @media (max-width: 768px) { #sidenav { display: none; } }
+
+    /* ── BACK TO TOP ── */
+    #btt {
+      position: fixed; bottom: 30px; right: 30px;
+      width: 48px; height: 48px;
+      background: var(--gold); color: #000;
+      border: none; border-radius: 50%;
+      font-size: 20px; font-weight: 700;
+      cursor: pointer; z-index: 700;
+      opacity: 0; transform: translateY(18px) scale(.8);
+      transition: all .4s var(--ease2);
+      box-shadow: 0 4px 24px rgba(255,215,0,.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    #btt.show { opacity: 1; transform: none; }
+    #btt:hover { background: var(--gold2); transform: translateY(-4px); box-shadow: 0 10px 32px rgba(255,215,0,.55); }
+
+    /* ── UTILITIES ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+    .sec-label {
+      display: inline-block;
+      font-family: var(--fh); font-size: 11px;
+      letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+      position: relative;
+    }
+    .sec-label::before {
+      content: ''; display: inline-block;
+      width: 20px; height: 1px; background: var(--gold);
+      margin-right: 10px; vertical-align: middle;
+      margin-bottom: 2px;
+    }
+    .sec-title {
+      font-family: var(--fh);
+      font-size: clamp(30px,4.5vw,52px);
+      font-weight: 700; line-height: 1.08;
+      text-transform: uppercase; letter-spacing: 1px;
+    }
+    .sec-title span { color: var(--gold); }
+    .gold-bar {
+      width: 56px; height: 4px;
+      background: linear-gradient(90deg,var(--gold),var(--gold2));
+      border-radius: 2px; margin: 14px 0 28px;
+    }
+    .bg-num {
+      position: absolute; right: 3%; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--fh);
+      font-size: min(200px,18vw); font-weight: 700;
+      color: rgba(255,215,0,.04);
+      pointer-events: none; user-select: none; line-height: 1; z-index: 0;
+    }
+    .bg-num-dark { color: rgba(0,0,0,.04); }
+
+    /* ── SCROLL REVEAL ── */
+    .rv  { opacity:0; transform:translateY(38px);  transition:opacity .8s var(--ease2), transform .8s var(--ease2); }
+    .rvl { opacity:0; transform:translateX(-50px); transition:opacity .8s var(--ease2), transform .8s var(--ease2); }
+    .rvr { opacity:0; transform:translateX(50px);  transition:opacity .8s var(--ease2), transform .8s var(--ease2); }
+    .d1{transition-delay:.08s} .d2{transition-delay:.18s} .d3{transition-delay:.28s}
+    .d4{transition-delay:.38s} .d5{transition-delay:.48s} .d6{transition-delay:.58s}
+    .vis { opacity:1 !important; transform:none !important; }
+
+    /* ── NAVBAR ── */
+    #nav {
+      position: fixed; top: 3px; left: 0; right: 0; z-index: 1000;
+      transition: background .5s, box-shadow .5s, border-color .5s, top .3s;
+    }
+    #nav.scrolled { top: 0; background: rgba(6,6,17,.92); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); box-shadow: 0 1px 40px rgba(0,0,0,.6); border-bottom: 1px solid rgba(255,215,0,.08); }
+    .nav-in {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px; max-width: 1200px; margin: 0 auto; padding: 0 28px;
+    }
+    .nav-logo img { height: 44px; filter: drop-shadow(0 0 8px rgba(255,215,0,.25)); transition: filter .3s; }
+    .nav-logo:hover img { filter: drop-shadow(0 0 18px rgba(255,215,0,.7)); }
+    .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+    .nav-links a {
+      font-family: var(--fh); font-size: 12px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--tl);
+      padding: 8px 13px; border-radius: 4px;
+      transition: color .25s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute;
+      bottom: 4px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width .35s var(--ease2);
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 70%; }
+    .nav-cta {
+      background: var(--gold) !important; color: #000 !important;
+      font-weight: 700 !important; border-radius: 4px;
+      overflow: hidden; position: relative;
+    }
+    .nav-cta::before {
+      content: ''; position: absolute;
+      top: -50%; left: -80%; width: 50%; height: 200%;
+      background: rgba(255,255,255,.2); transform: skewX(-20deg);
+      transition: left .5s var(--ease);
+    }
+    .nav-cta:hover::before { left: 130%; }
+    .nav-cta::after { display: none !important; }
+    .burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; z-index: 1001; }
+    .burger span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: .3s var(--ease); }
+    .burger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2){ opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+    #mob-menu {
+      display: none; position: fixed; inset: 0; background: var(--d1);
+      z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+    }
+    #mob-menu.open { display: flex; }
+    #mob-menu a { font-family: var(--fh); font-size: 26px; letter-spacing: 4px; text-transform: uppercase; transition: color .25s; }
+    #mob-menu a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero { position: relative; height: 100vh; min-height: 620px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .h-bg { position: absolute; inset: 0; background: url("Prince Lubricants Images/home_1.png") center/cover no-repeat; transform: scale(1.1); will-change: transform; }
+    .h-ov { position: absolute; inset: 0; background: linear-gradient(160deg,rgba(6,6,17,.68) 0%,rgba(6,6,17,.8) 60%,rgba(6,6,17,.96) 100%); }
+
+    /* Grid lines overlay */
+    .h-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,215,0,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,215,0,.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+    }
+
+    /* Particles */
+    .particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .pt { position: absolute; border-radius: 50%; background: var(--gold); opacity: 0; animation: ptUp linear infinite; }
+    @keyframes ptUp {
+      0%  { transform: translateY(0) scale(0); opacity: 0; }
+      8%  { opacity: .5; }
+      90% { opacity: .12; }
+      100%{ transform: translateY(-110vh) scale(2); opacity: 0; }
+    }
+    .orb { position: absolute; border-radius: 50%; background: radial-gradient(circle,rgba(255,215,0,.1),transparent 70%); animation: orbP ease-in-out infinite; pointer-events: none; }
+    @keyframes orbP { 0%,100%{transform:scale(1);opacity:.4} 50%{transform:scale(1.2);opacity:.9} }
+
+    .h-content { position: relative; z-index: 2; text-align: center; max-width: 900px; padding: 0 24px; }
+    .h-eyebrow {
+      font-family: var(--fh); font-size: 11px; letter-spacing: 5px;
+      color: var(--gold); text-transform: uppercase; margin-bottom: 24px;
+      opacity: 0; animation: fadeU .8s var(--ease) .4s forwards;
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+    }
+    .h-eyebrow::before, .h-eyebrow::after { content:''; flex:1; max-width:60px; height:1px; background:rgba(255,215,0,.4); }
+    .h-title {
+      font-family: var(--fh); font-size: clamp(32px,6vw,76px);
+      font-weight: 700; line-height: 1.03; letter-spacing: 2px;
+      text-transform: uppercase; color: #fff; margin-bottom: 22px; min-height: 2.1em;
+    }
+    .cursor-blink { display: inline-block; width: 3px; height: .88em; background: var(--gold); margin-left: 3px; vertical-align: middle; animation: blink .8s step-end infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .h-sub { font-size: 13px; letter-spacing: 3px; color: rgba(255,255,255,.45); margin-bottom: 40px; opacity: 0; animation: fadeU .8s var(--ease) 2.3s forwards; }
+    .h-sub span { color: rgba(255,215,0,.8); }
+    .h-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; opacity: 0; animation: fadeU .8s var(--ease) 2.6s forwards; }
+
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: #000;
+      font-family: var(--fh); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 15px 36px; border-radius: 4px;
+      box-shadow: 0 4px 24px rgba(255,215,0,.35);
+      position: relative; overflow: hidden; transition: transform .3s, box-shadow .3s, background .3s;
+    }
+    .btn-gold::after { content:''; position:absolute; top:-50%; left:-80%; width:50%; height:200%; background:rgba(255,255,255,.2); transform:skewX(-20deg); transition:left .5s var(--ease); }
+    .btn-gold:hover { transform:translateY(-3px); box-shadow:0 12px 36px rgba(255,215,0,.55); background:var(--gold2); }
+    .btn-gold:hover::after { left: 130%; }
+
+    .btn-out {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,215,0,.5); color: #fff;
+      font-family: var(--fh); font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      padding: 14px 36px; border-radius: 4px;
+      position: relative; overflow: hidden;
+      transition: border-color .3s, color .3s, transform .3s;
+    }
+    .btn-out::before { content:''; position:absolute; inset:0; background:rgba(255,215,0,.07); transform:scaleX(0); transform-origin:left; transition:transform .35s var(--ease); }
+    .btn-out:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-3px); }
+    .btn-out:hover::before { transform:scaleX(1); }
+
+    .h-scroll { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeU .8s var(--ease) 3.2s forwards; cursor: pointer; }
+    .h-scroll span { font-size: 9px; letter-spacing: 3px; color: rgba(255,255,255,.28); text-transform: uppercase; }
+    .arr { width: 18px; height: 18px; border-right: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(45deg); animation: bounce 1.6s ease-in-out infinite; }
+    @keyframes fadeU { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
+    @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(6px)} }
+
+    /* ── STATS ── */
+    #stats { background: var(--gold); padding: 44px 0; position: relative; overflow: hidden; }
+    #stats::after { content:''; position:absolute; inset:0; background:repeating-linear-gradient(90deg,rgba(0,0,0,.025) 0px,rgba(0,0,0,.025) 1px,transparent 1px,transparent 60px); pointer-events:none; }
+    .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); }
+    .stat-item { display: flex; align-items: center; gap: 20px; padding: 0 44px; border-right: 1px solid rgba(0,0,0,.12); position: relative; z-index: 1; }
+    .stat-item:last-child { border-right: none; }
+    .stat-icon { width: 68px; height: 68px; flex-shrink: 0; }
+    .stat-icon img { width: 100%; height: 100%; object-fit: contain; }
+    .stat-num { font-family: var(--fh); font-size: 52px; font-weight: 700; color: #000; line-height: 1; }
+    .stat-lbl { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: rgba(0,0,0,.58); text-transform: uppercase; margin-top: 4px; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--w); padding: 120px 0; position: relative; overflow: hidden; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+    .about-content .sec-title { color: var(--td); }
+    .about-content .sec-label { color: var(--gold3); }
+    .about-content .sec-label::before { background: var(--gold3); }
+    .about-content > p { font-size: 15px; color: var(--tg); line-height: 1.84; margin-bottom: 36px; }
+    .pillars { display: flex; flex-direction: column; gap: 14px; }
+    .pillar {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 18px; border-left: 4px solid var(--gold);
+      background: #fffbea; border-radius: 0 8px 8px 0;
+      transition: transform .35s var(--ease2), background .3s, box-shadow .3s;
+    }
+    .pillar:hover { transform: translateX(8px); background: #fff7d0; box-shadow: 4px 0 20px rgba(255,215,0,.15); }
+    .p-icon { width: 36px; height: 36px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; margin-top: 2px; transition: transform .3s; }
+    .pillar:hover .p-icon { transform: rotate(15deg) scale(1.1); }
+    .p-text h4 { font-family: var(--fh); font-size: 13px; letter-spacing: 1px; color: var(--td); text-transform: uppercase; margin-bottom: 4px; }
+    .p-text p { font-size: 13px; color: var(--tg); margin: 0; line-height: 1.55; }
+    .about-img-wrap { position: relative; padding-bottom: 42px; }
+    .about-accent { position: absolute; top:-18px; right:-18px; width:90px; height:90px; background:var(--gold); border-radius:8px; opacity:.22; z-index:0; }
+    .about-main { position: relative; z-index: 1; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 64px rgba(0,0,0,.14); }
+    .about-main img { width: 100%; height: 432px; object-fit: cover; transition: transform .6s var(--ease2); }
+    .about-main:hover img { transform: scale(1.04); }
+    .cert-row { position: absolute; bottom: 0; left: -16px; display: flex; gap: 10px; z-index: 2; }
+    .cert { background: var(--d1); color: var(--gold); font-family: var(--fh); font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 10px 14px; border-radius: 7px; border: 1px solid rgba(255,215,0,.22); box-shadow: 0 4px 22px rgba(0,0,0,.35); text-align: center; transition: transform .3s, box-shadow .3s; }
+    .cert:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,.4); }
+    .cert strong { display: block; font-size: 14px; margin-bottom: 2px; }
+
+    /* ── TECHNOLOGY ── */
+    #tech { background: var(--d2); padding: 120px 0; overflow: hidden; position: relative; }
+    #tech::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:700px; height:700px; background:radial-gradient(ellipse,rgba(255,215,0,.04) 0%,transparent 70%); pointer-events:none; }
+    .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+    .tech-img-wrap { position: relative; display: flex; align-items: center; justify-content: center; min-height: 380px; }
+    .g-ring { position: absolute; border-radius: 50%; border: 1px solid rgba(255,215,0,.15); animation: ringPuls 3.2s ease-in-out infinite; }
+    .g-ring:nth-child(1){ width:350px; height:350px; }
+    .g-ring:nth-child(2){ width:275px; height:275px; animation-delay:.7s; border-color:rgba(255,215,0,.1); }
+    .g-ring:nth-child(3){ width:200px; height:200px; animation-delay:1.4s; border-color:rgba(255,215,0,.25); }
+    @keyframes ringPuls { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.08);opacity:1} }
+    .tech-bottle { position: relative; z-index: 2; animation: floatY 4s ease-in-out infinite; filter: drop-shadow(0 0 40px rgba(255,215,0,.2)); }
+    .tech-bottle img { max-width: 460px; width: 100%; border-radius: 10px; }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+    .tech-content .sec-title { color: #fff; }
+    .tech-points { display: flex; flex-direction: column; gap: 16px; margin: 28px 0; }
+    .tp { display: flex; gap: 16px; align-items: flex-start; padding: 18px 20px; background: rgba(255,215,0,.04); border: 1px solid rgba(255,215,0,.09); border-radius: 8px; transition: all .35s var(--ease2); }
+    .tp:hover { background: rgba(255,215,0,.08); border-color: rgba(255,215,0,.22); transform: translateX(6px); }
+    .tp-icon { width: 40px; height: 40px; background: rgba(255,215,0,.1); border: 1px solid rgba(255,215,0,.22); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: transform .3s; }
+    .tp:hover .tp-icon { transform: rotate(-10deg) scale(1.1); }
+    .tp-text h4 { font-family: var(--fh); font-size: 13px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+    .tp-text p { font-size: 13px; color: var(--tm); line-height: 1.62; margin: 0; }
+    .tech-nums { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+    .tn { background: rgba(255,215,0,.04); border: 1px solid rgba(255,215,0,.08); border-radius: 8px; padding: 14px 8px; text-align: center; transition: all .3s; }
+    .tn:hover { border-color: rgba(255,215,0,.25); background: rgba(255,215,0,.08); transform: translateY(-2px); }
+    .tn strong { display: block; font-family: var(--fh); font-size: 24px; color: var(--gold); }
+    .tn span { font-size: 10px; color: var(--tm); }
+
+    /* ── PRODUCTS ── */
+    #products { background: var(--ow); padding: 120px 0; position: relative; overflow: hidden; }
+    #products .sec-title { color: var(--td); }
+    #products .sec-label { color: var(--gold3); }
+    #products .sec-label::before { background: var(--gold3); }
+    .prod-hdr { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+    .prod-hdr .gold-bar { margin: 14px auto 0; }
+    .prod-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; position: relative; z-index: 1; }
+    .p-card {
+      background: var(--w); border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.07); border: 1px solid #e8e8e8;
+      transition: box-shadow .4s, border-color .4s;
+      cursor: none; will-change: transform;
+    }
+    .p-card:hover { box-shadow: 0 24px 50px rgba(255,215,0,.18), 0 4px 16px rgba(0,0,0,.08); border-color: var(--gold); }
+    .p-card-img { width: 100%; height: 220px; overflow: hidden; background: #FFF6CC; display: flex; align-items: center; justify-content: center; }
+    .p-card-img img { width: 100%; height: 100%; object-fit: contain; transition: transform .55s var(--ease2); padding: 6px; }
+    .p-card:hover .p-card-img img { transform: scale(1.05); }
+    .p-card-fb { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; font-size: 54px; }
+    .p-card-body { padding: 22px; }
+    .p-tag { display: inline-block; background: var(--gold); color: #000; font-family: var(--fh); font-size: 9px; letter-spacing: 2px; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; margin-bottom: 9px; }
+    .p-card-body h3 { font-family: var(--fh); font-size: 19px; color: var(--td); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .p-card-body p { font-size: 13px; color: var(--tg); line-height: 1.62; margin-bottom: 18px; }
+    .p-lnk { display: inline-flex; align-items: center; gap: 6px; font-family: var(--fh); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #000; font-weight: 700; }
+    .p-lnk::after { content:'→'; display:inline-block; transition:transform .25s; }
+    .p-card:hover .p-lnk::after { transform: translateX(5px); }
+
+    /* ── RACING ── */
+    #racing { position: relative; padding: 140px 0; overflow: hidden; }
+    .r-bg { position: absolute; inset: 0; background: url("Prince Lubricants Images/home_2.png") center/cover no-repeat; transition: transform .1s linear; }
+    .r-ov { position: absolute; inset: 0; background: linear-gradient(to right,rgba(6,6,17,.94) 0%,rgba(6,6,17,.72) 55%,rgba(6,6,17,.32) 100%); }
+    .r-content { position: relative; z-index: 2; max-width: 580px; }
+    .r-badge { display: inline-block; background: var(--gold); color: #000; font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 7px 18px; text-transform: uppercase; border-radius: 2px; margin-bottom: 20px; }
+    .r-content > p { font-size: 15px; color: rgba(255,255,255,.68); line-height: 1.84; margin-bottom: 28px; max-width: 500px; }
+    .r-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+    .r-tag { background: rgba(255,215,0,.08); border: 1px solid rgba(255,215,0,.25); color: var(--gold); font-family: var(--fh); font-size: 10px; letter-spacing: 1px; padding: 5px 14px; border-radius: 20px; text-transform: uppercase; transition: all .25s; }
+    .r-tag:hover { background: rgba(255,215,0,.18); border-color: var(--gold); }
+
+    /* ── WHY ── */
+    #why { background: var(--w); padding: 120px 0; position: relative; overflow: hidden; }
+    #why .sec-title { color: var(--td); }
+    #why .sec-label { color: var(--gold3); }
+    #why .sec-label::before { background: var(--gold3); }
+    .why-hdr { text-align: center; margin-bottom: 64px; position: relative; z-index: 1; }
+    .why-hdr .gold-bar { margin: 14px auto 0; }
+    .why-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 22px; position: relative; z-index: 1; }
+    .why-card {
+      padding: 34px 22px; border-top: 4px solid var(--gold); background: var(--ow);
+      border-radius: 0 0 10px 10px; text-align: center;
+      transition: transform .4s var(--ease2), box-shadow .4s; position: relative; overflow: hidden;
+    }
+    .why-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,215,0,.06),transparent); opacity:0; transition:opacity .35s; }
+    .why-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,.1); }
+    .why-card:hover::before { opacity: 1; }
+    .why-icon { width: 62px; height: 62px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 20px; box-shadow: 0 4px 20px rgba(255,215,0,.32); transition: transform .4s var(--ease2), box-shadow .4s; }
+    .why-card:hover .why-icon { transform: rotate(10deg) scale(1.1); box-shadow: 0 8px 32px rgba(255,215,0,.5); }
+    .why-card h3 { font-family: var(--fh); font-size: 17px; color: var(--td); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+    .why-card p { font-size: 13px; color: var(--tg); line-height: 1.72; }
+
+    /* ── SUSTAINABILITY ── */
+    #sustain { position: relative; height: 340px; display: flex; align-items: center; overflow: hidden; }
+    .s-bg { position: absolute; inset: 0; background: url("Prince Lubricants Images/w1.png") center/cover no-repeat; }
+    .s-ov { position: absolute; inset: 0; background: rgba(6,6,17,.78); }
+    .s-content { position: relative; z-index: 2; }
+    .s-content .sec-title { color: #fff; }
+    .s-content > p { font-size: 15px; color: rgba(255,255,255,.62); max-width: 520px; margin-top: 14px; line-height: 1.8; }
+
+    /* ── PARTNER ── */
+    #partner { background: var(--d3); padding: 120px 0; position: relative; overflow: hidden; }
+    .partner-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
+    .partner-content p { font-size: 15px; color: var(--tm); line-height: 1.84; margin-bottom: 32px; }
+    .p-benefits { display: flex; flex-direction: column; gap: 14px; margin-bottom: 38px; }
+    .pb { display: flex; gap: 14px; align-items: flex-start; }
+    .pb-icon { width: 22px; height: 22px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #000; flex-shrink: 0; margin-top: 3px; }
+    .pb-text { font-size: 14px; color: rgba(255,255,255,.72); line-height: 1.62; }
+    .pb-text strong { color: var(--gold); }
+    .partner-img { position: relative; }
+    .partner-img-main { border-radius: 12px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.44); border: 1px solid rgba(255,215,0,.08); }
+    .partner-img-main img { width: 100%; height: 390px; object-fit: cover; transition: transform .6s var(--ease2); }
+    .partner-img-main:hover img { transform: scale(1.04); }
+    .partner-badge { position: absolute; bottom: -16px; right: -16px; background: var(--gold); color: #000; font-family: var(--fh); font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 13px 20px; border-radius: 7px; box-shadow: 0 4px 24px rgba(255,215,0,.44); }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--w); padding: 120px 0; position: relative; overflow: hidden; }
+    #contact .sec-title { color: var(--td); }
+    #contact .sec-label { color: var(--gold3); }
+    #contact .sec-label::before { background: var(--gold3); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 50px; }
+    .c-info { display: flex; flex-direction: column; gap: 28px; }
+    .c-map { border-radius: 12px; overflow: hidden; box-shadow: 0 8px 36px rgba(0,0,0,.1); height: 240px; }
+    .c-map iframe { width: 100%; height: 100%; border: none; }
+    .c-details { display: flex; flex-direction: column; gap: 16px; }
+    .c-item { display: flex; gap: 14px; align-items: flex-start; }
+    .c-item-icon { width: 40px; height: 40px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: transform .3s; }
+    .c-item:hover .c-item-icon { transform: scale(1.1) rotate(-5deg); }
+    .c-item-txt label { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--tg); margin-bottom: 3px; }
+    .c-item-txt span { font-size: 14px; color: var(--td); font-weight: 500; }
+    .c-socials { display: flex; gap: 12px; }
+    .soc-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--d1); color: var(--w); font-family: var(--fh); font-size: 11px; letter-spacing: 1px; padding: 10px 18px; border-radius: 7px; text-transform: uppercase; transition: all .3s; position: relative; overflow: hidden; }
+    .soc-btn::after { content:''; position:absolute; inset:0; background:rgba(255,215,0,.08); transform:scaleX(0); transform-origin:left; transition:transform .3s var(--ease); }
+    .soc-btn:hover { background: var(--gold); color: #000; transform: translateY(-3px); }
+    .soc-btn:hover::after { transform:scaleX(1); }
+    .c-form { display: flex; flex-direction: column; gap: 14px; }
+    .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .f-field { display: flex; flex-direction: column; gap: 5px; }
+    .f-field label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tg); font-weight: 600; }
+    .f-field input, .f-field textarea { padding: 12px 15px; background: var(--ow); border: 1px solid #ddd; border-radius: 8px; font-family: var(--fb); font-size: 14px; color: var(--td); outline: none; resize: none; transition: border-color .3s, box-shadow .3s, background .3s; }
+    .f-field input:focus, .f-field textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(255,215,0,.12); background: #fff; }
+    .f-submit { background: var(--d1); color: var(--gold); font-family: var(--fh); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; padding: 14px 32px; border: 1px solid rgba(255,215,0,.18); border-radius: 8px; cursor: none; align-self: flex-start; transition: all .35s var(--ease2); position: relative; overflow: hidden; }
+    .f-submit::after { content:''; position:absolute; top:-50%; left:-80%; width:50%; height:200%; background:rgba(255,215,0,.12); transform:skewX(-20deg); transition:left .5s var(--ease); }
+    .f-submit:hover { background: var(--gold); color: #000; transform: translateY(-3px); box-shadow: 0 8px 28px rgba(255,215,0,.35); }
+    .f-submit:hover::after { left:130%; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--d1); padding: 70px 0 24px; border-top: 1px solid rgba(255,215,0,.08); }
+    .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .ft-brand img { height: 42px; margin-bottom: 16px; filter: drop-shadow(0 0 8px rgba(255,215,0,.2)); }
+    .ft-brand p { font-size: 13px; color: var(--tm); line-height: 1.82; max-width: 280px; }
+    .ft-col h4 { font-family: var(--fh); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .ft-col ul li a { font-size: 13px; color: var(--tm); transition: color .25s, padding-left .25s; display: inline-block; }
+    .ft-col ul li a:hover { color: var(--gold); padding-left: 6px; }
+    .ft-socials { display: flex; gap: 10px; }
+    .ft-soc { width: 36px; height: 36px; background: rgba(255,215,0,.08); border: 1px solid rgba(255,215,0,.16); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; color: var(--gold); transition: all .3s; }
+    .ft-soc:hover { background: var(--gold); color: #000; transform: translateY(-4px); box-shadow: 0 6px 20px rgba(255,215,0,.35); }
+    .ft-certs { margin-top: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .ft-cert { font-size: 12px; color: rgba(255,215,0,.6); }
+    .ft-bottom { border-top: 1px solid rgba(255,255,255,.05); padding-top: 22px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,.2); letter-spacing: .4px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .why-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; } .burger { display: flex; }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,.12); padding: 18px 24px; }
+      .stat-item:last-child { border-bottom: none; }
+      .about-grid, .tech-grid, .partner-grid, .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+      .prod-grid { grid-template-columns: 1fr 1fr; }
+      .tech-nums { grid-template-columns: repeat(2,1fr); }
+      .ft-grid { grid-template-columns: 1fr 1fr; }
+      .f-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .prod-grid, .why-grid { grid-template-columns: 1fr; }
+      .ft-grid { grid-template-columns: 1fr; }
+      .h-btns { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <img class="ld-logo" src="Prince Lubricants Images/logo.png" alt="Prince Lubricants">
+  <div class="ld-bar-track"><div class="ld-bar-fill"></div></div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div id="prog"></div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cur-ring"></div>
+<div id="cur-dot"></div>
+
+<!-- SIDE NAVIGATION DOTS -->
+<div id="sidenav">
+  <div class="snd on"  data-sec="hero"     data-label="Home"></div>
+  <div class="snd"     data-sec="about"    data-label="About"></div>
+  <div class="snd"     data-sec="tech"     data-label="Technology"></div>
+  <div class="snd"     data-sec="products" data-label="Products"></div>
+  <div class="snd"     data-sec="racing"   data-label="Racing"></div>
+  <div class="snd"     data-sec="why"      data-label="Why Prince"></div>
+  <div class="snd"     data-sec="partner"  data-label="Partner"></div>
+  <div class="snd"     data-sec="contact"  data-label="Contact"></div>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="btt" title="Back to top">↑</button>
+
+<!-- MOBILE MENU -->
+<div id="mob-menu">
+  <a href="#hero"     onclick="closeMob()">Home</a>
+  <a href="#about"    onclick="closeMob()">About</a>
+  <a href="#tech"     onclick="closeMob()">Technology</a>
+  <a href="#products" onclick="closeMob()">Products</a>
+  <a href="#racing"   onclick="closeMob()">Racing</a>
+  <a href="#partner"  onclick="closeMob()">Partner</a>
+  <a href="#contact"  onclick="closeMob()">Contact</a>
+</div>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#hero" class="nav-logo">
+      <img src="Prince Lubricants Images/logo.png" alt="Prince Lubricants">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#tech">Technology</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#racing">Racing</a></li>
+      <li><a href="#partner">Partner</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <div class="burger" id="burger" onclick="toggleMob()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="h-bg" id="heroBg"></div>
+  <div class="h-ov"></div>
+  <div class="h-grid"></div>
+  <div class="particles" id="particles"></div>
+  <div class="h-content">
+    <div class="h-eyebrow">Engineered for Champions · ISO 9001:2015 · API Certified · Since 1998</div>
+    <h1 class="h-title"><span id="tw"></span><span class="cursor-blink"></span></h1>
+    <p class="h-sub"><span>500++ Products</span> &nbsp;·&nbsp; <span>25++ Countries</span> &nbsp;·&nbsp; <span>1500++ Dealers</span></p>
+    <div class="h-btns">
+      <a href="#products" class="btn-gold">Explore Products &rsaquo;</a>
+      <a href="#partner"  class="btn-out">Partner With Us</a>
+    </div>
+  </div>
+  <div class="h-scroll" onclick="scrollTo({top:document.getElementById('stats').offsetTop,behavior:'smooth'})">
+    <span>Scroll</span><div class="arr"></div>
+  </div>
+</section>
+
+<!-- ════ STATS ════ -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item rv d1">
+        <div class="stat-icon"><img src="Prince Lubricants Images/product.png" alt="Products"></div>
+        <div><div class="stat-num"><span class="ctr" data-t="500">0</span>++</div><div class="stat-lbl">Comprehensive Products</div></div>
+      </div>
+      <div class="stat-item rv d2">
+        <div class="stat-icon"><img src="Prince Lubricants Images/export.png" alt="Countries"></div>
+        <div><div class="stat-num"><span class="ctr" data-t="25">0</span>++</div><div class="stat-lbl">Global Export Markets</div></div>
+      </div>
+      <div class="stat-item rv d3">
+        <div class="stat-icon"><img src="Prince Lubricants Images/retailers.png" alt="Dealers"></div>
+        <div><div class="stat-num"><span class="ctr" data-t="1500">0</span>++</div><div class="stat-lbl">Worldwide Dealer Network</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT ════ -->
+<section id="about">
+  <span class="bg-num bg-num-dark">01</span>
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content">
+        <span class="sec-label rv">Our Story</span>
+        <h2 class="sec-title rv d1">About Prince <span>Lubricants</span></h2>
+        <div class="gold-bar rv d2"></div>
+        <p class="rv d2">Since 1998, PRINCELUBE (ASIA) PTE LTD has been the exclusive licensee of the 'Prince Lubricants' brand in over 40 countries. For over two decades, Prince Lubricants has excelled in meeting the diverse lubricant needs of modern life — engineering and manufacturing high-performance lubricants and functional oils for the automotive, marine, and industrial sectors across three continents.</p>
+        <div class="pillars">
+          <div class="pillar rv d2"><div class="p-icon">⚡</div><div class="p-text"><h4>Innovative Company</h4><p>State-of-the-art R&amp;D employing P+ SYNTHESE and VHVI P-9 Ester Technologies to transform your driving experience beyond all expectations.</p></div></div>
+          <div class="pillar rv d3"><div class="p-icon">🌐</div><div class="p-text"><h4>Product Solution Company</h4><p>Manufacturing essential lubricants at industry-leading scale with in-house personalized programs addressing global inquiries efficiently.</p></div></div>
+          <div class="pillar rv d4"><div class="p-icon">📈</div><div class="p-text"><h4>Progressive Company</h4><p>Aggressive marketing and advertising efforts solidifying our position as a top automotive industry contender with partners across many nations.</p></div></div>
+        </div>
+      </div>
+      <div class="about-img-wrap rvr">
+        <div class="about-accent"></div>
+        <div class="about-main">
+          <img src="Prince Lubricants Images/prince_4.jpg" alt="Prince Lubricants R&D">
+        </div>
+        <div class="cert-row">
+          <div class="cert"><strong>ISO 9001</strong>Certified</div>
+          <div class="cert"><strong>API</strong>Accredited</div>
+          <div class="cert"><strong>OHSAS</strong>18001</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ TECHNOLOGY ════ -->
+<section id="tech">
+  <span class="bg-num">02</span>
+  <div class="container">
+    <div class="tech-grid">
+      <div class="tech-img-wrap rvl">
+        <div class="g-ring"></div><div class="g-ring"></div><div class="g-ring"></div>
+        <div class="tech-bottle"><img src="Prince Lubricants Images/info2.png" alt="Prince FS1 P-9 Ester Technology"></div>
+      </div>
+      <div class="tech-content">
+        <span class="sec-label rv">Proprietary Innovation</span>
+        <h2 class="sec-title rv d1">P-9 Ester <span>Technology</span></h2>
+        <div class="gold-bar rv d2"></div>
+        <div class="tech-points">
+          <div class="tp rv d2"><div class="tp-icon">🔬</div><div class="tp-text"><h4>Formidable Molecular Bonding</h4><p>High-polarity P-9 molecules form an unbreakable bond with polar structural components — magnetized powerfully and robustly on all metal surfaces.</p></div></div>
+          <div class="tp rv d3"><div class="tp-icon">🌡️</div><div class="tp-text"><h4>Thermal Stress Resistance</h4><p>Repulse thermal related stresses without a break. Maintains viscosity "stay-in-grade" at extremely high operating temperatures under continuous load.</p></div></div>
+          <div class="tp rv d4"><div class="tp-icon">♻️</div><div class="tp-text"><h4>Highest Antioxidant Protection</h4><p>Dense oil film prevents rust damage. Natural ester antioxidant properties allow minimal oil degradation and extended engine maintenance life.</p></div></div>
+        </div>
+        <div class="tech-nums">
+          <div class="tn rv d2"><strong>+13%</strong><span>Film Strength</span></div>
+          <div class="tn rv d3"><strong>+14%</strong><span>Shear Stability</span></div>
+          <div class="tn rv d4"><strong>+11%</strong><span>Ageing Resistance</span></div>
+          <div class="tn rv d5"><strong>+7%</strong><span>Hydrolytic Stability</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PRODUCTS ════ -->
+<section id="products">
+  <span class="bg-num bg-num-dark">03</span>
+  <div class="container">
+    <div class="prod-hdr">
+      <span class="sec-label rv">What We Offer</span>
+      <h2 class="sec-title rv d1">Our Product <span>Lines</span></h2>
+      <div class="gold-bar rv d2"></div>
+    </div>
+    <div class="prod-grid">
+      <div class="p-card rv d1">
+        <div class="p-card-img"><img src="Prince Lubricants Images/home_3.png" alt="Racing"></div>
+        <div class="p-card-body"><span class="p-tag">Performance</span><h3>Racing Lubricants</h3><p>Championship-proven formulations — the Champion's Choice. Tested across FIA Formula, GT World Challenge, Le Mans Endurance, and more.</p><span class="p-lnk">Discover</span></div>
+      </div>
+      <div class="p-card rv d2">
+        <div class="p-card-img"><img src="Prince Lubricants Images/home_4.png" alt="Motor Oil"></div>
+        <div class="p-card-body"><span class="p-tag">Flagship</span><h3>Motor Oil</h3><p>Zenith of ester-based passenger car motor oil. Supercharged with proprietary P-9 Ester Technology for maximum cleanliness and protection.</p><span class="p-lnk">Discover</span></div>
+      </div>
+      <div class="p-card rv d3">
+        <div class="p-card-img"><img src="Prince Lubricants Images/3bottle.jpg" alt="Gear Oil"></div>
+        <div class="p-card-body"><span class="p-tag">Drivetrain</span><h3>Gear Oil</h3><p>High-performance gear lubricants engineered for manual transmissions, differentials, and transfer cases operating under extreme loads.</p><span class="p-lnk">Discover</span></div>
+      </div>
+      <div class="p-card rv d1">
+        <div class="p-card-img"><img src="Prince Lubricants Images/p9.png" alt="ATF"></div>
+        <div class="p-card-body"><span class="p-tag">Transmission</span><h3>ATF</h3><p>Automatic Transmission Fluid for smooth, responsive shifting. Euro 6 compatible with reduced SAPS technology available.</p><span class="p-lnk">Discover</span></div>
+      </div>
+      <div class="p-card rv d2">
+        <div class="p-card-img"><img src="Prince Lubricants Images/home_6.png" alt="Industrial"></div>
+        <div class="p-card-body"><span class="p-tag">Industrial</span><h3>Industrial Oil</h3><p>Heavy-duty solutions for trucks, machinery, and commercial fleets. Satisfies current long drain criteria — maximizing uptime and reducing costs.</p><span class="p-lnk">Discover</span></div>
+      </div>
+      <div class="p-card rv d3">
+        <div class="p-card-img"><img src="Prince Lubricants Images/home_7.png" alt="Marine"></div>
+        <div class="p-card-body"><span class="p-tag">Marine</span><h3>Marine Solution</h3><p>Your dependable boat shielding. Engineered to withstand harsh marine environments — saltwater, temperature extremes, and continuous load cycles.</p><span class="p-lnk">Discover</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ RACING ════ -->
+<section id="racing">
+  <div class="r-bg" id="racingBg"></div>
+  <div class="r-ov"></div>
+  <div class="container">
+    <div class="r-content">
+      <div class="r-badge rv">Vision Since 1998</div>
+      <span class="sec-label rv d1">Motorsport Heritage</span>
+      <h2 class="sec-title rv d2">Racing <span>in Our DNA</span></h2>
+      <div class="gold-bar rv d3"></div>
+      <p class="rv d3">For over a decade, Prince Lubricants has actively participated in the world's most prestigious motorsport events — using the racetrack as our proving ground. Performance derived on track translates directly to protection and efficiency on your everyday drive.</p>
+      <div class="r-tags rv d4">
+        <span class="r-tag">FIA Formula Series</span><span class="r-tag">GP3</span><span class="r-tag">GT World Challenge</span>
+        <span class="r-tag">GT Asia Challenge</span><span class="r-tag">Le Mans Endurance</span><span class="r-tag">Nürburgring</span>
+        <span class="r-tag">King of Europe Drifting</span><span class="r-tag">African East Safari Rally</span><span class="r-tag">100+ TCR Events</span>
+      </div>
+      <a href="#" class="btn-gold rv d5" style="display:inline-flex;">Explore Racing &rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ WHY ════ -->
+<section id="why">
+  <span class="bg-num bg-num-dark">04</span>
+  <div class="container">
+    <div class="why-hdr">
+      <span class="sec-label rv">Our Advantage</span>
+      <h2 class="sec-title rv d1">Why Choose <span>Prince?</span></h2>
+      <div class="gold-bar rv d2"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-card rv d1"><div class="why-icon">⚗️</div><h3>Technology</h3><p>Revolutionary P-9 Ester additives and formulations setting a new benchmark for lubrication excellence across every product line.</p></div>
+      <div class="why-card rv d2"><div class="why-icon">✅</div><h3>Assurance</h3><p>Count on seamless performance fortified by meticulous In-Process Quality Control and ISO 9001:2015 certified manufacturing.</p></div>
+      <div class="why-card rv d3"><div class="why-icon">🏆</div><h3>Recognition</h3><p>Years of endeavor in laboratories, racetracks, and harsh marine environments yield consistently superb, competition-proven products.</p></div>
+      <div class="why-card rv d4"><div class="why-icon">🚀</div><h3>Upscaling</h3><p>Your partner in distribution. Exclusive territorial rights, full marketing support, and leads passed directly to grow your business.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ SUSTAINABILITY ════ -->
+<section id="sustain">
+  <div class="s-bg"></div><div class="s-ov"></div>
+  <div class="container">
+    <div class="s-content">
+      <span class="sec-label rv">Our Commitment</span>
+      <h2 class="sec-title rv d1">Sustainable Products <span>&amp; Services</span></h2>
+      <p class="rv d2">Committed to delivering high-performance lubricants while maintaining environmental responsibility — Euro 6 compatible, SAPS-reduced formulations for a cleaner tomorrow.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PARTNER ════ -->
+<section id="partner">
+  <span class="bg-num">05</span>
+  <div class="container">
+    <div class="partner-grid">
+      <div class="partner-content">
+        <span class="sec-label rv">Grow With Us</span>
+        <h2 class="sec-title rv d1">Partner With <span>Prince</span></h2>
+        <div class="gold-bar rv d2"></div>
+        <p class="rv d2">We offer exclusive distribution rights on a per-country basis. Once appointed, you will be the sole authorized importer and distributor in your territory — with full rights to market, sell, and grow the brand locally.</p>
+        <div class="p-benefits">
+          <div class="pb rv d3"><div class="pb-icon">✓</div><div class="pb-text"><strong>Exclusive territorial rights</strong> — we never appoint multiple distributors in the same territory, guaranteeing your protection.</div></div>
+          <div class="pb rv d3"><div class="pb-icon">✓</div><div class="pb-text"><strong>Full marketing support</strong> — digital materials, social media content, and all generated leads passed directly to you.</div></div>
+          <div class="pb rv d4"><div class="pb-icon">✓</div><div class="pb-text"><strong>Custom formulation collaboration</strong> — we develop products tailored to specific climate, fuel type, and performance needs.</div></div>
+          <div class="pb rv d4"><div class="pb-icon">✓</div><div class="pb-text"><strong>Flexible packaging</strong> — 0.5L to 208L barrels and IBC tanks with fully customized solutions for your market.</div></div>
+        </div>
+        <a href="#contact" class="btn-gold rv d5">Become a Partner &rsaquo;</a>
+      </div>
+      <div class="partner-img rvr">
+        <div class="partner-img-main"><img src="Prince Lubricants Images/prince_1.jpg" alt="Partnership"></div>
+        <div class="partner-badge">Exclusive Partnership</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ CONTACT ════ -->
+<section id="contact">
+  <span class="bg-num bg-num-dark">06</span>
+  <div class="container">
+    <span class="sec-label rv">Get In Touch</span>
+    <h2 class="sec-title rv d1">Contact <span>Us</span></h2>
+    <div class="gold-bar rv d2"></div>
+    <div class="contact-grid">
+      <div class="c-info rvl">
+        <div class="c-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6575.311565199027!2d103.85117500000001!3d1.285218!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19389ae75bbf%3A0x78aa60ef10c6185d!2sUOB%20Plaza%201!5e1!3m2!1sen!2smy!4v1779356861378!5m2!1sen!2smy" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="c-details">
+          <div class="c-item"><div class="c-item-icon">📍</div><div class="c-item-txt"><label>Address</label><span>36th Floor, UOB Plaza 1, 80 Raffles Place, Singapore 048624</span></div></div>
+          <div class="c-item"><div class="c-item-icon">📞</div><div class="c-item-txt"><label>Phone</label><span>+65 9114 8735</span></div></div>
+          <div class="c-item"><div class="c-item-icon">✉️</div><div class="c-item-txt"><label>Email</label><span>info@princelubricants.com</span></div></div>
+        </div>
+        <div class="c-socials">
+          <a href="https://www.facebook.com/PrinceLubricants" class="soc-btn" target="_blank">f &nbsp;Facebook</a>
+          <a href="https://www.instagram.com/princelubricants_global/" class="soc-btn" target="_blank">◉ &nbsp;Instagram</a>
+        </div>
+      </div>
+      <div class="c-form rvr">
+        <div class="f-row">
+          <div class="f-field"><label>Your Name</label><input type="text" placeholder="John Smith"></div>
+          <div class="f-field"><label>Company</label><input type="text" placeholder="Company Name"></div>
+        </div>
+        <div class="f-row">
+          <div class="f-field"><label>Email</label><input type="email" placeholder="email@company.com"></div>
+          <div class="f-field"><label>Phone</label><input type="tel" placeholder="+1 000 000 0000"></div>
+        </div>
+        <div class="f-field"><label>Subject</label><input type="text" placeholder="Distribution inquiry, product question..."></div>
+        <div class="f-field"><label>Message</label><textarea rows="5" placeholder="Tell us about your business and how we can help..."></textarea></div>
+        <button class="f-submit">Send Message &nbsp;→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <img src="Prince Lubricants Images/logo.png" alt="Prince Lubricants">
+        <p>The motor oil, transmission fluid, and industrial lubricant portfolios of Prince Lubricants are expertly manufactured to meet the exacting formulations set by Prince Oil Incorporated, USA.</p>
+      </div>
+      <div class="ft-col"><h4>Quick Links</h4><ul><li><a href="#about">Our Organization</a></li><li><a href="#tech">Technology</a></li><li><a href="#products">Products</a></li><li><a href="#racing">Racing</a></li><li><a href="#partner">Partnering</a></li></ul></div>
+      <div class="ft-col"><h4>Products</h4><ul><li><a href="#">Motor Oil</a></li><li><a href="#">Gear Oil</a></li><li><a href="#">ATF</a></li><li><a href="#">Industrial</a></li><li><a href="#">Marine Solution</a></li></ul></div>
+      <div class="ft-col">
+        <h4>Follow Us</h4>
+        <div class="ft-socials">
+          <a href="https://www.facebook.com/PrinceLubricants" class="ft-soc" target="_blank" title="Facebook">f</a>
+          <a href="https://www.instagram.com/princelubricants_global/" class="ft-soc" target="_blank" title="Instagram">◉</a>
+        </div>
+        <div class="ft-certs"><h4 style="margin-top:20px;">Certified</h4><span class="ft-cert">✓ ISO 9001:2015</span><span class="ft-cert">✓ API Certified (40+ products)</span><span class="ft-cert">✓ OHSAS 18001</span></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <span>© 2024 Prince Lubricants — PRINCELUBE (ASIA) PTE LTD. All rights reserved.</span>
+      <span>36th Floor, UOB Plaza 1, Singapore 048624</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── LOADER ── */
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const ld = document.getElementById('loader');
+    ld.classList.add('out');
+    setTimeout(() => ld.remove(), 750);
+  }, 1500);
+});
+
+/* ── NAVBAR ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50), {passive:true});
+
+/* ── MOBILE MENU ── */
+function toggleMob(){ const m=document.getElementById('mob-menu'),b=document.getElementById('burger'); m.classList.toggle('open'); b.classList.toggle('open'); document.body.style.overflow=m.classList.contains('open')?'hidden':''; }
+function closeMob(){ document.getElementById('mob-menu').classList.remove('open'); document.getElementById('burger').classList.remove('open'); document.body.style.overflow=''; }
+
+/* ── SCROLL PROGRESS ── */
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  prog.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+}, {passive:true});
+
+/* ── CUSTOM CURSOR ── */
+const ring = document.getElementById('cur-ring');
+const dot  = document.getElementById('cur-dot');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+(function animRing(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); })();
+document.addEventListener('mousedown', () => ring.classList.add('click'));
+document.addEventListener('mouseup',   () => ring.classList.remove('click'));
+document.querySelectorAll('a,button,.p-card,.pillar,.why-card,.tp,.tn,.r-tag,.cert').forEach(el => {
+  el.addEventListener('mouseenter', () => ring.classList.add('big'));
+  el.addEventListener('mouseleave', () => ring.classList.remove('big'));
+});
+
+/* ── PARTICLES ── */
+(function(){
+  const c = document.getElementById('particles');
+  for(let i=0;i<28;i++){
+    const p=document.createElement('div'); p.className='pt';
+    const sz=Math.random()*5+2;
+    p.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;bottom:${Math.random()*30}%;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;filter:blur(${Math.random()>.65?1:0}px);`;
+    c.appendChild(p);
+  }
+  [[15,20,'9s'],[75,50,'13s','.8s'],[45,72,'16s','3s']].forEach(([x,y,dur,delay='0s'])=>{
+    const o=document.createElement('div'); o.className='orb';
+    o.style.cssText=`width:300px;height:300px;left:${x}%;top:${y}%;animation-duration:${dur};animation-delay:${delay};`;
+    c.appendChild(o);
+  });
+})();
+
+/* ── TYPEWRITER ── */
+(function(){
+  const el=document.getElementById('tw'), txt='Your Ultimate Oil Solutions Powerhouse';
+  let i=0;
+  function tick(){ if(i<txt.length){ el.textContent+=txt[i++]; setTimeout(tick,52); } }
+  setTimeout(tick, 1800);
+})();
+
+/* ── PARALLAX ── */
+const hBg = document.getElementById('heroBg');
+const rBg = document.getElementById('racingBg');
+window.addEventListener('scroll', () => {
+  const s = window.scrollY;
+  hBg.style.transform = `scale(1.1) translateY(${s*.28}px)`;
+  const rRect = rBg?.parentElement?.getBoundingClientRect();
+  if(rBg && rRect && rRect.top < window.innerHeight && rRect.bottom > 0){
+    rBg.style.transform = `translateY(${(rRect.top)*-.15}px)`;
+  }
+}, {passive:true});
+
+/* ── SCROLL REVEAL ── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); ro.unobserve(e.target); } });
+}, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el => ro.observe(el));
+
+/* ── COUNTERS ── */
+function runCtr(el){
+  const t=+el.dataset.t, dur=1900, s=performance.now();
+  (function tick(now){ const p=Math.min((now-s)/dur,1), e=1-Math.pow(1-p,3); el.textContent=Math.floor(e*t); if(p<1) requestAnimationFrame(tick); else el.textContent=t; })(s);
+}
+const co = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.querySelectorAll('.ctr').forEach(runCtr); co.unobserve(e.target); } }); },{threshold:.5});
+const st = document.getElementById('stats'); if(st) co.observe(st);
+
+/* ── SIDE NAV DOTS ── */
+const dots = document.querySelectorAll('.snd');
+const sectIds = ['hero','about','tech','products','racing','why','partner','contact'];
+dots.forEach(d => d.addEventListener('click', () => document.getElementById(d.dataset.sec)?.scrollIntoView({behavior:'smooth'})));
+const sObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) dots.forEach(d => d.classList.toggle('on', d.dataset.sec===e.target.id)); });
+},{threshold:.35});
+sectIds.forEach(id => { const el=document.getElementById(id); if(el) sObs.observe(el); });
+
+/* ── BACK TO TOP ── */
+const btt = document.getElementById('btt');
+window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 420), {passive:true});
+btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── 3D CARD TILT ── */
+document.querySelectorAll('.p-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(700px) rotateY(${x*14}deg) rotateX(${-y*10}deg) translateY(-8px)`;
+  });
+  card.addEventListener('mouseleave', () => { card.style.transform=''; });
+});
+</script>
+</body>
+</html>
